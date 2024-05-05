@@ -1317,7 +1317,7 @@ ${recipe}`;
 
 async function aichat(input) {
     try {
-        const response = await axios.post('https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyCxbakwQzlOHF1L3YQ06A40WBlveHQ4WP4', {      
+        const response = await axios.post('https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyCaK_5SPC7U3eKANr5opfdlih2KlR_HlsE', {      
       contents: [{
         parts:[{
           text: input}]}]
@@ -1334,7 +1334,7 @@ Powered by Gemini AI
 		
 ${gptResponse}`;
     } catch (error) {
-        console.error('Error:', error.message);
+        console.error('Error:', error.response.data.error.message);
         return 'Maaf, terjadi kesalahan dalam memproses permintaan Anda.';
     }
 }
@@ -1578,4 +1578,3 @@ async function checkCooldown(triggers) {
 			}
 		}
 }}		
-
