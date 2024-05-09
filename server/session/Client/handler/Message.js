@@ -90,10 +90,12 @@ export default class Message extends Serialize {
 			
 				const metadataString = `*Chizuru-chan🌸*
 
-${groupMetadata.subject} (${groupMetadata.id})
+*${groupMetadata.subject}* (${groupMetadata.id})
 Status VIP: ${statusVIP}
 Sisa Langganan: ${sisaLangganan}
-Jumlah Member: ${groupMetadata.participants.length}`;
+Jumlah Member: ${groupMetadata.participants.length}
+
+*Perpanjang durasi layanan Chizu hanya di revandastore*`;
 				
 				return metadataString;
 			}
@@ -113,14 +115,14 @@ const menuChizu = `*Chizuru-chan🌸*
 ${time} kak, ada yang bisa chizu bantu?
 
 ╔══〘 *TORAM MENU* 〙══
-╠➥ lvling char *miniboss/boss* [lvl]
+╠➥ lvling char *miniboss/boss* *lvl*
 ╠➥ lvling bs *tec/non*
 ╠➥ lvling alche
-╠➥ cari item [item]
-╠➥ cari monster [monster]
+╠➥ cari item *item*
+╠➥ cari monster *monster*
 ╠➥ racik rumus fill
-╠➥ cari regist [registlet]
-╠➥ harga slot [eq]
+╠➥ cari regist *registlet*
+╠➥ harga slot *eq*
 ╠➥ bahan tas
 ╠➥ bahan mq
 ╠➥ kode live
@@ -136,15 +138,14 @@ ${time} kak, ada yang bisa chizu bantu?
 ╠➥ mt terbaru
 ║
 ╠══〘 *GENERAL MENU* 〙══
-╠➥ cari anime [anime]
+╠➥ anime *search/random/top*
 ╠➥ on going anime
 ╠➥ random anime quotes
-╠➥ cari manhwa [manhwa]
-╠➥ tiktok download [link tiktok]
-╠➥ fb download [link FB]
-╠➥ ig download [link IG]
-╠➥ [foto] stikerin
-╠➥ AI chat [pesan]
+╠➥ manhwa *search/random/top*
+╠➥ tiktok dl *link*
+╠➥ fb dl *link*
+╠➥ ig dl *link*
+╠➥ stikerin (reply foto)
 ╠➥ info bot
 ║
 ╠══〘 *ADMIN MENU* 〙══
@@ -152,9 +153,10 @@ ${time} kak, ada yang bisa chizu bantu?
 ╠➥ kick [@tag member]
 ╠➥ promote [@tag member]
 ╠➥ demote [@tag member]
+╠➥ ban [@tag member]
 ╠➥ anti toxic *on/off*
 ╠➥ anti link *on/off*
-╠➥ anti nsfw *on/off*
+╠➥ nsfw *on/off*
 ╠➥ welcome msg *on/off*
 ╠➥ out msg *on/off*
 ╠➥ grup status
@@ -187,8 +189,8 @@ List untuk Non-Full TEC char (tanda kurung artinya minimum diff):
 200-205: Demon Empress Garb (200)
 205-220: Maiden (210)
 						
-*Gunakan Perlengkapan DEX Untuk Meningkatkan Sedikit Difficulty
-*Gunakan Perlengkapan STR Untuk Meningkatkan Sedikit Success Rate`;
+*Gunakan Perlengkapan DEX Untuk Meningkatkan Sedikit Difficulty*
+*Gunakan Perlengkapan STR Untuk Meningkatkan Sedikit Success Rate*`;
 
 const lvlingbs2 = `*Chizuru-chan🌸*
 					
@@ -212,7 +214,7 @@ List Leveling Prof Alchemist:
 ╠➥ Lv 106-135: Revita VI
 ╠➥ Lv 136-240: Orichalcum 
 ╠➥ Lv 241+: Orichalcum Murni
-╚══〘 Chizuru Bot 〙══
+╚══〘 *Chizuru Bot* 〙══
 						
 Tingkatan padu/lock & Prof minimum:
 ╔═════════════
@@ -221,7 +223,7 @@ Tingkatan padu/lock & Prof minimum:
 ╠➥ Lock 3: Prof Alche Lv 100
 ╠➥ Lock 4: Prof Alche Lv 150
 ╠➥ Lock 5: Prof Alche Lv 200
-╚══〘 Chizuru Bot 〙══`;
+╚══〘 *Chizuru Bot* 〙══`;
 
 const farminfoChizu = `*Chizuru-chan🌸*
 		
@@ -278,9 +280,10 @@ Drop: Agar-Agar Merah Ungu, Cairan Asam Manis
 2. Laduro (Terowongan Cobaan)
 Monster Lv: 214
 Drop: Bola Mata Redup`;
+
 const ninjascrollChizu = `*Chizuru-chan🌸*
 
-"Ninja kok jadi kang farm?" ~Admin
+"Ninja kok jadi petani?" ~Chizu
 
 Rapid Aqua Vortex + Throwing Kunai:
 THS, STAFF, BOWGUN
@@ -293,71 +296,66 @@ OHS, BOW, KATANA
 STAFF, THS, MD
 STAFF, THS, HALBERD
 
+Rumus lainnya:
 https://toramtools.github.io/scroll.html`;
 
 const bufffoodChizu = `*Chizuru-chan🌸*
 		
 Jangan lupa izin kalau mau maling (ʘᴗʘ✿)
 
-⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
-MAX HP★
-		
-Code: 1010032   LVL 10
-Code: 1010084   LVL 10
-Code: 1011945   LVL 10
-Code: 1234567   LVL 10
-Code: 3011143   LVL 10
-Code: 7121252   LVL 9
-Address: Sofya-A-420    LVL 9
-⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
-MAXMP★
+MAX HP★		
+Code: 1010032	LVL 10
+Code: 1010084	LVL 10
+Code: 1011945	LVL 10
+Code: 1234567	LVL 10
+Code: 3011143	LVL 10
+Code: 7121252	LVL 9
+Address: Sofya-A-420	LVL 9
 
-Code: 3204544   LVL 10
-Code: 6010021   LVL 10
-Code: 6070013   LVL 10
-Code: 1011212   LVL 10
-Code: 1016646   LVL 10
-Code: 4011793   LVL 10
-Code: 1010013   LVL 10
-Code: 4011793   LVL 10
-Code: 1011212   LVL 10
-⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
-AMPR★
-		
-Code: 1011010   LVL 10
-Code: 3063101   LVL 10
-Code: 1010006   LVL 10
-Code: 1011010   LVL 10
-Code: 1023040   LVL 10
-Code: 3062728   LVL 10
-Code: 1010017   LVL 10
-Code: 1010092   LVL 10
-Code: 5240001   LVL 10
-Code: 1010050   LVL 10
-Code: 1019696   LVL 10
-Code: 3226325   LVL 10
-Code: 5010103   LVL 10
-Code: 2011111   LVL 8
-⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
-CRITICAL RATE★
-		
-Code: 1010006   LVL 10
-Code: 1010092   LVL 10
-Code: 1010017   LVL 10
-Code: 1010050   LVL 10
-Code: 1011010   LVL 10
-Code: 1012000   LVL 10
-Code: 7162029   LVL 10
-Code: 1100000   LVL 10
+MAXMP★
+Code: 3204544	LVL 10
+Code: 6010021	LVL 10
+Code: 6070013	LVL 10
+Code: 1011212	LVL 10
+Code: 1016646	LVL 10
+Code: 4011793	LVL 10
+Code: 1010013	LVL 10
+Code: 4011793	LVL 10
+Code: 1011212	LVL 10
+
+AMPR★		
+Code: 1011010	LVL 10
+Code: 3063101	LVL 10
+Code: 1010006	LVL 10
+Code: 1011010	LVL 10
+Code: 1023040	LVL 10
+Code: 3062728	LVL 10
+Code: 1010017	LVL 10
+Code: 1010092	LVL 10
+Code: 5240001	LVL 10
+Code: 1010050	LVL 10
+Code: 1019696	LVL 10
+Code: 3226325	LVL 10
+Code: 5010103	LVL 10
+Code: 2011111	LVL 8
+
+CRITICAL RATE★		
+Code: 1010006	LVL 10
+Code: 1010092	LVL 10
+Code: 1010017	LVL 10
+Code: 1010050	LVL 10
+Code: 1011010	LVL 10
+Code: 1012000	LVL 10
+Code: 7162029	LVL 10
+Code: 1100000	LVL 10
 Code: 1069927   LVL 10
 Code: 1012000   LVL 10
 Code: 3061206   LVL 9
 Code: 3246969   LVL 9
 Code: 7190311   LVL 9
 Code: 1010011   LVL 9 
-⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
+
 WEAPON ATK★
-		
 Code: 1010029   LVL 10
 Code: 1010099   LVL 10
 Code: 6010024   LVL 10
@@ -366,18 +364,16 @@ Code: 2020404   LVL 10
 Code: 2010136   LVL 10
 Code: 3070028   LVL 9
 Code: 7162029   LVL 9
-⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
+
 STR★
-		
 Code: 1110033   LVL 10
 Code: 1011069   LVL 10
 Code: 7031997   LVL 10 
 Code: 7070777   LVL 10
 Code: 4016699   LVL 10
 Address: Elscaro-A-1   LVL 9
-⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
+
 DEX★
-	
 Code: 5010092   LVL 10
 Code: 1010106   LVL 10
 Code: 7011001   LVL 10
@@ -385,46 +381,39 @@ Code: 2020222   LVL 10
 Code: 1010058   LVL 10
 Code: 4204200   LVL 8
 Code: 3011143   LVL 8
-⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
+
 INT★
-		
 Code: 2020707   LVL 10
 Code: 1032222   LVL 10
 Code: 6061294   LVL 10
 Code: 1010489   LVL 10
 Code: 6010701   LVL 10
 Address: Elscaro-z-1234  LVL 8
-⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
+
 AGI★
-	
 Code: 7162029    LVL 10
 Code: 4010228    LVL 8
-⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
+
 ACCURACY★
-		
 Code: 4261111    LVL 10
 Code: 1010013    LVL 9
-⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
+
 MAGICAL RESIST★
-		
 Code: 1010004   LVL 10
 Code: 4080087   LVL 9
 Code: 7227777   LVL 9
-⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
+
 PHYSICAL RESIST★
-		
 Code: 1020001   LVL 10
 Code: 1100000   LVL 10
 Code: 1018989   LVL 9
 Code: 1100000   LVL 9
-⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
+
 FRACTIONAL BARRIER★
-		
 Code: 1222002   LVL 8
 Code: 6181999   LVL 8
-⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
+
 +AGGRO%★
-		
 Code: 3030110   LVL 10
 Code: 1264321   LVL 10
 Code: 6262000   LVL 9
@@ -433,15 +422,13 @@ Code: 1016646   LVL 10
 Code: 1014230   LVL 9
 Code: 1013000   LVL 9
 Address: Sofya-A-4510 LVL 9
-⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
+
 -AGGRO%★
-		
 Code: 1010038   LVL 10
 Address: Sofya-A-2   LVL 10
 Code: 3061206   LVL 8
-⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
+
 DTE EARTH★
-		
 Code: 3210103   LVL 9
 Code: 2022222   LVL 8
 Code: 2020202   LVL 8
@@ -452,40 +439,35 @@ Code: 5240001   LVL 7
 Code: 3011143   LVL 7
 Code: 1016646   LVL 7
 Code: 1010002   LVL 6
-⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
+
 DTE WIND★
-	
 Code: 3210101   LVL 9
 Code: 3030303   LVL 8
 Code: 1010055   LVL 7 
 Code: 4099876   LVL 7   
 Code: 1010055   LVL 7
-⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
+
 DTE WATER★
-	
 Code: 3210100   LVL 9
 Code: 7150030   LVL 9
 Code: 3062111   LVL 8
 Code: 7011001   LVL 8
 Code: 1110007   LVL 7
 Code: 3226325   LVL 6
-⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
+
 DTE FIRE★
-		
 Code: 3210106   LVL 9
 Code: 7011001   LVL 8
 Code: 1010799   LVL 7
 Code: 1012610   LVL 5
-⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
+
 DTE LIGHT★
-		
 Code: 3210105   LVL 9
 Code: 1020345   LVL 9
 Code: 4046666   LVL 8
 Code: 4016699   LVL 6
-⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
-DTE DARK★
 
+DTE DARK★
 Code: 3210104   LVL 9
 Code: 5010092   LVL 9
 Code: 6010003   LVL 8
@@ -493,21 +475,19 @@ Code: 1010006   LVL 7
 Code: 1016646   LVL 7
 Code: 1091111   LVL 7
 Code: 3030069   LVL 7
-⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
-DTE NEUTRAL★
-		
+
+DTE NEUTRAL★		
 Code: 3210102   LVL 9
 Code: 3099876   LVL 7
 Code: 1011902   LVL 7
 Code: 6061294   LVL 7
 Code: 1019696   LVL 6
 Code: 1032727   LVL 5
-⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
-Drop Rate★
-		
-Code:  4196969   LVL 6
-⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
-`;
+
+Drop Rate★		
+Code: 4196969	LVL 6
+
+*Mau buff kakak Chizu cantumkan disini? PM Chizu aja*`;
 
 const kamusChizu = `*Chizuru-chan🌸*
 		
@@ -515,19 +495,23 @@ Silakan dicari berdasarkan abjad
 
 1H/OHS/P1T: Pedang 1 Tangan
 2H/THS/P2T: Pedang 2 Tangan
-Aggro: Ketertarikan musuh untuk menyerang anda
+Aggro: Ketertarikan musuh untuk menyerang kamu
 AMPR: Attack MP Recovery (Bonus MP pulih pada setiap basic attack)
 App: Tampilan barang
-Arm: Armor
+Arm: Armor (Zirah)
 B): Buy (Beli)
 brb: be right back (Saya akan kembali)
 BS: Blacksmith/Black Shadow (Sesuai Konteks)
-DPS: Damage per second (Pemberi damage kepada lawan)
+bwing: bird wing (sayap burung)
+CF: Cross fire (skill bow)
+DC: Draconic charge (skill tombak)
+DT: Dragon tooth (skill tombak)
+DPS: Damage per second (Pemberi damage ke musuh)
 DS: Dual Sword (Pedang ganda)
-DTE: Damage to element (Elite Player)
+DTE: Damage to element (Bonus damage jika elemen sesuai)
 Dye: Pewarna barang
 fb: full break (mendapatkan semua pemecahan bagian)
-fk: fast kill (Elite Party)
+fk: fast kill
 gtg: got to go (Saya harus pergi)
 guild: Serikat
 lfm: looking for member (Mencari anggota regu)
@@ -537,6 +521,7 @@ Mats: Poin Material (Logam, kayu, dll.)
 MD: Magic Device (Pesawat Sihir)
 mk: mass kill (membunuh lawan jumlah banyak)
 MQ: Main Quest (Misi Utama)
+NP: No Problem
 Prof: Proffiency (Kemahiran)
 pt: Party/Point (Sesuai Konteks)
 Reff: Refine
@@ -547,10 +532,9 @@ t5: Skill lvl 5 (Terbuka di lvl 250)
 SH: Soul Hunter (Skill buku kegelapan)
 T): Trade (Barter)
 typt: Thanks Party (Wajib ucapkan saat keluar regu)
-UCB: Under Consignment Board (Lebih murah dari harga pasar)
+UCB: Under Consignment Board (Lebih murah dari harga papan)
 xcht: salah chat
 Xtall: Crysta
-
 
 Chat Chizuru kalau ada yang mau ditambahkan (ﾉ◕ヮ◕)ﾉ*.✧`;
 const petlvlingChizu = `*Chizuru-chan🌸*
@@ -624,9 +608,9 @@ const loading = `*Chizuru-chan🌸*
 Sedang mengambil data...`;
 const buildChizu = `*Chizuru-chan🌸*
 
-Build disini hanya sekedar referensi. Semua skill, combo, regislet, dan eq, menyesuaikan dengan playstyle
-SS Build by: R e v a n d a
-Jenis: Tier 5 Build (Lv 250)
+Build disini hanya sekedar referensi. Semua skill, combo, regislet, dan eq, menyesuaikan dengan playstyle.
+Build pribadi by: R e v a n d a
+Jenis: Tier 5 Build (Lv 280)
 https://drive.google.com/drive/folders/1CtXe-jDXEfsrpSwvrDbfBaA5un6X00ge`;
 
 const url = 'https://id.toram.jp/?type_code=update';
@@ -928,6 +912,7 @@ const bagupgrade =`*Chizuru-chan🌸*
 - Inti Latebra Menggeliat x5 (Trocostida; Nov Diela: Area 1)
 - Cairan Lekat x20 (Juvestida; Nov Diela: Area 1)
 - Kulit Pelik x30 (Mata Jahat; Padang Morga: Area 1)`;
+
 const codelive =`*Chizuru-chan🌸*
 
 *Kode Reward Live Streaming*
@@ -1329,8 +1314,7 @@ async function aichat(input) {
 
         const gptResponse = response.data.candidates[0].content.parts[0].text.trim();
 
-        return `*Chizuru-chan🌸*
-Powered by Gemini AI
+        return `*Chizu x Gemini✨*
 		
 ${gptResponse}`;
     } catch (error) {
@@ -1341,12 +1325,13 @@ ${gptResponse}`;
 
 const reqfitur =`*Chizuru-chan🌸*
 
-Create with love by Revanda
-Nomor Owner: 085159199040`;
+Pesan kakak sudah Chizu teruskan ke master Revanda, master akan berusaha melatih Chizu untuk belajar hal baru.
+
+Terima kasih kak ${m.pushname}`;
 
 		if(m.body == "menu"){
 			return bot.specialmenu(menuChizu, m.msg);
-		}else if (m.body.length >= 5000) {
+		}else if (m.body.length >= 10000) {
 
 const phoneNumber = m.sender;
 const extractedPhoneNumber = phoneNumber.split("@")[0];
@@ -1506,7 +1491,7 @@ await bot.replyedit(scrapedData, m.msg, loadingmsg.key);
 			return bot.reply(Chizu, m.msg);
 		}
 		} else{
-const pesan1 = `> Mang bajirot jalan ke sofya
+const pesan1 = `> Mang bajirot jalan ke hora  
 > Bajirot pergi, sedihlah minato
 > Nyari tempat Top Up Terpercaya?
 > Ya cuma di Revanda Store bro`;
@@ -1518,6 +1503,8 @@ const pesan3 = `> Jalan-jalan ke penjara cuervo
 > Ke cuervo mengajak adala
 > Hari gini masih kena scam bro?
 > Top up di web Revanda Store aja laa`;
+const pesan4 = `Kenapa felien 
+Top up di web Revanda Store aja laa`;
 
 const pesanArray = [pesan1, pesan2, pesan3];
 const panjangPesan = pesanArray.length;
