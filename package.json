@@ -43,6 +43,7 @@
 		"express-fileupload": "^1.4.0",
 		"express-mysql-session": "^3.0.2",
 		"express-session": "^1.17.3",
+		"link-preview-js": "^3.0.5",
 		"moment-timezone": "^0.5.37",
 		"mysql2": "^2.3.3",
 		"passport": "^0.7.0",
