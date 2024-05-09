@@ -6,15 +6,20 @@ import fileUpload from "express-fileupload";
 import passport from "passport";
 import passportConfig from "./passport-config.js";
 import MySQLStore from 'express-mysql-session';
+import dotenv from 'dotenv';
+
+// Load environment variables from .env
+dotenv.config();
 
 const MySQLStoreSession = MySQLStore(session);
 
+// Konfigurasi MySQLStoreSession
 const options = {
-    host: 'localhost',
-    port: 3306,
-    user: 'torampe1_admin2',
-    password: 'yogaart1990',
-    database: 'torampe1_chizugateway',
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
     schema: {
         tableName: 'main_session',
         columnNames: {
@@ -27,7 +32,7 @@ const options = {
 
 const sessionStore = new MySQLStoreSession(options);
 
-// import { connectDatabase } from "./Database.js";
+//import { connectDatabase } from "./Database.js";
 import routerLogin from "../router/login/login.router.js";
 import routerUser from "../router/session/session.router.js";
 import routerDashboard from "../router/dashboard/dashboard.router.js";

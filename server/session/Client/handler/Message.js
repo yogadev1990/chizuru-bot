@@ -95,7 +95,7 @@ Status VIP: ${statusVIP}
 Sisa Langganan: ${sisaLangganan}
 Jumlah Member: ${groupMetadata.participants.length}
 
-*Perpanjang durasi layanan Chizu hanya di revandastore*`;
+Perpanjang durasi layanan Chizu hanya di revandastore.com`;
 				
 				return metadataString;
 			}
@@ -115,14 +115,14 @@ const menuChizu = `*Chizuru-chan🌸*
 ${time} kak, ada yang bisa chizu bantu?
 
 ╔══〘 *TORAM MENU* 〙══
-╠➥ lvling char *miniboss/boss* *lvl*
+╠➥ lvling char *miniboss/boss* [lvl]
 ╠➥ lvling bs *tec/non*
 ╠➥ lvling alche
-╠➥ cari item *item*
-╠➥ cari monster *monster*
+╠➥ cari item [item]
+╠➥ cari monster [monster]
 ╠➥ racik rumus fill
-╠➥ cari regist *registlet*
-╠➥ harga slot *eq*
+╠➥ cari regist [registlet]
+╠➥ harga slot [eq]
 ╠➥ bahan tas
 ╠➥ bahan mq
 ╠➥ kode live
@@ -138,22 +138,22 @@ ${time} kak, ada yang bisa chizu bantu?
 ╠➥ mt terbaru
 ║
 ╠══〘 *GENERAL MENU* 〙══
-╠➥ anime *search/random/top*
+╠➥ anime *[search]/random/top*
 ╠➥ on going anime
 ╠➥ random anime quotes
-╠➥ manhwa *search/random/top*
-╠➥ tiktok dl *link*
-╠➥ fb dl *link*
-╠➥ ig dl *link*
+╠➥ manhwa *[search]/random/top*
+╠➥ tiktok dl [link]
+╠➥ fb dl [link]
+╠➥ ig dl [link]
 ╠➥ stikerin (reply foto)
 ╠➥ info bot
+╠➥ help
 ║
 ╠══〘 *ADMIN MENU* 〙══
 ╠➥ add [@628xx]
 ╠➥ kick [@tag member]
 ╠➥ promote [@tag member]
 ╠➥ demote [@tag member]
-╠➥ ban [@tag member]
 ╠➥ anti toxic *on/off*
 ╠➥ anti link *on/off*
 ╠➥ nsfw *on/off*
@@ -739,7 +739,7 @@ function bosstemplate(RawData, rawlv) {
 	const AIChatRegex = /^AI chat (.+)$/i;
 	const chatai = m.body.match(AIChatRegex);
 	const potRegex = /^Pot:\s*(\d+)/i;
-const matchPot = m.body.match(potRegex);
+	const matchPot = m.body.match(potRegex);
 
 
 const infobot =`*Chizuru-chan🌸*
@@ -1163,9 +1163,7 @@ function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 async function fillstat(message) {
-	 // Regex untuk mengekstrak nilai-nilai stat
 	 const statRegex = /([A-Z]+%?)\s+(-?\d+)/ig;
-
 	 const statTranslate = {
 		 "A%": "ATK+%25",
 		 "A": "ATK",
@@ -1225,22 +1223,17 @@ async function fillstat(message) {
 	 const potMatch = message.match(potRegex);
 	 const potValue = potMatch ? parseInt(potMatch[1]) : null;
 	 
-	 // Loop melalui setiap kecocokan regex dalam pesan
 	 while ((match = statRegex.exec(message)) !== null) {
 		 let statName, statValue;
 	 
-		 // Ambil nama stat dan nilainya dari setiap kecocokan
 		 const shortName = match[1];
 		 const value = parseInt(match[2]);
 	 
-		 // Gunakan terjemahan jika ada, jika tidak gunakan singkatan asli
 		 statName = statTranslate[shortName] || shortName;
 	 
-		 // Tambahkan nilai pot jika pot ditemukan
 		 if (shortName.toLowerCase() === 'pot') {
 			 potValue = value;
 		 } else {
-			 // Tentukan apakah nilai stat negatif atau positif
 			 if (value < 0) {
 				 negativeStats.push({ stat: statName, value: "MAX" });
 			 } else {
@@ -1274,12 +1267,12 @@ async function fillstat(message) {
         const response = await axios.request(config);
         const $ = cheerio.load(response.data);
 
-        const stat = $('#main > div:nth-of-type(2)').clone(); // Clone elemen untuk menghindari mengubah elemen asli
-stat.find('h3, a, font, b').remove(); // Hapus elemen <h3>, <a>, <font>, dan <b>
+        const stat = $('#main > div:nth-of-type(2)').clone();
+stat.find('h3, a, font, b').remove(); 
 const formattedStat = stat.text().trim().replace(/(\w+\s*%?)\s*(Lv\.(-?\d+))/g, (match, p1, p2, p3) => {
     const sign = parseInt(p3) >= 0 ? '+' : '';
     return `${p1} ${sign}${p3}`;
-}).replace(/\s+/g, ' ').replace(/\s*,\s*/g, ', '); // Perbaiki koma dan spasi
+}).replace(/\s+/g, ' ').replace(/\s*,\s*/g, ', ');
  // Hapus spasi ganda
 
         const steps = $('#main div:nth-of-type(4)').text().trim().replace(/Steps\b/, '').trim();
@@ -1516,14 +1509,14 @@ ${pesanAcak}
 
 *Buy & Sell list:*
 - Buy Spina PM Rate
-- Sell Guild Lv. 40 (https://revandastore.my.id/katalog/9)
-- Sell Akun Utama, SERVER: 🇮🇩, 14 Slot, (https://revandastore.my.id/katalog/10)
-- Sell Akun Utama, SERVER: 🇮🇩, 14 Slot, 5 BS, (https://revandastore.my.id/katalog/13)
+- Sell Guild Lv. 40 (https://revandastore.com/katalog/9)
+- Sell Akun Utama, SERVER: 🇮🇩, 14 Slot, (https://revandastore.com/katalog/10)
+- Sell Akun Utama, SERVER: 🇮🇩, 14 Slot, 5 BS, (https://revandastore.com/katalog/13)
 
 *Layanan Lain:*
-- Top Up ML, FF, PUBG, dll. termurah di revandastore.my.id
+- Top Up ML, FF, PUBG, dll. termurah di revandastore.com
 - Sell Source Code Bot WA
-- Sewa bot GC WA Guild Toram (https://revandastore.my.id/katalog/11)
+- Sewa bot GC WA Guild Toram (https://revandastore.com/katalog/11)
 
 ╔ *${metadata}*
 ║>> ${hari}, ${jam}:${menit} WIB <<
@@ -1547,7 +1540,7 @@ if (m.body.includes("reyvanndaa")) {
 Grup ini belum berlangganan Chizu kak,
 ketik *grup status* untuk mendapatkan id grup
 
-Info selengkapnya: https://revandastore.my.id/katalog/11`, m.msg);
+Info selengkapnya: https://revandastore.com/katalog/11`, m.msg);
 }
 
 async function checkCooldown(triggers) {

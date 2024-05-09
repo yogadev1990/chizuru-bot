@@ -9,6 +9,7 @@ import { socket, moment } from "../config/index.js";
 import config from "../config/config.js";
 import SessionDatabase from "../database/db/session.db.js";
 import Message from "./Client/handler/Message.js";
+import {VipGrup} from "../database/db/messageRespon.db.js";
 
 const { SESSION_PATH, LOG_PATH } = process.env;
 let sessions = {};
@@ -53,7 +54,7 @@ class ConnectionSession extends SessionDatabase {
 		const options = {
 			printQRInTerminal: false,
 			auth: state,
-			logger: pino({ level: "silent" }),
+			logger: pino({ level: "error" }),
 			browser: ['Ubuntu', 'Chrome', '20.0.04'],
         	version: [2,2335,9],
 			syncFullHistory: true,
@@ -164,8 +165,25 @@ class ConnectionSession extends SessionDatabase {
 			}
 		});
 
-		client.ev.on("group-participants.update", async () => {
-		 })
+		client.ev.on("group-participants.update", async ({ id, participants, action }) => {
+			const metadata = await client.groupMetadata(id)
+			
+			if (await VipGrup.ceksubs(id) && await VipGrup.cekwelcome(id) && action === "add") {
+				const addedParticipants = participants.filter((participant) => participant !== client.user.jid);
+				const welcomeMessage = `Selamat datang di grup ${metadata.subject}!`;
+				const taggedParticipants = addedParticipants.map((participant) => `@${participant.split("@")[0]}`).join(" ");
+				const message = `${welcomeMessage} ${taggedParticipants}`;
+				
+				await client.sendMessage(id, { text: message });
+			} else if (await VipGrup.ceksubs(id) && await VipGrup.cekout(id) && action === "remove") {
+				const removedParticipants = participants.filter((participant) => participant !== client.user.jid);
+				const goodbyeMessage = `Selamat tinggal dari grup ${metadata.subject}!`;
+				const taggedParticipants = removedParticipants.map((participant) => `@${participant.split("@")[0]}`).join(" ");
+				const message = `${goodbyeMessage} ${taggedParticipants}`;
+				
+				await client.sendMessage(id, { text: message });
+			}
+		});
 
 		const vcard = 'BEGIN:VCARD\n' // metadata of the contact card
             + 'VERSION:3.0\n' 

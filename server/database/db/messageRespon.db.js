@@ -261,6 +261,28 @@ class VipGrup {
 			throw new Error('Failed to check subscription in the database.');
 		}
 	}
+	static async cekwelcome(groupId) {
+		try {
+			const welcome = await GrupModel.findOne({
+				where: { group_id: groupId },
+			}); 
+			return welcome.welcome;
+		} catch (error) {
+			console.error('Error checking welcome:', error);
+			throw new Error('Failed to check welcome in the database.');
+		}
+	}
+	static async cekout(groupId) {
+		try {
+			const out = await GrupModel.findOne({
+				where: { group_id: groupId },
+			}); 
+			return out.out;
+		} catch (error) {
+			console.error('Error checking out:', error);
+			throw new Error('Failed to check out in the database.');
+		}
+	}
 	static async getStatusVIP(groupId) {
 		try {
 			const isSubscribed = await VipGrup.ceksubs(groupId);

@@ -41,13 +41,13 @@ class Client {
 			text, contextInfo: {
 				mentionedJid: mentions,
 				externalAdReply: {
-					title: "Chizuru Chan",
+					title: "Chizuru-Chan",
 					body: "Chizuru Bot by Revanda",
 					mediaType: 1,
 					previewType: 0,
 					renderLargerThumbnail: true,
 					thumbnail: fs.readFileSync("./public/image/chizu.png"),
-					sourceUrl: "https://revandastore.my.id"
+					sourceUrl: "https://revandastore.com"
 				}
 			}
 		}, { quoted: quoted });
