@@ -170,18 +170,28 @@ class ConnectionSession extends SessionDatabase {
 			
 			if (await VipGrup.ceksubs(id) && await VipGrup.cekwelcome(id) && action === "add") {
 				const addedParticipants = participants.filter((participant) => participant !== client.user.jid);
-				const welcomeMessage = `Selamat datang di grup ${metadata.subject}!`;
 				const taggedParticipants = addedParticipants.map((participant) => `@${participant.split("@")[0]}`).join(" ");
-				const message = `${welcomeMessage} ${taggedParticipants}`;
+				const message = `Selamat datang di "${metadata.subject}" kak ${taggedParticipants}. Kenalin kak, aku Chizu, bot tercantik dan paling pandai disini, bila kakak butuh bantuan, panggil aja chizu ya`;
 				
 				await client.sendMessage(id, { text: message });
 			} else if (await VipGrup.ceksubs(id) && await VipGrup.cekout(id) && action === "remove") {
 				const removedParticipants = participants.filter((participant) => participant !== client.user.jid);
-				const goodbyeMessage = `Selamat tinggal dari grup ${metadata.subject}!`;
 				const taggedParticipants = removedParticipants.map((participant) => `@${participant.split("@")[0]}`).join(" ");
-				const message = `${goodbyeMessage} ${taggedParticipants}`;
+				const message = `Selamat jalan kak ${taggedParticipants}, semoga tenang diluar sana. Karangan bunganya chizu titip admin ya🌸`;
 				
-				await client.sendMessage(id, { text: message });
+				await client.sendMessage(id, {text: `*Chizuru-chan🌸*
+
+${message}`, contextInfo: {
+					   mentionedJid: [participants],
+					   externalAdReply: {
+						title: "Chizuru-Chan",
+						body: "Chizuru Bot by Revanda",
+						mediaType: 1,
+						previewType: 0,
+						renderLargerThumbnail: true,
+						thumbnail: fs.readFileSync("./public/image/chizu.png"),
+						sourceUrl: "https://revandastore.com"
+					   }}});
 			}
 		});
 

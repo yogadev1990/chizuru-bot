@@ -1159,6 +1159,27 @@ const wmstiker =`*Chizuru-chan🌸*
 Create with love by Revanda
 Nomor Owner: 085159199040`;
 
+const bahanmq =`*Chizuru-chan🌸*
+
+List bahan MQ:
+- Sisik naga, Hard Dragon Skin (2pcs)
+- Daging domba, Lamb Meat (1pcs)
+- Sulur, Vine (3pcs)
+- Paruh tebal, Thick Beak (3pcs)
+- Sayap peri, Fairy Feather (3pcs)
+- Koin ksatria, Swordsman Stone Coin (20pcs)
+- Kulit kodok pasir, Sand Frog Skin (5pcs)
+- Cakar binatang buas, Beast Claw (3pcs)
+- Daging tikus pasir, Sand Mole Meat (1pcs)
+- Taring bergerigi, Jagged Fang (10pcs)
+- Kristal saham, Saham Crystal (5pcs)
+- Permata jiwa, Spiritual Gemstone (1pcs)
+- Anggur rokoko, Rokoko grape (5pcs)
+- Kayu labilan, Labilan Woods (10pcs)
+- Tanduk Patah, Broken Horn (20pcs)
+- Bijih Berkembang, Growing Ore (5pcs)
+- Batu Jabali, Jabali Stone (5pcs)`;
+
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -1380,6 +1401,8 @@ await bot.replyedit(monster, m.msg, loadingmsg.key);
 			return bot.reply(pricering, m.msg);
 		}else if(m.body == "anti link"){
 			return bot.reply(antilink, m.msg);
+		}else if(m.body == "bahan mq"){
+			return bot.reply(bahanmq, m.msg);
 		}else if(m.body == "anti toxic"){
 			return bot.reply(antitoxic, m.msg);
 		}else if (invite && m.group.isSenderGroupAdmin && m.group.isBotGroupAdmin) {

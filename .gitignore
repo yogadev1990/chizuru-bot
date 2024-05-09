@@ -1,5 +1,6 @@
 # public/mazer
 session/*/*.json
+public/log/*.txt
 
 # Logs
 logs
@@ -103,3 +104,4 @@ dist
 .tern-port
 
 Database2.js
+.env
