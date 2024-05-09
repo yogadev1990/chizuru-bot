@@ -54,7 +54,6 @@ typings/
 # Optional npm cache directory
 .npm
 
-.env
 # Optional eslint cache
 .eslintcache
 
@@ -105,5 +104,4 @@ dist
 .tern-port
 
 Database2.js
-.env
 .env
