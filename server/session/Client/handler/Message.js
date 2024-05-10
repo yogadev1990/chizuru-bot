@@ -153,7 +153,7 @@ ${time} kak, ada yang bisa chizu bantu?
 ╠➥ stikerin (reply foto)
 ╠➥ req fitur [pesan]
 ╠➥ info bot
-╠➥ help
+╠➥ help ❌
 ║
 ╠══〘 *ADMIN MENU* 〙══
 ╠➥ add [@628xx]
