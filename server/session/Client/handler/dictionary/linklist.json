@@ -63,5 +63,6 @@
     ".info",
     ".network",
     ".services",
-    ".solutions"
+    ".solutions",
+    "http"
 ]   
