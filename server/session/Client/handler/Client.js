@@ -25,11 +25,12 @@ class Client {
 		const mentions = [...member.matchAll(/@(\d{0,16})/g)].map((v) => v[1] + "@s.whatsapp.net");
 		return await this.client.groupParticipantsUpdate(this.from, mentions, command);
 	}	
-	
+	async deleteMessage(m) {
+		await this.client.deleteMessage(this.from, { id: m.id, remoteJID: m.from, fromMe: false });
+	}
 	async sendText2(text) {
 		return await this.client.sendMessage(this.from, {text} );
 	}
-
 	async reply(text, quoted) {
 		const mentions = [...text.matchAll(/@(\d{0,16})/g)].map((v) => v[1] + "@s.whatsapp.net");
 		return await this.client.sendMessage(this.from, { text, mentions }, { quoted });

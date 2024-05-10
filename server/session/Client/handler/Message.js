@@ -1486,11 +1486,11 @@ Pesan out berhasil diaktifkan`, m.msg);}
 
 Pesan out berhasil dimatikan`, m.msg);}
 		}else if ((m.body.includes(".com") || m.body.includes("www.") || m.body.includes("chat.whatsapp")) && (await VipGrup.getGroup(m.from)).antilink) {
-			await bot.sendText(`Peringatan kepada @${m.participants}: Link tidak diizinkan dalam grup ini.`, m.msg);
-			await bot.deleteMessage(m.from, { id: m.id, remoteJID: m.from, fromMe: false });
+			await bot.sendText(`Peringatan kepada @${m.sender}: Link tidak diizinkan dalam grup ini.`, m.msg);
+			await bot.deleteMessage(m);
 		} else if ((m.body.includes("bangsat")) && (await VipGrup.getGroup(m.from)).antitoxic) {
-			await bot.sendText(`Peringatan kepada @${m.participants}: Pesan kamu mengandung konten toxic.`, m.msg);
-			await bot.deleteMessage(m.from, { id: m.id, remoteJID: m.from, fromMe: false });
+			await bot.sendText(`Peringatan kepada @${m.sender}: Pesan kamu mengandung konten toxic.`, m.msg);
+			await bot.deleteMessage(m);
 		}else if(m.body == "cari anime"){
 			return bot.reply(animsearch, m.msg);
 		}else if(m.body == "on going anime"){
