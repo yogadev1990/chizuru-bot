@@ -146,6 +146,7 @@ ${time} kak, ada yang bisa chizu bantu?
 ╠➥ fb dl [link]
 ╠➥ ig dl [link]
 ╠➥ stikerin (reply foto)
+╠➥ req fitur [pesan]
 ╠➥ info bot
 ╠➥ help
 ║
@@ -156,7 +157,6 @@ ${time} kak, ada yang bisa chizu bantu?
 ╠➥ demote [@tag member]
 ╠➥ anti toxic *on/off*
 ╠➥ anti link *on/off*
-╠➥ nsfw *on/off*
 ╠➥ welcome msg *on/off*
 ╠➥ out msg *on/off*
 ╠➥ grup status
@@ -527,10 +527,11 @@ pt: Party/Point (Sesuai Konteks)
 Reff: Refine
 RTE: Resist to element
 S): Sell (Jual)
+SH: Soul Hunter (Skill buku kegelapan)
 t4: Skill lvl 4 (terbuka di lvl 150)
 t5: Skill lvl 5 (Terbuka di lvl 250)
-SH: Soul Hunter (Skill buku kegelapan)
 T): Trade (Barter)
+thunt: treasure hunt (mencari harta karun)
 typt: Thanks Party (Wajib ucapkan saat keluar regu)
 UCB: Under Consignment Board (Lebih murah dari harga papan)
 xcht: salah chat
@@ -550,7 +551,7 @@ List pet leveling:
 ~ 200-250 Venena Coenubia: Ulti`;
 const arrowChizu = `*Chizuru-chan🌸*
 
-API
+*API*
 🔥 Panah Api (Sunion [Cermin Kegelapan])
 -> Base ATK: 43 (20%)
 🔥 Panah Cinta (Event Valentine)
@@ -558,7 +559,7 @@ API
 🔥 Panah Kaisar Iblis (Venena Metacoenubia [Neo Plastida])
 -> Base ATK: 120 (10%)
 
-AIR
+*AIR*
 💧 Panah Cermin Cinta (Quest Arwah Peneliti - Lv 78 [Halaman Awal Mula])
 -> Base ATK: 37 (20%)
 💧 Panah Tangis Langit (Floragonet [Distrik Fractum: Area 1])
@@ -566,7 +567,7 @@ AIR
 💧 Panah Samudra (Event Summer)
 -> Base ATK: 110 (10%)
 
-ANGIN
+*ANGIN*
 🌪️ Panah Topan (Forestia [Tanah Kaos])
 -> Base ATK: 12 (15%)
 🌪️ Panah Apel (Coryn [Distrik Dikkit])
@@ -574,7 +575,7 @@ ANGIN
 🌪️ Panah Ratu Lebah (Event Valentine)
 -> Base Atk : 150 (20%)
 
-BUMI
+*BUMI*
 🌏 Pointed Ore Arrow (Tikus Gua [Reruntuhan Singolare : Lantai 1])
 -> Base ATK: 43 (20%)
 🌏 Panah Cacao (Event Valentine)
@@ -582,7 +583,7 @@ BUMI
 🌏 Guardian Forest Arrow (Arbogazella [Guardian Forest: Lost Woods])
 -> Base ATK: 163 (20%)
 
-GELAP
+*GELAP*
 🖤 Panah Duri (Ivy [Kuil Naga Kegelapan: Bawah])
 -> Base ATK: 79 (20%)
 🖤 Panah Sakura Senja (Amalgam [Event Hanami])
@@ -590,7 +591,7 @@ GELAP
 🖤 Specter Arrow (Manomare [Event Halloween])
 -> Base ATK: 120 (20%)
 
-CAHAYA
+*CAHAYA*
 ⚡ Flash Volt (Quest Npc Juan - Lvl68 [El Scaro])
 -> Base ATK: 3 (15%)
 ⚡ Panah Seni Permen (Event White Day)
@@ -598,7 +599,7 @@ CAHAYA
 ⚡ Panah Pohon Suci (Santabby [Event Natal])
 -> Base ATK: 100 (20%)
 
-NETRAL
+*NETRAL*
 ⚪ Dreamy Arrow (Dreamy Scarlet Sakura [Hanami Event])
 -> Base ATK: 136 (20%)
 ⚪ Driver Bolt (Inspector Golem [Event Natal])
@@ -724,6 +725,14 @@ function bosstemplate(RawData, rawlv) {
 
 	const lvlingCharRegex = /^lvling char (\w+) (\d+)$/i;
 	const match = m.body.match(lvlingCharRegex);
+	const antiToxicRegex = /^anti toxic (on|off)$/i;
+	const matchAntiToxic = m.body.match(antiToxicRegex);
+	const antiLinkRegex = /^anti link (on|off)$/i;
+	const matchAntiLink = m.body.match(antiLinkRegex);
+	const welcomeRegex = /^welcome msg (on|off)$/i;
+	const matchWelcome = m.body.match(welcomeRegex);
+	const outRegex = /^out msg (on|off)$/i;
+	const matchOut = m.body.match(outRegex);
 	const KickRegex = /^kick (\S+)$/i;
 	const kick = m.body.match(KickRegex);
 	const AddRegex = /^add (\S+)$/i;
@@ -1263,7 +1272,6 @@ async function fillstat(message) {
 		 }
 	 }
 	 
-	 // Pastikan setiap objek memiliki 7 elemen
 	 while (extractedStats.length < 7) {
 		 extractedStats.push({ stat: "", value: "MAX" });
 	 }
@@ -1409,24 +1417,81 @@ await bot.replyedit(monster, m.msg, loadingmsg.key);
 			const member = invite[1];
 			const command = "add";
 			await bot.addParticipant(member, command);
-			await bot.sendText(`*Chizuru-chan🌸* Selamat datang kak ${member}, semoga betah`, m.msg);
 		}else if (kick && m.group.isSenderGroupAdmin && m.group.isBotGroupAdmin) {
 				const member = kick[1];
 				const command = "remove";
 				await bot.sendText(`*Chizuru-chan🌸*
 
-Sayonara kak ${member}, lain kali jangan nakal ya,,`, m.msg);
+Sayonara kak ${member}, lain kali jangan nakal ya...`, m.msg);
 				await bot.partisipant(member, command);
 		} else if (promote && m.group.isSenderGroupAdmin && m.group.isBotGroupAdmin) {
 			const member = promote[1];
 			const command = "promote";
 			await bot.partisipant(member, command);
-			await bot.sendText(`${member} berhasil dipromosikan`, m.msg);
+			await bot.sendText(`*Chizuru-chan🌸*
+			
+${member} berhasil Chizu promosikan`, m.msg);
 		} else if (demote && m.group.isSenderGroupAdmin && m.group.isBotGroupAdmin) {
 			const member = demote[1];
 			const command = "demote";
 			await bot.partisipant(member, command);
-			await bot.sendText(`${member} berhasil didemote`, m.msg);
+			await bot.sendText(`*Chizuru-chan🌸*
+			
+${member} berhasil Chizu demote`, m.msg);
+		} else if (antiToxicRegex && m.group.isSenderGroupAdmin) {
+			const status = matchAntiToxic[1];
+			if (status == "on") {
+				await VipGrup.findOneAndUpdate(m.from, { antiToxic: true });
+				await bot.reply(`*Chizuru-chan🌸*
+
+Anti Toxic berhasil diaktifkan`, m.msg);
+			} else if (status == "off") {
+				await VipGrup.findOneAndUpdate(m.from, { antiToxic: false });
+				await bot.reply(`*Chizuru-chan🌸*
+
+Anti Toxic berhasil dimatikan`, m.msg);}
+		} else if (antiLinkRegex && m.group.isSenderGroupAdmin) {
+			const status = matchAntiLink[1];
+			if (status == "on") {
+				await VipGrup.findOneAndUpdate(m.from, { antiLink: true });
+				await bot.reply(`*Chizuru-chan🌸*
+
+Anti Link berhasil diaktifkan`, m.msg);}
+			else if (status == "off") {
+				await VipGrup.findOneAndUpdate(m.from, { antiLink: false });
+				await bot.reply(`*Chizuru-chan🌸*
+
+Anti Link berhasil dimatikan`, m.msg);}
+		} else if (welcomeRegex && m.group.isSenderGroupAdmin) {
+			const status = matchWelcome[1];
+			if (status == "on") {
+				await VipGrup.findOneAndUpdate(m.from, { welcome: true });
+				await bot.reply(`*Chizuru-chan🌸*
+
+Welcome berhasil diaktifkan`, m.msg);}
+			else if (status == "off") {
+				await VipGrup.findOneAndUpdate(m.from, { welcome: false });
+				await bot.reply(`*Chizuru-chan🌸*
+
+Welcome berhasil dimatikan`, m.msg);}
+		} else if (outRegex && m.group.isSenderGroupAdmin) {
+			const status = matchOut[1];
+			if (status == "on") {
+				await VipGrup.findOneAndUpdate(m.from, { out: true });
+				await bot.reply(`*Chizuru-chan🌸*
+
+Out berhasil diaktifkan`, m.msg);}
+			else if (status == "off") {
+				await VipGrup.findOneAndUpdate(m.from, { out: false });
+				await bot.reply(`*Chizuru-chan🌸*
+
+Out berhasil dimatikan`, m.msg);}
+		}else if (m.body.includes(".com") || m.body.includes("www.") || m.body.includes("chat.whatsapp")) {
+			await bot.sendText(`Peringatan kepada @${m.participants}: Link tidak diizinkan dalam grup ini.`, m.msg);
+			await bot.deleteMessage(m.from, { id: m.id, remoteJID: m.from, fromMe: false });
+		}else if (m.body.includes("bangsat")) {
+			await bot.sendText(`Peringatan kepada @${m.participants}: Pesan kamu mengandung konten toxic.`, m.msg);
+			await bot.deleteMessage(m.from, { id: m.id, remoteJID: m.from, fromMe: false });
 		}else if(m.body == "cari anime"){
 			return bot.reply(animsearch, m.msg);
 		}else if(m.body == "on going anime"){

@@ -22,8 +22,7 @@ class Client {
 	}
 
 	async addParticipant(member, command) {
-		const mentions = [...member.matchAll(/@(\d{0,16})/g)].map((v) => v[1] + "@s.whatsapp.net"); // Mengubah setiap nomor telepon menjadi format nomor WhatsApp
-		
+		const mentions = [...member.matchAll(/@(\d{0,16})/g)].map((v) => v[1] + "@s.whatsapp.net");
 		return await this.client.groupParticipantsUpdate(this.from, mentions, command);
 	}	
 	
@@ -38,8 +37,7 @@ class Client {
 	async specialmenu(text, quoted) {
 		const mentions = [...text.matchAll(/@(\d{0,16})/g)].map((v) => v[1] + "@s.whatsapp.net");
 		return await this.client.sendMessage(this.from, {
-			text, contextInfo: {
-				mentionedJid: mentions,
+			text, mentions, contextInfo: {
 				externalAdReply: {
 					title: "Chizuru-Chan",
 					body: "Chizuru Bot by Revanda",

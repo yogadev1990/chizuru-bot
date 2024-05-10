@@ -297,7 +297,17 @@ class VipGrup {
 			throw new Error('Failed to get VIP status from the database.');
 		}
 	}
-	
+	static async findOneAndUpdate(groupId, data) {
+		try {
+			const updatedGroup = await GrupModel.update(data, {
+				where: { group_id: groupId },
+			});
+			return updatedGroup;
+		} catch (error) {
+			console.error('Error updating group:', error);
+			throw new Error('Failed to update group in the database.');
+		}
+	}
 	static async getSisaLangganan(groupId) {
 		try {
 			// Cek apakah grup sudah berlangganan dan dapatkan waktu langganan yang tersisa jika berlangganan
