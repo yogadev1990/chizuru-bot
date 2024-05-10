@@ -1441,24 +1441,24 @@ ${member} berhasil Chizu demote`, m.msg);
 		} else if (matchAntiToxic && m.group.isSenderGroupAdmin) {
 			const status = matchAntiToxic[1];
 			if (status == "on") {
-				await VipGrup.findOneAndUpdate(m.from, { antiToxic: 1 });
+				await VipGrup.findOneAndUpdate(m.from, { antitoxic: 1 });
 				await bot.reply(`*Chizuru-chan🌸*
 
 Anti Toxic berhasil diaktifkan`, m.msg);
 			} else if (status == "off") {
-				await VipGrup.findOneAndUpdate(m.from, { antiToxic: 0 });
+				await VipGrup.findOneAndUpdate(m.from, { antitoxic: 0 });
 				await bot.reply(`*Chizuru-chan🌸*
 
 Anti Toxic berhasil dimatikan`, m.msg);}
 		} else if (matchAntiLink && m.group.isSenderGroupAdmin) {
 			const status = matchAntiLink[1];
 			if (status == "on") {
-				await VipGrup.findOneAndUpdate(m.from, { antiLink: 1 });
+				await VipGrup.findOneAndUpdate(m.from, { antilink: 1 });
 				await bot.reply(`*Chizuru-chan🌸*
 
 Anti Link berhasil diaktifkan`, m.msg);}
 			else if (status == "off") {
-				await VipGrup.findOneAndUpdate(m.from, { antiLink: 0 });
+				await VipGrup.findOneAndUpdate(m.from, { antilink: 0 });
 				await bot.reply(`*Chizuru-chan🌸*
 
 Anti Link berhasil dimatikan`, m.msg);}
@@ -1468,24 +1468,24 @@ Anti Link berhasil dimatikan`, m.msg);}
 				await VipGrup.findOneAndUpdate(m.from, { welcome: 1 });
 				await bot.reply(`*Chizuru-chan🌸*
 
-Welcome berhasil diaktifkan`, m.msg);}
+Pesan welcome berhasil diaktifkan`, m.msg);}
 			else if (status == "off") {
 				await VipGrup.findOneAndUpdate(m.from, { welcome: 0 });
 				await bot.reply(`*Chizuru-chan🌸*
 
-Welcome berhasil dimatikan`, m.msg);}
+Pesan welcome berhasil dimatikan`, m.msg);}
 		} else if (matchOut && m.group.isSenderGroupAdmin) {
 			const status = matchOut[1];
 			if (status == "on") {
 				await VipGrup.findOneAndUpdate(m.from, { out: 1 });
 				await bot.reply(`*Chizuru-chan🌸*
 
-Out berhasil diaktifkan`, m.msg);}
+Pesan out berhasil diaktifkan`, m.msg);}
 			else if (status == "off") {
 				await VipGrup.findOneAndUpdate(m.from, { out: 0 });
 				await bot.reply(`*Chizuru-chan🌸*
 
-Out berhasil dimatikan`, m.msg);}
+Pesan out berhasil dimatikan`, m.msg);}
 		}else if ((m.body.includes(".com") || m.body.includes("www.") || m.body.includes("chat.whatsapp")) && VipGrup.getGroup(m.from).antilink) {
 			await bot.sendText(`Peringatan kepada @${m.participants}: Link tidak diizinkan dalam grup ini.`, m.msg);
 			await bot.deleteMessage(m.from, { id: m.id, remoteJID: m.from, fromMe: false });
