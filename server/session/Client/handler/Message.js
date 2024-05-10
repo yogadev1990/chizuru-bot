@@ -4,10 +4,8 @@ import Serialize from "./Serialize.js";
 import axios from "axios";
 import cheerio from "cheerio";
 import { moment } from "../../../config/index.js";
-import fs from 'fs';
-
-const badwords = JSON.parse(fs.readFileSync('./dictionary/badwords.json', 'utf8'));
-const linklist = JSON.parse(fs.readFileSync('./dictionary/linklist.json', 'utf8'));
+import badwords from './dictionary/badwords.json' assert { type: 'json' };
+import linklist from './dictionary/linklist.json' assert { type: 'json' };
 
 export default class Message extends Serialize {
 	constructor(client, msg, session_name) {
