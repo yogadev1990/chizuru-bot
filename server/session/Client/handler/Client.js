@@ -26,7 +26,7 @@ class Client {
 		return await this.client.groupParticipantsUpdate(this.from, mentions, command);
 	}	
 	async deleteMessage(m) {
-		await this.client.deleteMessage(this.from, { id: m.id, remoteJID: m.from, fromMe: false });
+		await this.client.sendMessage(this.from, { delete: m.key });
 	}
 	async sendText2(text) {
 		return await this.client.sendMessage(this.from, {text} );
