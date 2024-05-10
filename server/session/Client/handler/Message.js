@@ -1485,10 +1485,10 @@ Pesan out berhasil diaktifkan`, m.msg);}
 				await bot.reply(`*Chizuru-chan🌸*
 
 Pesan out berhasil dimatikan`, m.msg);}
-		}else if ((m.body.includes(".com") || m.body.includes("www.") || m.body.includes("chat.whatsapp")) && await VipGrup.getGroup(m.from).antilink) {
+		}else if ((m.body.includes(".com") || m.body.includes("www.") || m.body.includes("chat.whatsapp")) && (await VipGrup.getGroup(m.from).antilink === 1)) {
 			await bot.sendText(`Peringatan kepada @${m.participants}: Link tidak diizinkan dalam grup ini.`, m.msg);
 			await bot.deleteMessage(m.from, { id: m.id, remoteJID: m.from, fromMe: false });
-		}else if ((m.body.includes("bangsat")) && await VipGrup.getGroup(m.from).antitoxic) {
+		}else if ((m.body.includes("bangsat")) && (await VipGrup.getGroup(m.from).antitoxic === 1)) {
 			await bot.sendText(`Peringatan kepada @${m.participants}: Pesan kamu mengandung konten toxic.`, m.msg);
 			await bot.deleteMessage(m.from, { id: m.id, remoteJID: m.from, fromMe: false });
 		}else if(m.body == "cari anime"){
