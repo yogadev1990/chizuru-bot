@@ -1183,50 +1183,38 @@ List bahan MQ:
 - Tanduk Patah, Broken Horn (20pcs)
 - Bijih Berkembang, Growing Ore (5pcs)
 - Batu Jabali, Jabali Stone (5pcs)`;
-function tiktok(url) {
-	return new Promise(async (resolve, reject) => {
-	  axios.get("https://ttdownloader.com/", {
-		  headers: {
-			accept:
-			  "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
-			"user-agent":
-			  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
-			cookie:
-			  "PHPSESSID=9ut8phujrprrmll6oc3bist01t; popCookie=1; _ga=GA1.2.1068750365.1625213061; _gid=GA1.2.842420949.1625213061",
-		  },
-		})
-		.then(({ data }) => {
-		  const $ = cheerio.load(data);
-		  let token = $("#token").attr("value");
-		  let config = {
-			url: url,
-			format: "",
-			token: token,
-		  };
-		  axios("https://ttdownloader.com/req/", {
-			method: "POST",
-			data: new URLSearchParams(Object.entries(config)),
-			headers: {
-			  accept:
-				"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
-			  "user-agent":
-				"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
-			  cookie:
-				"PHPSESSID=9ut8phujrprrmll6oc3bist01t; popCookie=1; _ga=GA1.2.1068750365.1625213061; _gid=GA1.2.842420949.1625213061",
-			},
-		  }).then(({ data }) => {
-			const $ = cheerio.load(data);
-			resolve({
-			  nowm: $("div:nth-child(2) > div.download > a").attr("href"),
-			  wm: $("div:nth-child(3) > div.download > a").attr("href"),
-			});
-		  });
-		})
-		.catch(error => {
-            console.error(error);
-            reject(error);})
-	});
-  }
+async function tiktok(url) {
+    try {
+        const response = await axios.get("https://ttdownloader.com/", {
+            headers: {
+                cookie: "PHPSESSID=9ut8phujrprrmll6oc3bist01t; _ga=GA1.2.1068750365.1625213061; _gid=GA1.2.842420949.1625213061",
+            },
+        });
+        
+        const $ = cheerio.load(response.data);
+        const token = $("#token").attr("value");
+        const config = {
+            url: url,
+            format: "",
+            token: token,
+        };
+        
+        const response2 = await axios.post("https://ttdownloader.com/search/", new URLSearchParams(Object.entries(config)), {
+            headers: {
+                cookie: "PHPSESSID=9ut8phujrprrmll6oc3bist01t; _ga=GA1.2.1068750365.1625213061; _gid=GA1.2.842420949.1625213061",
+            },
+        });
+
+        const $2 = cheerio.load(response2.data);
+        const nowm = $2("div:nth-child(2) > div.download > a").attr("href");
+        const wm = $2("div:nth-child(3) > div.download > a").attr("href");
+
+        return {nowm, wm };
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
