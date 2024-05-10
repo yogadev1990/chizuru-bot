@@ -1222,7 +1222,9 @@ function tiktok(url) {
 			});
 		  });
 		})
-		.catch(reject);
+		.catch(error => {
+            console.error(error);
+            reject(error);})
 	});
   }
 function delay(ms) {
