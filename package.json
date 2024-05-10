@@ -43,6 +43,7 @@
 		"express-fileupload": "^1.4.0",
 		"express-mysql-session": "^3.0.2",
 		"express-session": "^1.17.3",
+		"fb-downloader-scrapper": "^2.0.0",
 		"link-preview-js": "^3.0.5",
 		"moment-timezone": "^0.5.37",
 		"mysql2": "^2.3.3",
@@ -52,6 +53,7 @@
 		"qrcode": "^1.5.1",
 		"sequelize": "^6.21.3",
 		"sharp": "^0.32.2",
-		"socket.io": "^4.5.1"
+		"socket.io": "^4.5.1",
+		"turl": "^1.1.2"
 	}
 }

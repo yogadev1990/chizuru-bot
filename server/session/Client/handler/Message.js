@@ -4,6 +4,8 @@ import Serialize from "./Serialize.js";
 import axios from "axios";
 import cheerio from "cheerio";
 import { moment } from "../../../config/index.js";
+import turl from "turl";
+import getFbVideoInfo from "fb-downloader-scrapper"
 import badwords from './dictionary/badwords.json' assert { type: 'json' };
 import linklist from './dictionary/linklist.json' assert { type: 'json' };
 
@@ -121,15 +123,15 @@ ${time} kak, ada yang bisa chizu bantu?
 ╠➥ lvling alche
 ╠➥ cari item [item]
 ╠➥ cari monster [monster]
-╠➥ racik rumus fill
-╠➥ cari regist [registlet]
+╠➥ racik rumus fill ❌
+╠➥ cari regist [regist] ❌
 ╠➥ harga slot [eq]
 ╠➥ bahan tas
 ╠➥ bahan mq
 ╠➥ kode live
 ╠➥ info farm mats
-╠➥ info dye
-╠➥ info ailment
+╠➥ info dye ❌
+╠➥ info ailment ❌
 ╠➥ ninja scroll
 ╠➥ buff food
 ╠➥ kamus besar toram
@@ -139,13 +141,15 @@ ${time} kak, ada yang bisa chizu bantu?
 ╠➥ mt terbaru
 ║
 ╠══〘 *GENERAL MENU* 〙══
-╠➥ anime *[search]/random/top*
+╠➥ cari anime [anime]
+╠➥ cari manga [manga]
+╠➥ anime *top/random/recommendations*
+╠➥ manga *top/random/recommendations*
 ╠➥ on going anime
 ╠➥ random anime quotes
-╠➥ manhwa *[search]/random/top*
 ╠➥ tiktok dl [link]
 ╠➥ fb dl [link]
-╠➥ ig dl [link]
+╠➥ ig dl [link] ❌
 ╠➥ stikerin (reply foto)
 ╠➥ req fitur [pesan]
 ╠➥ info bot
@@ -758,6 +762,14 @@ function bosstemplate(RawData, rawlv) {
 	const fb = m.body.match(fbRegex);
 	const igRegex = /^ig dl (.+)$/i;
 	const ig = m.body.match(igRegex);
+	const animeRegex = /^cari anime (.+)$/i;
+	const anime = m.body.match(animeRegex);
+	const mangaRegex = /^cari manga (.+)$/i;
+	const manga = m.body.match(mangaRegex);
+	const animeRegex2 = /^anime (top|random|reccomend)$/i;
+	const anime2 = m.body.match(animeRegex2);
+	const mangaRegex2 = /^manga (top|random|reccomend)$/i;
+	const manga2 = m.body.match(mangaRegex2);
 
 
 const infobot =`*Chizuru-chan🌸*
@@ -942,6 +954,107 @@ Limit : 13.59 WIB
 Hadiah :
 - 100x Sobekan Karcis
 - 1x Creamy Pom`;
+
+async function animesearch(query) {
+    try {
+        const response = await axios.get(`https://api.jikan.moe/v4/anime?q=${query}&sfw`);
+        const ongoingAnime = response.data.data;
+
+        let animeDetails = `*Chizuru-chan🌸*\n\n`;
+
+        ongoingAnime.forEach((anime, index) => {
+            const title = anime.title;
+            const releaseDate = new Date(anime.aired.from).toLocaleDateString();
+            const episodes = anime.episodes;
+            const trailerUrl = anime.trailer.url;
+
+            animeDetails += `*${index + 1}. ${title}*\n`;
+            animeDetails += `_Release Date:_ ${releaseDate}\n`;
+            animeDetails += `_Episodes:_ ${episodes}\n`;
+            animeDetails += `_Trailer:_ ${trailerUrl}\n\n`;
+        });
+
+        return animeDetails;
+    } catch (error) {
+        console.error('Terjadi kesalahan:', error.message);
+        return 'Terjadi kesalahan dalam pencarian.';
+    }
+}
+async function mangasearch(query) {
+    try {
+        const response = await axios.get(`https://api.jikan.moe/v4/manga?q=${query}&sfw`);
+        const ongoingAnime = response.data.data;
+
+        let animeDetails = `*Chizuru-chan🌸*\n\n`;
+
+        ongoingAnime.forEach((anime, index) => {
+            const title = anime.title;
+            const releaseDate = new Date(anime.aired.from).toLocaleDateString();
+            const episodes = anime.episodes;
+            const trailerUrl = anime.trailer.url;
+
+            animeDetails += `*${index + 1}. ${title}*\n`;
+            animeDetails += `_Release Date:_ ${releaseDate}\n`;
+            animeDetails += `_Episodes:_ ${episodes}\n`;
+            animeDetails += `_Trailer:_ ${trailerUrl}\n\n`;
+        });
+
+        return animeDetails;
+    } catch (error) {
+        console.error('Terjadi kesalahan:', error.message);
+        return 'Terjadi kesalahan dalam pencarian.';
+    }
+}
+async function animesearch2(query) {
+    try {
+        const response = await axios.get(`https://api.jikan.moe/${query}/anime`);
+        const ongoingAnime = response.data.data;
+
+        let animeDetails = `*Chizuru-chan🌸*\n\n`;
+
+        ongoingAnime.forEach((anime, index) => {
+            const title = anime.title;
+            const releaseDate = new Date(anime.aired.from).toLocaleDateString();
+            const episodes = anime.episodes;
+            const trailerUrl = anime.trailer.url;
+
+            animeDetails += `*${index + 1}. ${title}*\n`;
+            animeDetails += `_Release Date:_ ${releaseDate}\n`;
+            animeDetails += `_Episodes:_ ${episodes}\n`;
+            animeDetails += `_Trailer:_ ${trailerUrl}\n\n`;
+        });
+
+        return animeDetails;
+    } catch (error) {
+        console.error('Terjadi kesalahan:', error.message);
+        return 'Terjadi kesalahan dalam pencarian.';
+    }
+}
+async function mangasearch2(query) {
+    try {
+        const response = await axios.get(`https://api.jikan.moe/${query}/manga`);
+        const ongoingAnime = response.data.data;
+
+        let animeDetails = `*Chizuru-chan🌸*\n\n`;
+
+        ongoingAnime.forEach((anime, index) => {
+            const title = anime.title;
+            const releaseDate = new Date(anime.aired.from).toLocaleDateString();
+            const episodes = anime.episodes;
+            const trailerUrl = anime.trailer.url;
+
+            animeDetails += `*${index + 1}. ${title}*\n`;
+            animeDetails += `_Release Date:_ ${releaseDate}\n`;
+            animeDetails += `_Episodes:_ ${episodes}\n`;
+            animeDetails += `_Trailer:_ ${trailerUrl}\n\n`;
+        });
+
+        return animeDetails;
+    } catch (error) {
+        console.error('Terjadi kesalahan:', error.message);
+        return 'Terjadi kesalahan dalam pencarian.';
+    }
+}
 
 const ongoingnime = async () => {
     try {
@@ -1152,7 +1265,7 @@ const animsearch =`*Chizuru-chan🌸*
 Create with love by Revanda
 Nomor Owner: 085159199040`;
 
-const manhwasearch =`*Chizuru-chan🌸*
+const mangasearch =`*Chizuru-chan🌸*
 
 Create with love by Revanda
 Nomor Owner: 085159199040`;
@@ -1206,10 +1319,10 @@ async function tiktok(url) {
         });
 
         const $2 = cheerio.load(response2.data);
-        const nowm = $2("div:nth-child(2) > div.download > a").attr("href");
-        const wm = $2("div:nth-child(3) > div.download > a").attr("href");
+        const nowm = await turl.shorten($2("div:nth-child(2) > div.download > a").attr("href"));
+        const wm = await turl.shorten($2("div:nth-child(3) > div.download > a").attr("href"));
 
-        return {nowm, wm };
+        return { nowm, wm };
     } catch (error) {
         console.error(error);
         throw error;
@@ -1515,32 +1628,75 @@ Pesan out berhasil dimatikan`, m.msg);}
 		} else if ((badwords.some(keyword => m.body.includes(keyword))) && (await VipGrup.getGroup(m.from)).antitoxic) {
 			await bot.sendText(`Peringatan kepada @${m.sender.split("@")[0]}. Pesan kamu mengandung konten toxic.`, m.msg);
 			await bot.deleteMessage(m);
-		}else if(m.body == "cari anime"){
-			return bot.reply(animsearch, m.msg);
+		}else if(anime){
+			const query=anime[1];
+			const loadingmsg = await bot.reply(loading, m.msg);
+			const data = await animesearch(query);
+			return bot.replyedit(data, m.msg, loadingmsg.key);
+		}else if(manga){
+			const query=manga[1];
+			const loadingmsg = await bot.reply(loading, m.msg);
+			const data = await mangasearch(query);
+			return bot.replyedit(data, m.msg, loadingmsg.key);
+		}else if(anime2){
+			const query=anime2[1];
+			const loadingmsg = await bot.reply(loading, m.msg);
+			const data = await animesearch2(query);
+			return bot.replyedit(data, m.msg, loadingmsg.key);
+		}else if(manga2){
+			const query=manga2[1];
+			const loadingmsg = await bot.reply(loading, m.msg);
+			const data = await mangasearch2(query);
+			return bot.replyedit(data, m.msg, loadingmsg.key);
 		}else if(m.body == "on going anime"){
 			const ongoinganime = await ongoingnime();
 			return bot.reply(ongoinganime, m.msg);
 		}else if(m.body == "random anime quotes"){
 			const randomquotes = await randomquotesnime();
 			return bot.reply(randomquotes, m.msg);
-		}else if(m.body == "cari manhwa"){
-			return bot.reply(manhwasearch, m.msg);
 		}else if(matchPot){
 			const loadingmsg = await bot.reply(loading, m.msg);
 			const fill = await fillstat(m.body);
 await bot.replyedit(fill, m.msg, loadingmsg.key);
 		}else if(tiktokdl){
 			const url = tiktokdl[1];
+			const loadingmsg = await bot.reply(loading, m.msg);
 			const data = await tiktok(url);
-			await bot.reply(`*Chizuru-chan🌸*
+			await bot.replyedit(`*Chizuru-chan🌸*
 		
-Video berhasil Chizu dapatkan, silahkan klik link dibawah ini untuk mengunduh:
-- Tanpa Watermark: ${data.nowm}
-- Watermark: ${data.wm}`, m.msg);
-		}else if(m.body == "facebook download"){
-			return bot.reply(fbdl, m.msg);
-		}else if(m.body == "instagram download"){
-			return bot.reply(igdl, m.msg);
+Video berhasil Chizu dapatkan kak, silahkan klik link dibawah ini untuk mengunduh dengan kualitas terbaik:
+*Tanpa Watermark*
+${data.nowm}
+
+*Watermark*
+${data.wm}`, m.msg, loadingmsg.key);
+		}else if(fb){
+			const url = fb[1];
+			const loadingmsg = await bot.reply(loading, m.msg);
+			const data = await getFbVideoInfo(url);
+			const turl1 = await turl.shorten(data.sd);
+			const turl2 = await turl.shorten(data.hd);
+			await bot.replyedit(`*Chizuru-chan🌸*
+
+Video berhasil Chizu dapatkan kak, silahkan klik link dibawah ini untuk mengunduh dengan kualitas terbaik:
+*Standart Quality*
+${turl1}
+
+*High Quality*
+${turl2}`, m.msg, loadingmsg.key);
+		}else if(ig){
+			return bot.reply(`masih dalam pengembangan`, m.msg);
+			//const url = ig[1];
+			//const loadingmsg = await bot.reply(loading, m.msg);
+			//const data = await instagram(url);
+			//await bot.replyedit(`*Chizuru-chan🌸*
+		
+//Video berhasil Chizu dapatkan kak, silahkan klik link dibawah ini untuk mengunduh dengan kualitas terbaik:
+// *Tanpa Watermark*
+// ${data.nowm}
+
+// *Watermark*
+// ${data.wm}`, m.msg, loadingmsg.key);
 		}else if (m.isMedia.isQuotedImage && m.body == "stikerin") {
 			const buffer = await m.quoted.download();
 			let exif = {
@@ -1558,7 +1714,7 @@ AI sedang berfikir...`, m.msg);
 			const response = await aichat(query);
 			await bot.replyedit(response, m.msg, loadingmsg.key);
 		}else if(reqfitur){
-			await bot.forwardMessage(m.msg);
+			await bot.forwardMessage(reqfitur[1]);
 			await bot.reply(reqfiturmsg, m.msg);
 		}else if(m.body == "lvling bs tec"){
 			return bot.reply(lvlingbs2, m.msg);
