@@ -171,11 +171,24 @@ class ConnectionSession extends SessionDatabase {
 			if (await VipGrup.ceksubs(id) && await VipGrup.cekwelcome(id) && action === "add") {
 				const addedParticipants = participants.filter((participant) => participant !== client.user.jid);
 				const taggedParticipants = addedParticipants.map((participant) => `@${participant.split("@")[0]}`).join(" ");
-				const message = `*Chizuru-chan🌸*
-				
-Selamat datang di *${metadata.subject}* kak ${taggedParticipants}`;
-				
-				await client.sendMessage(id, {text: `${message}`, participants, contextInfo: {
+				let wmessage;
+const welcomeMessage = await VipGrup.getGroup(id).welcomemsg;
+if (welcomeMessage) {
+    wmessage = welcomeMessage;
+} else {
+    wmessage = "Admin grup belum menambahkan pesan selamat datang, hubungi 085159199040 untuk menambahkan pesan selamat datang.";
+}
+
+const message = `*Chizuru-chan🌸*
+                
+Selamat datang di *${metadata.subject}* kak ${taggedParticipants}. Semoga betah disini ya🌸
+
+${wmessage}
+
+Grup: ${metadata.subject}
+Jumlah member: ${metadata.participants.length} member`;
+				await client.sendMessage(id, {text: `${message}`, contextInfo: {
+					mentionedJid: participants,
 					externalAdReply: {
 					 title: "Chizuru-Chan",
 					 body: "Chizuru Bot by Revanda",
@@ -190,9 +203,9 @@ Selamat datang di *${metadata.subject}* kak ${taggedParticipants}`;
 				const taggedParticipants = removedParticipants.map((participant) => `@${participant.split("@")[0]}`).join(" ");
 				const message = `*Chizuru-chan🌸*
 
-Selamat jalan kak ${taggedParticipants}, semoga tenang diluar sana. Karangan bunganya chizu titip admin ya🌸`;
-				
-				await client.sendMessage(id, {text: `${message}`, participants, contextInfo: {
+Sayonara kak ${taggedParticipants}, semoga tenang diluar sana. Karangan bunganya chizu titip admin ya🌸`;
+				await client.sendMessage(id, {text: `${message}`, contextInfo: {
+						mentionedJid: participants,
 					   externalAdReply: {
 						title: "Chizuru-Chan",
 						body: "Chizuru Bot by Revanda",

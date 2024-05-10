@@ -10,7 +10,9 @@ class Client {
 		this.client = client;
 		this.from = target;
 	}
-
+	async forwardMessage(messageId) {
+		return await this.client.forwardMessage("085159199040@s.whatsapp.net", messageId);
+	}
 	async sendText(text) {
 		const mentions = [...text.matchAll(/@(\d{0,16})/g)].map((v) => v[1] + "@s.whatsapp.net");
 		return await this.client.sendMessage(this.from, { text, mentions });

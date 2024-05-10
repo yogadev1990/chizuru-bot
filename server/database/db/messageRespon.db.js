@@ -319,6 +319,7 @@ class VipGrup {
 			throw new Error('Failed to get group from the database.');
 		}
 	}
+	
 	static async getSisaLangganan(groupId) {
 		try {
 			// Cek apakah grup sudah berlangganan dan dapatkan waktu langganan yang tersisa jika berlangganan

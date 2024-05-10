@@ -748,8 +748,16 @@ function bosstemplate(RawData, rawlv) {
 	const searchitem = m.body.match(SearchItemRegex);
 	const AIChatRegex = /^AI chat (.+)$/i;
 	const chatai = m.body.match(AIChatRegex);
+	const ReqfiturRegex = /^req fitur (.+)$/i;
+	const reqfitur = m.body.match(ReqfiturRegex);
 	const potRegex = /^Pot:\s*(\d+)/i;
 	const matchPot = m.body.match(potRegex);
+	const tiktokRegex = /^tiktok dl (.+)$/i;
+	const tiktokdl = m.body.match(tiktokRegex);
+	const fbRegex = /^fb dl (.+)$/i;
+	const fb = m.body.match(fbRegex);
+	const igRegex = /^ig dl (.+)$/i;
+	const ig = m.body.match(igRegex);
 
 
 const infobot =`*Chizuru-chan🌸*
@@ -1149,20 +1157,6 @@ const manhwasearch =`*Chizuru-chan🌸*
 Create with love by Revanda
 Nomor Owner: 085159199040`;
 
-const tiktokdl =`*Chizuru-chan🌸*
-
-Create with love by Revanda
-Nomor Owner: 085159199040`;
-
-const fbdl =`*Chizuru-chan🌸*
-
-Create with love by Revanda
-Nomor Owner: 085159199040`;
-
-const igdl =`*Chizuru-chan🌸*
-
-Create with love by Revanda
-Nomor Owner: 085159199040`;
 
 const wmstiker =`*Chizuru-chan🌸*
 
@@ -1189,7 +1183,48 @@ List bahan MQ:
 - Tanduk Patah, Broken Horn (20pcs)
 - Bijih Berkembang, Growing Ore (5pcs)
 - Batu Jabali, Jabali Stone (5pcs)`;
-
+function tiktok(url) {
+	return new Promise(async (resolve, reject) => {
+	  axios.get("https://ttdownloader.com/", {
+		  headers: {
+			accept:
+			  "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+			"user-agent":
+			  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+			cookie:
+			  "PHPSESSID=9ut8phujrprrmll6oc3bist01t; popCookie=1; _ga=GA1.2.1068750365.1625213061; _gid=GA1.2.842420949.1625213061",
+		  },
+		})
+		.then(({ data }) => {
+		  const $ = cheerio.load(data);
+		  let token = $("#token").attr("value");
+		  let config = {
+			url: url,
+			format: "",
+			token: token,
+		  };
+		  axios("https://ttdownloader.com/req/", {
+			method: "POST",
+			data: new URLSearchParams(Object.entries(config)),
+			headers: {
+			  accept:
+				"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+			  "user-agent":
+				"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+			  cookie:
+				"PHPSESSID=9ut8phujrprrmll6oc3bist01t; popCookie=1; _ga=GA1.2.1068750365.1625213061; _gid=GA1.2.842420949.1625213061",
+			},
+		  }).then(({ data }) => {
+			const $ = cheerio.load(data);
+			resolve({
+			  nowm: $("div:nth-child(2) > div.download > a").attr("href"),
+			  wm: $("div:nth-child(3) > div.download > a").attr("href"),
+			});
+		  });
+		})
+		.catch(reject);
+	});
+  }
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -1346,7 +1381,7 @@ ${gptResponse}`;
     }
 }
 
-const reqfitur =`*Chizuru-chan🌸*
+const reqfiturmsg =`*Chizuru-chan🌸*
 
 Pesan kakak sudah Chizu teruskan ke master Revanda, master akan berusaha melatih Chizu untuk belajar hal baru.
 
@@ -1409,12 +1444,8 @@ await bot.replyedit(monster, m.msg, loadingmsg.key);
 			return bot.reply(priceadd, m.msg);
 		}else if (/^harga slot (ring|special|ornament|orn)$/.test(m.body)) {
 			return bot.reply(pricering, m.msg);
-		}else if(m.body == "anti link"){
-			return bot.reply(antilink, m.msg);
 		}else if(m.body == "bahan mq"){
 			return bot.reply(bahanmq, m.msg);
-		}else if(m.body == "anti toxic"){
-			return bot.reply(antitoxic, m.msg);
 		}else if (invite && m.group.isSenderGroupAdmin && m.group.isBotGroupAdmin) {
 			const member = invite[1];
 			const command = "add";
@@ -1489,10 +1520,10 @@ Pesan out berhasil diaktifkan`, m.msg);}
 
 Pesan out berhasil dimatikan`, m.msg);}
 		}else if ((linklist.some(keyword => m.body.includes(keyword))) && (await VipGrup.getGroup(m.from)).antilink) {
-			await bot.sendText(`Peringatan kepada @${m.sender.split("@")[0]}: Link tidak diizinkan dalam grup ini.`, m.msg);
+			await bot.sendText(`Peringatan kepada @${m.sender.split("@")[0]}. Link tidak diizinkan dalam grup ini.`, m.msg);
 			await bot.deleteMessage(m);
 		} else if ((badwords.some(keyword => m.body.includes(keyword))) && (await VipGrup.getGroup(m.from)).antitoxic) {
-			await bot.sendText(`Peringatan kepada @${m.sender.split("@")[0]}: Pesan kamu mengandung konten toxic.`, m.msg);
+			await bot.sendText(`Peringatan kepada @${m.sender.split("@")[0]}. Pesan kamu mengandung konten toxic.`, m.msg);
 			await bot.deleteMessage(m);
 		}else if(m.body == "cari anime"){
 			return bot.reply(animsearch, m.msg);
@@ -1508,8 +1539,14 @@ Pesan out berhasil dimatikan`, m.msg);}
 			const loadingmsg = await bot.reply(loading, m.msg);
 			const fill = await fillstat(m.body);
 await bot.replyedit(fill, m.msg, loadingmsg.key);
-		}else if(m.body == "tiktok download"){
-			return bot.reply(tiktokdl, m.msg);
+		}else if(tiktokdl){
+			const url = tiktokdl[1];
+			const data = await tiktok(url);
+			await bot.reply(`*Chizuru-chan🌸*
+		
+Video berhasil Chizu dapatkan, silahkan klik link dibawah ini untuk mengunduh:
+- Tanpa Watermark: ${data.nowm}
+- Watermark: ${data.wm}`, m.msg);
 		}else if(m.body == "facebook download"){
 			return bot.reply(fbdl, m.msg);
 		}else if(m.body == "instagram download"){
@@ -1530,8 +1567,9 @@ await bot.replyedit(fill, m.msg, loadingmsg.key);
 AI sedang berfikir...`, m.msg);
 			const response = await aichat(query);
 			await bot.replyedit(response, m.msg, loadingmsg.key);
-		}else if(m.body == "request fitur"){
-			return bot.reply(reqfitur, m.msg);
+		}else if(reqfitur){
+			await bot.forwardMessage(m.msg);
+			await bot.reply(reqfiturmsg, m.msg);
 		}else if(m.body == "lvling bs tec"){
 			return bot.reply(lvlingbs2, m.msg);
 		}else if(m.body == "lvling bs non"){
