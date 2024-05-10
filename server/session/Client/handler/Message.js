@@ -1441,48 +1441,48 @@ ${member} berhasil Chizu demote`, m.msg);
 		} else if (matchAntiToxic && m.group.isSenderGroupAdmin) {
 			const status = matchAntiToxic[1];
 			if (status == "on") {
-				await VipGrup.findOneAndUpdate(m.from, { antiToxic: true });
+				await VipGrup.findOneAndUpdate(m.from, { antiToxic: 1 });
 				await bot.reply(`*Chizuru-chan🌸*
 
 Anti Toxic berhasil diaktifkan`, m.msg);
 			} else if (status == "off") {
-				await VipGrup.findOneAndUpdate(m.from, { antiToxic: false });
+				await VipGrup.findOneAndUpdate(m.from, { antiToxic: 0 });
 				await bot.reply(`*Chizuru-chan🌸*
 
 Anti Toxic berhasil dimatikan`, m.msg);}
 		} else if (matchAntiLink && m.group.isSenderGroupAdmin) {
 			const status = matchAntiLink[1];
 			if (status == "on") {
-				await VipGrup.findOneAndUpdate(m.from, { antiLink: true });
+				await VipGrup.findOneAndUpdate(m.from, { antiLink: 1 });
 				await bot.reply(`*Chizuru-chan🌸*
 
 Anti Link berhasil diaktifkan`, m.msg);}
 			else if (status == "off") {
-				await VipGrup.findOneAndUpdate(m.from, { antiLink: false });
+				await VipGrup.findOneAndUpdate(m.from, { antiLink: 0 });
 				await bot.reply(`*Chizuru-chan🌸*
 
 Anti Link berhasil dimatikan`, m.msg);}
 		} else if (matchWelcome && m.group.isSenderGroupAdmin) {
 			const status = matchWelcome[1];
 			if (status == "on") {
-				await VipGrup.findOneAndUpdate(m.from, { welcome: true });
+				await VipGrup.findOneAndUpdate(m.from, { welcome: 1 });
 				await bot.reply(`*Chizuru-chan🌸*
 
 Welcome berhasil diaktifkan`, m.msg);}
 			else if (status == "off") {
-				await VipGrup.findOneAndUpdate(m.from, { welcome: false });
+				await VipGrup.findOneAndUpdate(m.from, { welcome: 0 });
 				await bot.reply(`*Chizuru-chan🌸*
 
 Welcome berhasil dimatikan`, m.msg);}
 		} else if (matchOut && m.group.isSenderGroupAdmin) {
 			const status = matchOut[1];
 			if (status == "on") {
-				await VipGrup.findOneAndUpdate(m.from, { out: true });
+				await VipGrup.findOneAndUpdate(m.from, { out: 1 });
 				await bot.reply(`*Chizuru-chan🌸*
 
 Out berhasil diaktifkan`, m.msg);}
 			else if (status == "off") {
-				await VipGrup.findOneAndUpdate(m.from, { out: false });
+				await VipGrup.findOneAndUpdate(m.from, { out: 0 });
 				await bot.reply(`*Chizuru-chan🌸*
 
 Out berhasil dimatikan`, m.msg);}
