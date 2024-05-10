@@ -1438,7 +1438,7 @@ ${member} berhasil Chizu promosikan`, m.msg);
 			await bot.sendText(`*Chizuru-chan🌸*
 			
 ${member} berhasil Chizu demote`, m.msg);
-		} else if (antiToxicRegex && m.group.isSenderGroupAdmin) {
+		} else if (matchAntiToxic && m.group.isSenderGroupAdmin) {
 			const status = matchAntiToxic[1];
 			if (status == "on") {
 				await VipGrup.findOneAndUpdate(m.from, { antiToxic: true });
@@ -1450,7 +1450,7 @@ Anti Toxic berhasil diaktifkan`, m.msg);
 				await bot.reply(`*Chizuru-chan🌸*
 
 Anti Toxic berhasil dimatikan`, m.msg);}
-		} else if (antiLinkRegex && m.group.isSenderGroupAdmin) {
+		} else if (matchAntiLink && m.group.isSenderGroupAdmin) {
 			const status = matchAntiLink[1];
 			if (status == "on") {
 				await VipGrup.findOneAndUpdate(m.from, { antiLink: true });
@@ -1462,7 +1462,7 @@ Anti Link berhasil diaktifkan`, m.msg);}
 				await bot.reply(`*Chizuru-chan🌸*
 
 Anti Link berhasil dimatikan`, m.msg);}
-		} else if (welcomeRegex && m.group.isSenderGroupAdmin) {
+		} else if (matchWelcome && m.group.isSenderGroupAdmin) {
 			const status = matchWelcome[1];
 			if (status == "on") {
 				await VipGrup.findOneAndUpdate(m.from, { welcome: true });
@@ -1474,7 +1474,7 @@ Welcome berhasil diaktifkan`, m.msg);}
 				await bot.reply(`*Chizuru-chan🌸*
 
 Welcome berhasil dimatikan`, m.msg);}
-		} else if (outRegex && m.group.isSenderGroupAdmin) {
+		} else if (matchOut && m.group.isSenderGroupAdmin) {
 			const status = matchOut[1];
 			if (status == "on") {
 				await VipGrup.findOneAndUpdate(m.from, { out: true });
@@ -1486,10 +1486,10 @@ Out berhasil diaktifkan`, m.msg);}
 				await bot.reply(`*Chizuru-chan🌸*
 
 Out berhasil dimatikan`, m.msg);}
-		}else if (m.body.includes(".com") || m.body.includes("www.") || m.body.includes("chat.whatsapp")) {
+		}else if ((m.body.includes(".com") || m.body.includes("www.") || m.body.includes("chat.whatsapp")) && VipGrup.getGroup(m.from).antilink) {
 			await bot.sendText(`Peringatan kepada @${m.participants}: Link tidak diizinkan dalam grup ini.`, m.msg);
 			await bot.deleteMessage(m.from, { id: m.id, remoteJID: m.from, fromMe: false });
-		}else if (m.body.includes("bangsat")) {
+		}else if ((m.body.includes("bangsat")) && VipGrup.getGroup(m.from).antitoxic) {
 			await bot.sendText(`Peringatan kepada @${m.participants}: Pesan kamu mengandung konten toxic.`, m.msg);
 			await bot.deleteMessage(m.from, { id: m.id, remoteJID: m.from, fromMe: false });
 		}else if(m.body == "cari anime"){

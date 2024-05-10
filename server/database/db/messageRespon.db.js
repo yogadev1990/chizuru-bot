@@ -308,6 +308,17 @@ class VipGrup {
 			throw new Error('Failed to update group in the database.');
 		}
 	}
+	static async getGroup(groupId) {
+		try {
+			const group = await GrupModel.findOne({
+				where: { group_id: groupId },
+			});
+			return group;
+		} catch (error) {
+			console.error('Error getting group:', error);
+			throw new Error('Failed to get group from the database.');
+		}
+	}
 	static async getSisaLangganan(groupId) {
 		try {
 			// Cek apakah grup sudah berlangganan dan dapatkan waktu langganan yang tersisa jika berlangganan
