@@ -4,6 +4,8 @@ import Serialize from "./Serialize.js";
 import axios from "axios";
 import cheerio from "cheerio";
 import { moment } from "../../../config/index.js";
+import badword from "./dictionary/badwords.json";
+import linklist from "./dictionary/linklist.json";
 
 export default class Message extends Serialize {
 	constructor(client, msg, session_name) {
@@ -1358,6 +1360,7 @@ const phoneNumber = m.sender;
 const extractedPhoneNumber = phoneNumber.split("@")[0];
 const tag = `@${extractedPhoneNumber}`;
 const command = "remove";
+			await bot.deleteMessage(m);
 			await bot.sendText(`@${extractedPhoneNumber} akan dikeluarkan dari grup. Alasan: mengirim pesan virtex.`, m.msg)
 			await bot.partisipant(tag, command);
 		}else if(match){
@@ -1485,11 +1488,11 @@ Pesan out berhasil diaktifkan`, m.msg);}
 				await bot.reply(`*Chizuru-chan🌸*
 
 Pesan out berhasil dimatikan`, m.msg);}
-		}else if ((m.body.includes(".com") || m.body.includes("www.") || m.body.includes("chat.whatsapp")) && (await VipGrup.getGroup(m.from)).antilink) {
-			await bot.sendText(`Peringatan kepada @${m.sender}: Link tidak diizinkan dalam grup ini.`, m.msg);
+		}else if ((linklist.some(keyword => m.body.includes(keyword))) && (await VipGrup.getGroup(m.from)).antilink) {
+			await bot.sendText(`Peringatan kepada @${m.sender.split("@")[0]}: Link tidak diizinkan dalam grup ini.`, m.msg);
 			await bot.deleteMessage(m);
-		} else if ((m.body.includes("bangsat")) && (await VipGrup.getGroup(m.from)).antitoxic) {
-			await bot.sendText(`Peringatan kepada @${m.sender}: Pesan kamu mengandung konten toxic.`, m.msg);
+		} else if ((badword.some(keyword => m.body.includes(keyword))) && (await VipGrup.getGroup(m.from)).antitoxic) {
+			await bot.sendText(`Peringatan kepada @${m.sender.split("@")[0]}: Pesan kamu mengandung konten toxic.`, m.msg);
 			await bot.deleteMessage(m);
 		}else if(m.body == "cari anime"){
 			return bot.reply(animsearch, m.msg);
