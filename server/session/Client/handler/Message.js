@@ -34,7 +34,6 @@ export default class Message extends Serialize {
 		const buttonResponse = new ButtonResponse();
 		const listResponse = new ListResponse();
 		const replyResponse = new AutoReply();
-		
 		const keywordReply = await replyResponse.checkMessageUser(m.botNumber, m.body);
 		const keywordButton = await buttonResponse.checkKeyword(m.body, m.from);
 		const keywordList = await listResponse.checkKeyword(m.body, m.from);
@@ -1486,10 +1485,10 @@ Pesan out berhasil diaktifkan`, m.msg);}
 				await bot.reply(`*Chizuru-chan🌸*
 
 Pesan out berhasil dimatikan`, m.msg);}
-		}else if ((m.body.includes(".com") || m.body.includes("www.") || m.body.includes("chat.whatsapp")) && VipGrup.getGroup(m.from).antilink) {
+		}else if ((m.body.includes(".com") || m.body.includes("www.") || m.body.includes("chat.whatsapp")) && await VipGrup.getGroup(m.from).antilink) {
 			await bot.sendText(`Peringatan kepada @${m.participants}: Link tidak diizinkan dalam grup ini.`, m.msg);
 			await bot.deleteMessage(m.from, { id: m.id, remoteJID: m.from, fromMe: false });
-		}else if ((m.body.includes("bangsat")) && VipGrup.getGroup(m.from).antitoxic) {
+		}else if ((m.body.includes("bangsat")) && await VipGrup.getGroup(m.from).antitoxic) {
 			await bot.sendText(`Peringatan kepada @${m.participants}: Pesan kamu mengandung konten toxic.`, m.msg);
 			await bot.deleteMessage(m.from, { id: m.id, remoteJID: m.from, fromMe: false });
 		}else if(m.body == "cari anime"){
