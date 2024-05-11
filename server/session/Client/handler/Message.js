@@ -5,7 +5,6 @@ import axios from "axios";
 import cheerio from "cheerio";
 import { moment } from "../../../config/index.js";
 import turl from "turl";
-import getFbVideoInfo from "fb-downloader-scrapper"
 import badwords from './dictionary/badwords.json' assert { type: 'json' };
 import linklist from './dictionary/linklist.json' assert { type: 'json' };
 
@@ -154,13 +153,14 @@ ${time} kak, ada yang bisa chizu bantu?
 ╠➥ manga *top/random/recommendations*
 ╠➥ on going anime
 ╠➥ random anime quotes
+╠➥ AI chat [pesan]
 ╠➥ tiktok dl [link]
 ╠➥ fb dl [link]
 ╠➥ ig dl [link]
 ╠➥ stikerin (reply foto)
 ╠➥ req fitur [pesan]
 ╠➥ info bot
-╠➥ help 
+╠➥ help
 ║
 ╠══〘 *ADMIN MENU* 〙══
 ╠➥ add [@628xx]
@@ -785,8 +785,14 @@ function bosstemplate(RawData, rawlv) {
 
 const infobot =`*Chizuru-chan🌸*
 
-Create with love by Revanda
-Nomor Owner: 085159199040`;
+Create with love by Revanda,
+Bot ini dibuat untuk membantumu dalam mencari informasi seputar Toram Online.
+Bot ini masih terus dikembangkan, jadi mohon maaf jika masih ada beberapa fitur yang belum berjalan dengan baik.
+Jika kamu memiliki saran atau pertanyaan, silakan chat Chizuru-chan.
+Terima kasih sudah menggunakan Chizuru-chan🌸
+
+Katalog bot: https://revandastore.com/katalog/11
+Nomor Owner: [Revanda] 085159199040`;
 
 const bagupgrade =`*Chizuru-chan🌸*
 
@@ -1335,11 +1341,6 @@ Legendary Ornament (1-2 Ring): 20m
 Ornament (0-1 Ring): 5m
 
 PM chizu bila harga berubah kak^^`;
-
-const wmstiker =`*Chizuru-chan🌸*
-
-Create with love by Revanda
-Nomor Owner: 085159199040`;
 
 const bahanmq =`*Chizuru-chan🌸*
 
@@ -1967,8 +1968,8 @@ Contoh: *harga slot ohs*, *cari item proto*
 Contoh: *lvling char miniboss 200*
 5. Untuk *stikerin*, kirim gambar dahulu, lalu balas gambar tersebut dengan *stikerin*.
 6. Menu admin hanya boleh diakses admin grup.
-7. Admin dapat mengcustom pesan welcome, hubungi Revanda.
-8. Bila ada pertanyaan, kontak nomor di info bot.`;
+7. Admin dapat custom pesan welcome, hubungi Revanda.
+8. Bantuan owner, [Revanda] 085159199040.`;
 
 
 async function registlet(query) {
@@ -1978,7 +1979,7 @@ async function registlet(query) {
         if (data.length === 0) {
             return "Tidak ada hasil yang ditemukan untuk pencarian ini.";
         }
-        let resultMessage = "*Chizuru-chan🌸*\nIni adalah hasil pencarian:\n";
+        let resultMessage = "*Chizuru-chan🌸*\nSiap kak, ajak member lain kalau mau Stoodie:\n";
         data.forEach((item, index) => {
             resultMessage += `\n*Nama:* ${item.name_en}\n`;
             resultMessage += `*Max Lv:* ${item.max}\n`;
@@ -2290,10 +2291,11 @@ const pesan3 = `> Jalan-jalan ke penjara cuervo
 > Ke cuervo mengajak adala
 > Hari gini masih kena scam bro?
 > Top up di web Revanda Store aja laa`;
-const pesan4 = `Kenapa felien 
-Top up di web Revanda Store aja laa`;
-
-const pesanArray = [pesan1, pesan2, pesan3];
+const pesan4 = `Revanda: ya karena kadang-kadang, 'jadi jago' di game bisa dengan 1 sentuhan. Ga percaya? Baca Selengkapnya...`;
+const pesan5 = `Iri dengan temen yang udah jago/banyak skin? Tenang, hanya Revanda Store mengerti keadaanmu. Top up termurah, legal, dan terpercaya hanya di Revanda Store!`;
+const pesan6 = `Apa yang lebih kuat dari boss spiral abyss?
+Jawaban: Primo hasil belanja dari Revanda Store`;
+const pesanArray = [pesan1, pesan2, pesan3, pesan4, pesan5, pesan6];
 const panjangPesan = pesanArray.length;
 const pesanAcak = pesanArray[Math.floor(Math.random() * panjangPesan)];
 
@@ -2302,6 +2304,7 @@ const market1 =`🎮 *Revanda Store: Toram Online* 🎮
 ${pesanAcak}
 
 *Buy & Sell list:*
+- Sell Spina (https://revandastore.com/games/toram-online)
 - Buy Spina PM Rate
 - Sell Guild Lv. 40 (https://revandastore.com/katalog/9)
 - Sell Akun Utama, SERVER: 🇮🇩, 14 Slot, (https://revandastore.com/katalog/10)
@@ -2309,13 +2312,13 @@ ${pesanAcak}
 
 *Layanan Lain:*
 - Top Up ML, FF, PUBG, dll. termurah di revandastore.com
-- Sell Source Code Bot WA
+- Jasa pembuatan custom bot WA
 - Sewa bot GC WA Guild Toram (https://revandastore.com/katalog/11)
 
 ╔ *${metadata}*
 ║>> ${hari}, ${jam}:${menit} WIB <<
 ╚〘 Revanda Store x Chizuru 〙`
-if (m.body.includes("reyvanndaa")) {
+if (m.body.includes("revvvvvvv") || m.body.includes("revvvvvvs")) {
 	const groupId = m.from;
     const triggers = await Trigger.getTriggersByGroupId(groupId);
     if (!triggers.length || await checkCooldown(triggers)) {

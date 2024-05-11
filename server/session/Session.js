@@ -176,7 +176,7 @@ const welcomeMessage = await VipGrup.getGroup(id).welcomemsg;
 if (welcomeMessage) {
     wmessage = welcomeMessage;
 } else {
-    wmessage = "Admin grup belum menambahkan pesan selamat datang, hubungi 085159199040 untuk menambahkan pesan selamat datang.";
+    wmessage = "Admin grup belum menambahkan pesan selamat datang, hubungi [Revanda] 085159199040 untuk menambahkan pesan selamat datang.";
 }
 
 const message = `*Chizuru-chan🌸*
