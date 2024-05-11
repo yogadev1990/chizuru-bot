@@ -1259,18 +1259,6 @@ Ornament (0-1 Ring): 5m
 
 PM chizu bila harga berubah kak^^`;
 
-
-const animsearch =`*Chizuru-chan🌸*
-
-Create with love by Revanda
-Nomor Owner: 085159199040`;
-
-const mangasearch =`*Chizuru-chan🌸*
-
-Create with love by Revanda
-Nomor Owner: 085159199040`;
-
-
 const wmstiker =`*Chizuru-chan🌸*
 
 Create with love by Revanda
