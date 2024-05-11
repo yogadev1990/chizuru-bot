@@ -1705,10 +1705,10 @@ Sebentar ya kak, Chizu membutuhkan banyak waktu untuk menangani proses ini...`, 
 
 Video berhasil Chizu dapatkan kak, silahkan klik link dibawah ini untuk mengunduh dengan kualitas terbaik:
 *Standart Quality*
-${data.sd}
+${data.downloadLinks.sd}
 
 *High Quality*
-${data.hd}`, m.msg, loadingmsg.key);
+${data.downloadLinks.hd}`, m.msg, loadingmsg.key);
 		}else if(ig){
 			return bot.reply(`masih dalam pengembangan`, m.msg);
 			//const url = ig[1];
