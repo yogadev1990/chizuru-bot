@@ -1,58 +1,12 @@
-import axios from 'axios';
-import cheerio from 'cheerio';
-import querystring from 'qs';
+import turl from "turl";
+import getFbVideoInfo from "fb-downloader-scrapper"
+const cookie = "datr=HCTWZXWRBNleauqd7mrRCkrR; sb=QCTWZXoFEjTMSGVIFYIXQoPr; c_user=100020041126575; ps_n=1; ps_l=1; xs=29%3AXm1fFPh3xti4og%3A2%3A1712413671%3A-1%3A10952%3A%3AAcXuqhQKq8D0YJOLAcTD9rJcjm7DieOxQIdpj9G_k4Q; locale=id_ID; vpd=v1%3B496x320x2.0000000596046448; fbl_st=100633781%3BT%3A28589850; wl_cbv=v2%3Bclient_version%3A2496%3Btimestamp%3A1715391030; fr=1bUVzg0DKF9ufqQy7.AWW2cvgSmjiI2OQEWW3zmatG2dA.BmPsnJ..AAA.0.0.BmPso-.AWVXQZZiHhg; dpr=1.5; presence=C%7B%22t3%22%3A%5B%5D%2C%22utc3%22%3A1715391044900%2C%22v%22%3A1%7D; wd=2560x783"
+const useragent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+const url = 'https://fb.watch/r_w60Knb-j/';
+const data = await getFbVideoInfo(url, cookie, useragent);
+const turl1 = await turl.shorten(data.sd);
+const turl2 = await turl.shorten(data.hd);
 
-const fetchData = async (query) => {
-  const apiUrl = 'https://v3.saveig.app/api/ajaxSearch';
-  const requestData = {
-    q: query,
-    t: 'media',
-    lang: 'en',
-  };
-  const requestHeaders = {
-    Accept: '*/*',
-    Origin: 'https://saveig.app',
-    Referer: 'https://saveig.app/en',
-    'Accept-Encoding': 'gzip, deflate, br',
-    'Accept-Language': 'en-US,en;q=0.9',
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'Sec-Ch-Ua': '"Not/A)Brand";v="99", "Microsoft Edge";v="115", "Chromium";v="115"',
-    'Sec-Ch-Ua-Mobile': '?0',
-    'Sec-Ch-Ua-Platform': '"Windows"',
-    'Sec-Fetch-Dest': 'empty',
-    'Sec-Fetch-Mode': 'cors',
-    'Sec-Fetch-Site': 'same-origin',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.183',
-    'X-Requested-With': 'XMLHttpRequest',
-  };
-
-  try {
-    const axiosConfig = { headers: requestHeaders };
-    const axiosInstance = axios.create(axiosConfig);
-    const response = await axiosInstance.post(apiUrl, querystring.stringify(requestData));
-    console.log(response);
-    const responseData = response.data;
-    //console.log(responseData.data)
-    const $ = cheerio.load(responseData.data);
-    const downloadItems = $('.download-items');
-    const results = [];
-
-    // Iterate over download items
-    downloadItems.each((index, element) => {
-      const thumbnail = $(element).find('.download-items__thumb > img').attr('src');
-      const downloadLink = $(element).find('.download-items__btn > a').attr('href');
-      const item = {
-        thumbnail_link: thumbnail,
-        download_link: downloadLink,
-      };
-      results.push(item);
-    });
-
-    return results;
-  } catch (error) {
-    throw error;
-  }
-};
-
-// Contoh pemanggilan fungsi fetchData dengan query URL Instagram reel
-fetchData('https://www.instagram.com/reel/C3zIabFh6E0/?utm_source=ig_web_copy_link');
+console.log('Data:', data);
+console.log('SD:', turl1);
+console.log('HD:', turl2);
