@@ -1,73 +1,51 @@
-import turl from "turl";
+import cheerio from "cheerio";
 import axios from "axios";
+import turl from "turl";
 
-const urlfb = 'https://fb.watch/r_w60Knb-j/';
+const url = 'https://fb.watch/r_w60Knb-j/';
 
-async function facebook(videoUrl) {
+async function facebook(url) {
   try {
-    const headers =  {
-      Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-      "Accept-Language": "en-US,en;q=0.9",
-      Cookie: "sb=xBTMY3ADrH81vmJc-PYH-jC4; datr=xBTMY3m-IHA2QOdyxxKjaO7z; ps_n=1; ps_l=1; fr=1TXxHKy4MkJ4oXvwR.AWUTswl2pnQzI-h_xDlk7jR0TwY.BmPt5u..AAA.0.0.BmPt5u.AWVK0aMBp6A; dpr=1.5; wd=1280x150",
-      Dpr: "1.5",
-      Priority: "u=0, i",
-      "Sec-Ch-Ua": "\"Chromium\";v=\"124\", \"Google Chrome\";v=\"124\", \"Not-A.Brand\";v=\"99\"",
-      "Sec-Ch-Ua-Full-Version-List": "\"Chromium\";v=\"124.0.6367.158\", \"Google Chrome\";v=\"124.0.6367.158\", \"Not-A.Brand\";v=\"99.0.0.0\"",
-      "Sec-Ch-Ua-Mobile": "?0",
-      "Sec-Ch-Ua-Model": "\"\"",
-      "Sec-Ch-Ua-Platform-Version": "\"15.0.0\"",
-      "Sec-Fetch-Dest": "document",
-      "Sec-Fetch-Mode": "navigate",
-      "Sec-Fetch-Site": "none",
-      "Sec-Fetch-User": "?1",
-      "Upgrade-Insecure-Requests": "1",
-      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    const params = new URLSearchParams();
+    params.append('URLz', url);
+
+    const response = await axios.post('https://www.fdown.net/download.php', params, {
+      headers: {
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+        'Accept-Language': 'en-US,en;q=0.9,id;q=0.8,ar;q=0.7,ms;q=0.6',
+        'Cache-Control': 'max-age=0',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Cookie': '_ga=GA1.1.1890950555.1715398826; cf_clearance=n7zNyJmnmv.RyRWU9UzizOZqRuUEN57.dfHqnNKEFuY-1715398826-1.0.1.1-nToIrdmXHszhP_9JBJp5wwzbkOQ4qUYd5BBHZGYznNl7JQEqaE4ZYKrhOzaQi1hEpmAZ3mxJd8Rj08e6RT1xrw; __gads=ID=bf429288d74a0d7d:T=1715398826:RT=1715399236:S=ALNI_Mbq8t5yfOhAwsLPmunsgyAw0cUKJA; __gpi=UID=00000e16d84b9d3d:T=1715398826:RT=1715399236:S=ALNI_MZEigB8ZGBUosnvvzsdscEA85Ft4A; __eoi=ID=11c9a6dc659e2680:T=1715398826:RT=1715399236:S=AA-AfjaDsV35uF8O-YH6WgWLqF69; FCNEC=%5B%5B%22AKsRol_sNiJjG6s9ojB8jVa088kWjjlhixjXOHBABXIH3UXE_e1mCFD9JDlrNYgLl4ARPUQmmY2j7JpI02FrZ1F-2YMKP-8uFn28uvLwzflW6kwtVJbW13dPPRiCo3gT6rLFLW3QC1Ajx1Brqv9-NHcRCJcCpEF1dA%3D%3D%22%5D%5D; _ga_82ERN9JZD3=GS1.1.1715398825.1.1.1715399565.58.0.0',
+        'Origin': 'https://www.fdown.net',
+        'Priority': 'u=0, i',
+        'Referer': 'https://www.fdown.net',
+        'Sec-Ch-Ua': '"Chromium";v="124", "Microsoft Edge";v="124", "Not-A.Brand";v="99"',
+        'Sec-Ch-Ua-Mobile': '?0',
+        'Sec-Fetch-Dest': 'document',
+        'Sec-Fetch-Mode': 'navigate',
+        'Sec-Fetch-Site': 'same-origin',
+        'Sec-Fetch-User': '?1',
+        'Upgrade-Insecure-Requests': '1',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 Edg/124.0.0.0'
+      },
+    });
+    const $ = cheerio.load(response.data);
+
+    const downloadLinks = {
+      sd: await turl.shorten($("a#sdlink").attr("href")),
+      hd: await turl.shorten($("a#hdlink").attr("href"))
     };
 
-    const response = await axios.get(videoUrl, { headers });
-
-    const parseString = (string) => JSON.parse(`{"text": "${string}"}`).text;
-
-    let responseData = response.data;
-
-    responseData = responseData.replace(/&quot;/g, '"').replace(/&amp;/g, "&");
-
-    const sdMatch =
-      responseData.match(/"browser_native_sd_url":"(.*?)"/) ||
-      responseData.match(/"playable_url":"(.*?)"/) ||
-      responseData.match(/sd_src\s*:\s*"([^"]*)"/) ||
-      responseData.match(/(?<="src":")[^"]*(https:\/\/[^"]*)/);
-    const hdMatch =
-      responseData.match(/"browser_native_hd_url":"(.*?)"/) ||
-      responseData.match(/"playable_url_quality_hd":"(.*?)"/) ||
-      responseData.match(/hd_src\s*:\s*"([^"]*)"/);
-    const titleMatch = responseData.match(/<meta\sname="description"\scontent="(.*?)"/);
-    const thumbMatch = responseData.match(/"preferred_thumbnail":{"image":{"uri":"(.*?)"/);
-    var duration = responseData.match(/"playable_duration_in_ms":[0-9]+/gm);
-
-    if (sdMatch && sdMatch[1]) {
-      const result = {
-        url: videoUrl,
-        duration_ms: Number(duration[0].split(":")[1]),
-        sd: await turl.shorten(parseString(sdMatch[1])),
-        hd: hdMatch && hdMatch[1] ? await turl.shorten(parseString(hdMatch[1])) : "",
-        title: titleMatch && titleMatch[1] ? parseString(titleMatch[1]) : responseData.match(/<title>(.*?)<\/title>/)?.[1] ?? "",
-        thumbnail: thumbMatch && thumbMatch[1] ? parseString(thumbMatch[1]) : "",
-      };
-      return result;
-    } else {
-      throw new Error("Unable to fetch video information at this time. Please try again");
-    }
-  } catch (err) {
-    console.error(err);
-    throw new Error("Unable to fetch video information at this time. Please try again");
+    return { downloadLinks };
+  } catch (error) {
+    console.error(error);
+    throw error;
   }
 }
 
-// Usage example
 (async () => {
   try {
-    const videoInfo = await facebook(urlfb);
+    const videoInfo = await facebook(url);
     console.log(videoInfo);
   } catch (error) {
     console.error(error);
