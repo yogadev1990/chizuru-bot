@@ -149,7 +149,7 @@ ${time} kak, ada yang bisa chizu bantu?
 ╠➥ random anime quotes
 ╠➥ tiktok dl [link]
 ╠➥ fb dl [link]
-╠➥ ig dl [link] ❌
+╠➥ ig dl [link]
 ╠➥ stikerin (reply foto)
 ╠➥ req fitur [pesan]
 ╠➥ info bot
@@ -766,9 +766,9 @@ function bosstemplate(RawData, rawlv) {
 	const anime = m.body.match(animeRegex);
 	const mangaRegex = /^cari manga (.+)$/i;
 	const manga = m.body.match(mangaRegex);
-	const animeRegex2 = /^anime (top|random|reccomend)$/i;
+	const animeRegex2 = /^anime (top|random|recommendations)$/i;
 	const anime2 = m.body.match(animeRegex2);
-	const mangaRegex2 = /^manga (top|random|reccomend)$/i;
+	const mangaRegex2 = /^manga (top|random|recommendations)$/i;
 	const manga2 = m.body.match(mangaRegex2);
 
 
@@ -983,31 +983,32 @@ async function animesearch(query) {
 async function mangasearch(query) {
     try {
         const response = await axios.get(`https://api.jikan.moe/v4/manga?q=${query}&sfw`);
-        const ongoingAnime = response.data.data;
+        const mangaList = response.data.data;
 
-        let animeDetails = `*Chizuru-chan🌸*\n\n`;
+        let mangaDetails = `*Daftar Manga*\n\n`;
 
-        ongoingAnime.forEach((anime, index) => {
-            const title = anime.title;
-            const releaseDate = new Date(anime.aired.from).toLocaleDateString();
-            const episodes = anime.episodes;
-            const trailerUrl = anime.trailer.url;
+        mangaList.forEach((manga, index) => {
+            const title = manga.title;
+            const type = manga.type;
+            const status = manga.status;
+            const synopsis = manga.synopsis;
 
-            animeDetails += `*${index + 1}. ${title}*\n`;
-            animeDetails += `_Release Date:_ ${releaseDate}\n`;
-            animeDetails += `_Episodes:_ ${episodes}\n`;
-            animeDetails += `_Trailer:_ ${trailerUrl}\n\n`;
+            mangaDetails += `*${index + 1}. ${title}*\n`;
+            mangaDetails += `_Type:_ ${type}\n`;
+            mangaDetails += `_Status:_ ${status}\n`;
+            mangaDetails += `_Synopsis:_ ${synopsis}\n\n`;
         });
 
-        return animeDetails;
+        return mangaDetails;
     } catch (error) {
         console.error('Terjadi kesalahan:', error.message);
-        return 'Terjadi kesalahan dalam pencarian.';
+        return 'Terjadi kesalahan dalam pencarian manga.';
     }
 }
+
 async function animesearch2(query) {
     try {
-        const response = await axios.get(`https://api.jikan.moe/${query}/anime`);
+        const response = await axios.get(`https://api.jikan.moe/v4/${query}/anime`);
         const ongoingAnime = response.data.data;
 
         let animeDetails = `*Chizuru-chan🌸*\n\n`;
@@ -1032,24 +1033,24 @@ async function animesearch2(query) {
 }
 async function mangasearch2(query) {
     try {
-        const response = await axios.get(`https://api.jikan.moe/${query}/manga`);
-        const ongoingAnime = response.data.data;
+        const response = await axios.get(`https://api.jikan.moe/v4/${query}/manga`);
+        const mangaList = response.data.data;
 
-        let animeDetails = `*Chizuru-chan🌸*\n\n`;
+        let mangaDetails = `*Daftar Manga*\n\n`;
 
-        ongoingAnime.forEach((anime, index) => {
-            const title = anime.title;
-            const releaseDate = new Date(anime.aired.from).toLocaleDateString();
-            const episodes = anime.episodes;
-            const trailerUrl = anime.trailer.url;
+        mangaList.forEach((manga, index) => {
+            const title = manga.title;
+            const type = manga.type;
+            const status = manga.status;
+            const synopsis = manga.synopsis;
 
-            animeDetails += `*${index + 1}. ${title}*\n`;
-            animeDetails += `_Release Date:_ ${releaseDate}\n`;
-            animeDetails += `_Episodes:_ ${episodes}\n`;
-            animeDetails += `_Trailer:_ ${trailerUrl}\n\n`;
+            mangaDetails += `*${index + 1}. ${title}*\n`;
+            mangaDetails += `_Type:_ ${type}\n`;
+            mangaDetails += `_Status:_ ${status}\n`;
+            mangaDetails += `_Synopsis:_ ${synopsis}\n\n`;
         });
 
-        return animeDetails;
+        return mangaDetails;
     } catch (error) {
         console.error('Terjadi kesalahan:', error.message);
         return 'Terjadi kesalahan dalam pencarian.';
@@ -1316,6 +1317,42 @@ async function tiktok(url) {
         throw error;
     }
 }
+async function instagram(url) {
+	try {
+	  const params = new URLSearchParams();
+	  params.append('q', url);
+	  params.append('recaptchaToken', '');
+	  params.append('lang', 'en');
+	  params.append('t', 'media');
+  
+	  const response = await axios.post('https://v3.igdownloader.app/api/ajaxSearch', params, {
+		headers: {
+		  "authority": "v3.igdownloader.app",
+		  "Accept": "*/*",
+		  "Accept-Language": "en-US,en;q=0.9,id;q=0.8,ar;q=0.7,ms;q=0.6",
+		  "Content-Length": "121",
+		  "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+		  "Origin": "https://igdownloader.app",
+		  "Priority": "u=1, i",
+		  "Referer": "https://igdownloader.app/",
+		  "Sec-Ch-Ua": "\"Chromium\";v=\"124\", \"Microsoft Edge\";v=\"124\", \"Not-A.Brand\";v=\"99\"",
+		  "Sec-Ch-Ua-Mobile": "?0",
+		  "Sec-Fetch-Dest": "empty",
+		  "Sec-Fetch-Site": "same-site",
+		  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 Edg/124.0.0.0"
+		},
+	  });
+	  const $ = cheerio.load(response.data.data);
+	  const downloadLinks = {
+		 link: await turl.shorten($("a.abutton").attr("href"))
+	  };
+  
+	  return downloadLinks;
+	} catch (error) {
+	  console.error(error);
+	  throw error;
+	}
+  }
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -1710,18 +1747,13 @@ ${data.downloadLinks.sd}
 *High Quality*
 ${data.downloadLinks.hd}`, m.msg, loadingmsg.key);
 		}else if(ig){
-			return bot.reply(`masih dalam pengembangan`, m.msg);
-			//const url = ig[1];
-			//const loadingmsg = await bot.reply(loading, m.msg);
-			//const data = await instagram(url);
-			//await bot.replyedit(`*Chizuru-chan🌸*
+			const url = ig[1];
+			const loadingmsg = await bot.reply(loading, m.msg);
+			const data = await instagram(url);
+			await bot.replyedit(`*Chizuru-chan🌸*
 		
-//Video berhasil Chizu dapatkan kak, silahkan klik link dibawah ini untuk mengunduh dengan kualitas terbaik:
-// *Tanpa Watermark*
-// ${data.nowm}
-
-// *Watermark*
-// ${data.wm}`, m.msg, loadingmsg.key);
+Video berhasil Chizu dapatkan kak, silahkan klik link dibawah ini untuk mengunduh dengan kualitas terbaik:
+${data.link}`, m.msg, loadingmsg.key);
 		}else if (m.isMedia.isQuotedImage && m.body == "stikerin") {
 			const buffer = await m.quoted.download();
 			let exif = {
