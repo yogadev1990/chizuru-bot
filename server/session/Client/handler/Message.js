@@ -967,11 +967,11 @@ Hadiah :
 async function animesearch(query) {
     try {
         const response = await axios.get(`https://api.jikan.moe/v4/anime?q=${query}&sfw`);
-        const ongoingAnime = response.data.data;
+        const result = response.data.data;
 
         let animeDetails = `*Chizuru-chan🌸*\n\n`;
 
-        ongoingAnime.forEach((anime, index) => {
+        result.forEach((anime, index) => {
             const title = anime.title;
             const releaseDate = new Date(anime.aired.from).toLocaleDateString();
             const episodes = anime.episodes;
@@ -1018,11 +1018,11 @@ async function mangasearch(query) {
 async function animesearch2(query) {
     try {
         const response = await axios.get(`https://api.jikan.moe/v4/${query}/anime`);
-        const ongoingAnime = response.data.data;
+        const anim = response.data.data;
 
         let animeDetails = `*Chizuru-chan🌸*\n\n`;
 
-        ongoingAnime.forEach((anime, index) => {
+        anim.forEach((anime, index) => {
             const title = anime.title;
             const releaseDate = new Date(anime.aired.from).toLocaleDateString();
             const episodes = anime.episodes;
@@ -1562,18 +1562,167 @@ https://tanaka0.work/AIO/en/DyePredictor/ColorWeapon`;
 
 const infoailment = `*Chizuru-chan🌸*
 
-`;
+1) Bergidik
+- ke monster: Interupsi aksinya sejenak (Singkat)
+- ke player: Interupsi tindakan mereka sejenak (Singkat)
+
+2) Jatuh
+- ke monster: Interupsi aksinya sejenak (Sedang)
+- ke player: Interupsi tindakan mereka sejenak (Sedang)
+
+3) Pingsan
+- ke monster: Interupsi aksinya sejenak (Lama)
+- ke player: Interupsi tindakan mereka sejenak (Lama)
+
+4) Knock Back (Terpelanting)
+- ke monster: Interupsi aksinya sejenak, terpelanting ke belakang untuk beberapa jarak
+- ke player: Interupsi aksinya sejenak, terpelanting ke belakang untuk beberapa jarak
+
+5) Poison (Racun)
+- ke monster: Menimbulkan beberapa kerusakan untuk setiap tindakan selama 10 detik
+- ke player: Menimbulkan kerusakan sebesar 5% dari sisa HP pada setiap tindakan, kerusakan ini tidak dapat membunuh pemain
+
+6) Ignite (Terbakar)
+- ke monster: Menimbulkan beberapa kerusakan untuk setiap 1 detik (3 detik) selama 10 detik
+- ke player: Menimbulkan kerusakan sebesar 15% dari sisa HP terkini, kerusakan ini tidak dapat membunuh pemain
+
+7) Freeze (Beku)
+- ke monster: Mengurangi kecepatan gerak hingga 50%, berlangsung selama 10 detik. Dapat digunakan kembali saat durasi berakhir
+- ke player: Mengurangi 50% kecepatan gerak (moontion speed) dan Ayunan Dewa (Godspeed Wield), Memiliki durasi 10 detik.
+
+8) Slow (Lambat)
+- ke monster: Mengurangi kecepatan gerakan target sebesar 50% (25% untuk bos). Memiliki durasi 10 detik
+- ke player: Menurunkan 50% kecepatan berjalan (movement speed), durasi efek 10 detik. Evasion, Evasion recharge dan Shukuchi dinonaktifkan
+
+9) Stop (Berhenti)
+- ke monster: Mengikat musuh ke posisinya saat ini selama 10 detik, memiliki cooldown 60 detik. Lebih efektif untuk monster dan bos mini. Pola serangan seperti garis lurus atau serangan rapalan dapat digunakan saat mendapatkan debuff berhenti.
+- ke player: Tidak dapat berpindah tempat atau berjalan, durasi 10 detik. Masih bisa menggunakan skil gerak (motion) dan rapalan seperti slash dapat digunakan saat mendapatkan debuff berhenti. Tidak dapat Evasion, Evasion recharge dan Shukuchi terhenti.
+
+10) Dizzy (Pening)
+- ke monster: Menurunkan tingkat guard dan evasion sebesar 100% (Boss 50%)
+- ke player: Menonaktifkan Evasion dan Guard recharge
+
+11) Dazzled (Silau)
+- ke monster: Flee -50%
+- ke player: -
+
+12) Paralysis (Lumpuh)
+- ke monster: Tingkatkan penundaan tindakan
+- ke player: Mengurangi 50% ASPD (Attack Speed/Kecepatan Serangan)
+
+13) Blind (Buta)
+- ke monster: Mengurangi akurasi 50%
+- ke player: Penurunan Akurasi sebesar 20% untuk serangan dalam jarak 7m, dan 40% untuk 8m ke atas
+
+14) Fear (Takut)
+- ke monster: 30% kemungkinan untuk membatalkan tindakan
+- ke player: 30% peluang gagal mengeluarkan skill
+
+15) Lethargy (Lesu)
+- ke monster: Output kerusakan berkurang 30%
+- ke player: Output kerusakan berkurang 30%
+
+16) Weaken (Lemah)
+- ke monster: Mengurangi MDEF target sebesar 25%.
+- ke player: Menambah Biaya konsumsi MP untuk semua keterampilan +100
+
+17) Bleed (Berdarah)
+- ke monster: Tidak dapat menggunakan skill fisik
+- ke player: Tidak dapat menggunakan skill fisik
+
+18) Silence (Bisu)
+- ke monster: Tidak dapat menggunakan skill sihir
+- ke player: Tidak dapat menggunakan skill sihir
+
+19) Confused
+- ke monster: -
+- ke player: -
+
+20) Armor Break (Pecah Zirah)
+- ke monster: DEF & MDEF -50%
+- ke player: Mengurangi kekebalan fisik dan sihir hingga 50%, tidak dapat menggunakan Guard
+
+21) Fatigue (Lelah)
+- ke monster: Mengurangi stabilitas 50%, pada serangan durasi terakhir akan mengalami graze.
+- ke player: Mengurangi stabilitas 50%, pada serangan durasi terakhir akan mengalami graze.
+
+22) Sleep (Tidur)
+- ke monster: Melumpuhkan untuk waktu yang lama, bangun saat menerima serangan, Bos memulihkan 3% dari HP maksimal saat bangun
+- ke player: Melumpuhkan untuk waktu yang lama, bangun saat menerima serangan, mengaktifkan regenerasi alami
+
+23) Mana Explosion (Ledakan Mana)
+- ke monster: -
+- ke player: Setelah durasi berakhir, konsumsi semua mp menjadi 0 dan memberikan damage sama dengan konsumsi mp x10
+
+24) Sick (Sakit)
+- ke monster: Menurunkan resistensi status buruk sebesar -50% (masih dapat terkena bahkan jika Anda memiliki resistensi status buruk 100%)
+- ke player: Menurunkan resistensi status buruk sebesar -50% (masih dapat terkena bahkan jika Anda memiliki resistensi status buruk 100%)
+
+25) Curse (Terkutuk)
+- ke monster: Menurunkan CRT damage pemain sebesar -50%
+- ke player: Menurunkan CRT damage pemain sebesar -50%
+
+26) Item Disable
+- ke monster: -
+- ke player: Tidak dapat menggunakan barang
+
+27) Overdrive (Lari)
+- ke monster: -
+- ke player: Mengonsumsi HP saat MP tidak mencukupi untuk melakukan skill, juga menerapkan tenacity (Gigih) ke semua skill dalam kombo (tidak mengganti tag yang ada)
+
+28) Suction (Pengisapan)
+- ke monster: Menarik ke pusat serangan, 50% peluang tarik untuk Bos
+- ke player: Menarik ke pusat serangan, saat terkena menonaktifkan evasion dan Guard selama 1 detik
+
+29) Petrified (Kaku)
+- ke monster: Menghindar Mutlak +100%, & menghapus aggro saat ini sebesar 99%
+- ke player: Menghindar Mutlak +100%, & menghapus aggro saat ini sebesar 99%
+
+30) Inversion (Inversi)
+- ke monster: -
+- ke player: Mengganti HP% dan MP% Anda saat ini`;
 
 const panduanfill = `*Chizuru-chan🌸*
 
+Untuk menggunakan fitur ini, silahkan ketikkan stat yang ingin diisi. Contoh:
+ATK 100
+MATK 100
+STR 100
+DEX 100
+INT 100
+VIT 100
 `;
 
 const help = `*Chizuru-chan🌸*
 
+Panduan dasar penggunaan Chizuru Bot by Revanda
+1. Untuk melihat menu, ketik *menu*
+2. Untuk melihat harga slot, ketik *harga slot <jenis>*
+3. Untuk melihat bahan tas, ketik *bahan tas*
+4. Untuk melihat bahan mq, ketik *bahan mq*
+5. Untuk melihat bahan dye, ketik *bahan dye*
 `;
 
-async function registlet(){
 
+async function registlet(query) {
+    try {
+        const response = await axios.get(`https://torampedia.my.id/api/registlet/search/${query}`);
+        const data = response.data;
+        if (data.length === 0) {
+            return "Tidak ada hasil yang ditemukan untuk pencarian ini.";
+        }
+        let resultMessage = "*Chizuru-chan🌸*\nIni adalah hasil pencarian:\n\n";
+        data.forEach((item, index) => {
+            resultMessage += `Nama: ${item.name_en}\n`;
+            resultMessage += `Max Lv: ${item.max}\n`;
+            resultMessage += `Effect: ${item.effect_en}\n`;
+            resultMessage += `Dari: ${item.from}\n\n`;
+        });
+        return resultMessage;
+    } catch (error) {
+        console.error('Error fetching registlet data:', error.message);
+        return 'Terjadi kesalahan dalam pencarian registlet.';
+    }
 }
 
 const reqfiturmsg =`*Chizuru-chan🌸*
@@ -1815,9 +1964,7 @@ AI sedang berfikir...`, m.msg);
 			const q = regist[1];
 			const loadingmsg = await bot.reply(loading, m.msg);
 			const data = await registlet(q);
-			await bot.replyedit(`*Chizuru-chan🌸*
-
-${data}`, m.msg, loadingmsg.key);
+			await bot.replyedit(`${data}`, m.msg, loadingmsg.key);
 		}else if(m.body == "lvling bs tec"){
 			return bot.reply(lvlingbs2, m.msg);
 		}else if(m.body == "lvling bs non"){
