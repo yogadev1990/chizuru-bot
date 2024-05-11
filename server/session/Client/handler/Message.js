@@ -42,6 +42,13 @@ export default class Message extends Serialize {
 		const keywordButton = await buttonResponse.checkKeyword(m.body, m.from);
 		const keywordList = await listResponse.checkKeyword(m.body, m.from);
 		const waktuSaatIni = new Date();
+		const namaBulan = [
+			"Januari", "Februari", "Maret", "April", "Mei", "Juni",
+			"Juli", "Agustus", "September", "Oktober", "November", "Desember"
+		  ];
+		  
+		  const bulan = namaBulan[waktuSaatIni.getMonth()];
+		  const tahun = waktuSaatIni.getFullYear();
 		const hari = waktuSaatIni.toLocaleDateString('id-ID', { weekday: 'long' });
 		const jam = waktuSaatIni.getHours().toString().padStart(2, '0');
 		const menit = waktuSaatIni.getMinutes().toString().padStart(2, '0');
@@ -123,15 +130,15 @@ ${time} kak, ada yang bisa chizu bantu?
 ╠➥ lvling alche
 ╠➥ cari item [item]
 ╠➥ cari monster [monster]
-╠➥ racik rumus fill ❌
-╠➥ cari regist [regist] ❌
+╠➥ racik rumus fill 
+╠➥ cari registlet [regist] 
 ╠➥ harga slot [eq]
 ╠➥ bahan tas
 ╠➥ bahan mq
 ╠➥ kode live
 ╠➥ info farm mats
-╠➥ info dye ❌
-╠➥ info ailment ❌
+╠➥ info dye
+╠➥ info ailment 
 ╠➥ ninja scroll
 ╠➥ buff food
 ╠➥ kamus besar toram
@@ -153,7 +160,7 @@ ${time} kak, ada yang bisa chizu bantu?
 ╠➥ stikerin (reply foto)
 ╠➥ req fitur [pesan]
 ╠➥ info bot
-╠➥ help ❌
+╠➥ help 
 ║
 ╠══〘 *ADMIN MENU* 〙══
 ╠➥ add [@628xx]
@@ -762,6 +769,8 @@ function bosstemplate(RawData, rawlv) {
 	const fb = m.body.match(fbRegex);
 	const igRegex = /^ig dl (.+)$/i;
 	const ig = m.body.match(igRegex);
+	const registRegex = /^cari registlet (.+)$/i;
+	const regist = m.body.match(registRegex);
 	const animeRegex = /^cari anime (.+)$/i;
 	const anime = m.body.match(animeRegex);
 	const mangaRegex = /^cari manga (.+)$/i;
@@ -1546,6 +1555,27 @@ ${gptResponse}`;
     }
 }
 
+const infodye = `*Chizuru-chan🌸*
+
+Gunakan tools ini kak untuk melihat list dye bulan ${bulan} ${tahun}. Terima kasih kepada Tanaka yang telah menyediakan tools ini.
+https://tanaka0.work/AIO/en/DyePredictor/ColorWeapon`;
+
+const infoailment = `*Chizuru-chan🌸*
+
+`;
+
+const panduanfill = `*Chizuru-chan🌸*
+
+`;
+
+const help = `*Chizuru-chan🌸*
+
+`;
+
+async function registlet(){
+
+}
+
 const reqfiturmsg =`*Chizuru-chan🌸*
 
 Pesan kakak sudah Chizu teruskan ke master Revanda, master akan berusaha melatih Chizu untuk belajar hal baru.
@@ -1773,6 +1803,21 @@ AI sedang berfikir...`, m.msg);
 		}else if(reqfitur){
 			await bot.forwardMessage(reqfitur[1]);
 			await bot.reply(reqfiturmsg, m.msg);
+		}else if(m.body == "info dye"){
+			await bot.reply(infodye, m.msg);
+		}else if(m.body == "info ailment"){
+			await bot.reply(infoailment, m.msg);
+		}else if(m.body == "help"){
+			await bot.reply(help, m.msg);
+		}else if(m.body == "racik rumus fill"){
+			await bot.reply(panduanfill, m.msg);
+		}else if(regist){
+			const q = regist[1];
+			const loadingmsg = await bot.reply(loading, m.msg);
+			const data = await registlet(q);
+			await bot.replyedit(`*Chizuru-chan🌸*
+
+${data}`, m.msg, loadingmsg.key);
 		}else if(m.body == "lvling bs tec"){
 			return bot.reply(lvlingbs2, m.msg);
 		}else if(m.body == "lvling bs non"){
