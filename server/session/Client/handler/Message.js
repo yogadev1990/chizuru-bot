@@ -977,12 +977,12 @@ async function animesearch(query) {
             const title = anime.title;
             const releaseDate = new Date(anime.aired.from).toLocaleDateString();
             const episodes = anime.episodes;
-            const trailerUrl = anime.trailer.url;
+            const url = anime.url;
 
             animeDetails += `*${index + 1}. ${title}*\n`;
-            animeDetails += `_Release Date:_ ${releaseDate}\n`;
-            animeDetails += `_Episodes:_ ${episodes}\n`;
-            animeDetails += `_Trailer:_ ${trailerUrl}\n\n`;
+            animeDetails += `_Tanggal Rilis:_ ${releaseDate}\n`;
+            animeDetails += `_Jumlah Episode:_ ${episodes}\n`;
+            animeDetails += `_Sumber:_ ${url}\n\n`;
         });
 
         return animeDetails;
@@ -1005,9 +1005,9 @@ async function mangasearch(query) {
             const synopsis = manga.synopsis;
 
             mangaDetails += `*${index + 1}. ${title}*\n`;
-            mangaDetails += `_Type:_ ${type}\n`;
+            mangaDetails += `_Tipe:_ ${type}\n`;
             mangaDetails += `_Status:_ ${status}\n`;
-            mangaDetails += `_Synopsis:_ ${synopsis}\n\n`;
+            mangaDetails += `_Sinopsis:_ ${synopsis}\n\n`;
         });
 
         return mangaDetails;
@@ -1032,7 +1032,7 @@ async function animesearch2(query) {
   
 				animeDetails += `\n*${index + 1}. ${title}*\n`;
 				animeDetails += `_Tanggal Rilis:_ ${releaseDate}\n`;
-				animeDetails += `_Episodes:_ ${episodes}\n`;
+				animeDetails += `_Jumlah Episode:_ ${episodes}\n`;
 				animeDetails += `_Trailer:_ ${trailerUrl}\n`;
 			});
 		} else if (query === 'recommendations') {
@@ -1089,10 +1089,10 @@ ${animeData.synopsis}`;
 		  const link = manga.url;
 	
 		  mangaDetails += `\n*${index + 1}. ${title}*\n`;
-		  mangaDetails += `_Type:_ ${type}\n`;
+		  mangaDetails += `_Tipe:_ ${type}\n`;
 		  mangaDetails += `_Status:_ ${status}\n`;
 		  mangaDetails += `_Link:_ ${link}\n`;
-		  mangaDetails += `_Synopsis:_ ${synopsis}\n`;
+		  mangaDetails += `_Sinopsis:_ ${synopsis}\n`;
 		});
 		} else if (query === 'recommendations') {
 		  const recommendations = response.data.data;
@@ -1147,8 +1147,8 @@ const ongoingnime = async () => {
             const trailerUrl = anime.trailer.url;
 
             animeDetails += `*${index + 1}. ${title}*\n`;
-            animeDetails += `_Release Date:_ ${releaseDate}\n`;
-            animeDetails += `_Episodes:_ ${episodes}\n`;
+            animeDetails += `_Tanggal Rilis:_ ${releaseDate}\n`;
+            animeDetails += `_Jumlah Episode:_ ${episodes}\n`;
             animeDetails += `_Trailer:_ ${trailerUrl}\n\n`;
         });
 
@@ -1757,6 +1757,7 @@ https://tanaka0.work/AIO/en/DyePredictor/ColorWeapon`;
 
 const infoailment = `*Chizuru-chan🌸*
 
+Berikut adalah daftar efek status buruk yang dapat diberikan kepada monster dan player:
 1) Bergidik
 - ke monster: Interupsi aksinya sejenak (Singkat)
 - ke player: Interupsi tindakan mereka sejenak (Singkat)
@@ -1879,8 +1880,10 @@ const infoailment = `*Chizuru-chan🌸*
 
 const panduanfill = `*Chizuru-chan🌸*
 
-Untuk menggunakan fitur ini, silahkan ketikkan stat yang ingin diisi, maksimal 8 list stat. PENTING: Stat minus wajib bernilai -1. Contoh:
+Untuk menggunakan fitur ini, silahkan ketikkan stat yang ingin diisi, maksimal 8 list stat. PENTING: STAT MINUS WAJIB BERNILAI -1. Contoh:
+---------------
 Weapon pot: 116
+
 LIGHT 1
 DTD% 22
 CD 20
@@ -1889,10 +1892,9 @@ CR 28
 HPREGEN -1
 MPREGEN -1
 DODGE -1
-
-Atau
-
+---------------
 Armor pot: 98
+
 DTD% 22
 CD 22
 CD% 11
@@ -1901,8 +1903,8 @@ M% -1
 MPIERCE% -1
 ACC -1
 ACC% -1
-
-List singkatan stat:
+---------------
+*List prefix stat:*
 A% (ATK%)
 A (ATK)
 M% (MATK%)
@@ -1955,11 +1957,11 @@ MDEF% (MDEF%)`;
 
 const help = `*Chizuru-chan🌸*
 
-Panduan dasar penggunaan Chizuru Bot by Revanda
+Panduan dasar penggunaan Chizuru Bot by Revanda:
 1. Untuk melihat menu, ketik *menu*.
 2. Selalu gunakan huruf kecil untuk setiap command.
 Contoh: *mt terbaru*, *info dye*
-3. Bila ada tanda [] artinya command dinamis. Masukan perintah tanpa menulis [].
+3. Bila ada tanda [ ] artinya command dinamis. Masukan perintah tanpa menulis [ ].
 Contoh: *harga slot ohs*, *cari item proto*
 4. Bila ada tanda / (slash) artinya pilih salah satu.
 Contoh: *lvling char miniboss 200*
@@ -1978,10 +1980,10 @@ async function registlet(query) {
         }
         let resultMessage = "*Chizuru-chan🌸*\nIni adalah hasil pencarian:\n";
         data.forEach((item, index) => {
-            resultMessage += `Nama: ${item.name_en}\n\n`;
-            resultMessage += `Max Lv: ${item.max}\n`;
-            resultMessage += `Effect: ${item.effect_en}\n`;
-            resultMessage += `Dari: ${item.from}\n`;
+            resultMessage += `\n*Nama:* ${item.name_en}\n`;
+            resultMessage += `*Max Lv:* ${item.max}\n`;
+            resultMessage += `*Efek:* ${item.effect_en}\n`;
+            resultMessage += `*Dari:* Stoodie ${item.from}\n`;
         });
         return resultMessage;
     } catch (error) {
@@ -2164,7 +2166,7 @@ Pesan out berhasil dimatikan`, m.msg);}
 			const loadingmsg = await bot.reply(loading, m.msg);
 			const fill = await fillstatw(m.body);
 await bot.replyedit(fill, m.msg, loadingmsg.key);
-		}else if(matchPot1){
+		}else if(matchPot2){
 			const loadingmsg = await bot.reply(loading, m.msg);
 			const fill = await fillstata(m.body);
 await bot.replyedit(fill, m.msg, loadingmsg.key);
