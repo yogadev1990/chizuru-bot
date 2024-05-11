@@ -11,7 +11,7 @@ class Client {
 		this.from = target;
 	}
 	async forwardMessage(text) {
-		return await this.client.sendMessage("085159199040@s.whatsapp.net", {text});
+		return await this.client.sendMessage("6285159199040@s.whatsapp.net", {text});
 	}
 	async sendText(text) {
 		const mentions = [...text.matchAll(/@(\d{0,16})/g)].map((v) => v[1] + "@s.whatsapp.net");

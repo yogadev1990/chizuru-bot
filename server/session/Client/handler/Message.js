@@ -761,8 +761,10 @@ function bosstemplate(RawData, rawlv) {
 	const chatai = m.body.match(AIChatRegex);
 	const ReqfiturRegex = /^req fitur (.+)$/i;
 	const reqfitur = m.body.match(ReqfiturRegex);
-	const potRegex = /^Pot:\s*(\d+)/i;
-	const matchPot = m.body.match(potRegex);
+	const wpotRegex = /^Weapon pot:\s*(\d+)/i;
+	const matchPot1 = m.body.match(wpotRegex);
+	const apotRegex = /^Armor pot:\s*(\d+)/i;
+	const matchPot2 = m.body.match(apotRegex);
 	const tiktokRegex = /^tiktok dl (.+)$/i;
 	const tiktokdl = m.body.match(tiktokRegex);
 	const fbRegex = /^fb dl (.+)$/i;
@@ -1016,55 +1018,120 @@ async function mangasearch(query) {
 }
 
 async function animesearch2(query) {
-    try {
-        const response = await axios.get(`https://api.jikan.moe/v4/${query}/anime`);
-        const anim = response.data.data;
+	try {
+		const response = await axios.get(`https://api.jikan.moe/v4/${query}/anime`);
+		let animeDetails = `*Chizuru-chan🌸*\n`;
+  
+		if (query === 'top') {
+			const anim = response.data.data;
+			anim.forEach((anime, index) => {
+				const title = anime.title;
+				const releaseDate = new Date(anime.aired.from).toLocaleDateString();
+				const episodes = anime.episodes;
+				const trailerUrl = anime.trailer.url;
+  
+				animeDetails += `\n*${index + 1}. ${title}*\n`;
+				animeDetails += `_Tanggal Rilis:_ ${releaseDate}\n`;
+				animeDetails += `_Episodes:_ ${episodes}\n`;
+				animeDetails += `_Trailer:_ ${trailerUrl}\n`;
+			});
+		} else if (query === 'recommendations') {
+	  const recommendations = response.data.data;
+			  recommendations.slice(0, 15).forEach(recommendation => {
+				const recommender = recommendation.user.username; // Nama orang yang merekomendasikan
+				  recommendation.entry.forEach(anime => {
+					const title = anime.title; // Judul anime
+					const url = anime.url; // URL anime
+	
+					animeDetails += `\n*Direkomendasikan oleh:* ${recommender}\n`;
+					animeDetails += `[${title}](${url})\n`;
+				});
+			});
+		} else if (query === 'random') {
+		  const animeData = response.data.data;
+  
+		  animeDetails += `
+*Judul:* ${animeData.title}
+*Genre:* ${animeData.genres.map(genre => genre.name).join(', ')}
+*Tipe:* ${animeData.type}
+*Studio:* ${animeData.studios.map(studio => studio.name).join(', ')}
+*Jumlah Episode:* ${animeData.episodes}
+*Status:* ${animeData.status}
+*Tanggal Penayangan:* ${animeData.aired.string}
+*Durasi:* ${animeData.duration}
+*Rating:* ${animeData.rating}
+*Peringkat:* #${animeData.rank}
+*Popularitas:* #${animeData.popularity}
+*Link:* ${animeData.url}
+*Sinopsis:*
+${animeData.synopsis}`;
+		}
+  
+		return animeDetails;
+	} catch (error) {
+		console.error('Terjadi kesalahan:', error.message);
+		return 'Terjadi kesalahan dalam pencarian.';
+	}
+  }
 
-        let animeDetails = `*Chizuru-chan🌸*\n\n`;
+  async function mangasearch2(query) {
+	try {
+		const response = await axios.get(`https://api.jikan.moe/v4/${query}/manga`);
+		let mangaDetails = `*Daftar Manga*\n`;
+  
+		if (query === 'top') {
+			const mangaList = response.data.data;
+				mangaList.forEach((manga, index) => {
+		  const title = manga.title;
+		  const type = manga.type;
+		  const status = manga.status;
+		  const synopsis = manga.synopsis;
+		  const link = manga.url;
+	
+		  mangaDetails += `\n*${index + 1}. ${title}*\n`;
+		  mangaDetails += `_Type:_ ${type}\n`;
+		  mangaDetails += `_Status:_ ${status}\n`;
+		  mangaDetails += `_Link:_ ${link}\n`;
+		  mangaDetails += `_Synopsis:_ ${synopsis}\n`;
+		});
+		} else if (query === 'recommendations') {
+		  const recommendations = response.data.data;
+				recommendations.slice(0, 15).forEach(recommendation => {
+				  const recommender = recommendation.user.username;
+					recommendation.entry.forEach(anime => {
+					  const title = anime.title;
+					  const url = anime.url;
+	  
+					  mangaDetails += `\n*Direkomendasikan oleh:* ${recommender}\n`;
+					  mangaDetails += `[${title}](${url})\n`;
+				  });
+			  });
+		} else if (query === 'random') {
+		  const animeData = response.data.data;
+	
+		  mangaDetails += `
+*Judul:* ${animeData.title}
+*Genre:* ${animeData.genres.map(genre => genre.name).join(', ')}
+*Author:* ${animeData.authors.map(author => author.name).join(', ')}
+*Tipe:* ${animeData.type}
+*Volume:* ${animeData.volumes}
+*Jumlah Chapter:* ${animeData.chapters}
+*Status:* ${animeData.status}
+*Tanggal Publikasi:* ${animeData.published.string}
+*Peringkat:* #${animeData.rank}
+*Popularitas:* #${animeData.popularity}
+*Link:* ${animeData.url}
+*Sinopsis:*
+${animeData.synopsis}`;
+		}
+  
+		return mangaDetails;
+	} catch (error) {
+		console.error('Terjadi kesalahan:', error.message);
+		return 'Terjadi kesalahan dalam pencarian.';
+	}
+  }
 
-        anim.forEach((anime, index) => {
-            const title = anime.title;
-            const releaseDate = new Date(anime.aired.from).toLocaleDateString();
-            const episodes = anime.episodes;
-            const trailerUrl = anime.trailer.url;
-
-            animeDetails += `*${index + 1}. ${title}*\n`;
-            animeDetails += `_Release Date:_ ${releaseDate}\n`;
-            animeDetails += `_Episodes:_ ${episodes}\n`;
-            animeDetails += `_Trailer:_ ${trailerUrl}\n\n`;
-        });
-
-        return animeDetails;
-    } catch (error) {
-        console.error('Terjadi kesalahan:', error.message);
-        return 'Terjadi kesalahan dalam pencarian.';
-    }
-}
-async function mangasearch2(query) {
-    try {
-        const response = await axios.get(`https://api.jikan.moe/v4/${query}/manga`);
-        const mangaList = response.data.data;
-
-        let mangaDetails = `*Daftar Manga*\n\n`;
-
-        mangaList.forEach((manga, index) => {
-            const title = manga.title;
-            const type = manga.type;
-            const status = manga.status;
-            const synopsis = manga.synopsis;
-
-            mangaDetails += `*${index + 1}. ${title}*\n`;
-            mangaDetails += `_Type:_ ${type}\n`;
-            mangaDetails += `_Status:_ ${status}\n`;
-            mangaDetails += `_Synopsis:_ ${synopsis}\n\n`;
-        });
-
-        return mangaDetails;
-    } catch (error) {
-        console.error('Terjadi kesalahan:', error.message);
-        return 'Terjadi kesalahan dalam pencarian.';
-    }
-}
 
 const ongoingnime = async () => {
     try {
@@ -1365,7 +1432,7 @@ async function instagram(url) {
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-async function fillstat(message) {
+async function fillstatw(message) {
 	 const statRegex = /([A-Z]+%?)\s+(-?\d+)/ig;
 	 const statTranslate = {
 		 "A%": "ATK+%25",
@@ -1422,7 +1489,7 @@ async function fillstat(message) {
 	 let match;
 	 let extractedStats = [];
 	 let negativeStats = [];
-	 const potRegex = /Pot: (\d+)/i;
+	 const potRegex = /Weapon pot: (\d+)/i;
 	 const potMatch = message.match(potRegex);
 	 const potValue = potMatch ? parseInt(potMatch[1]) : null;
 	 
@@ -1492,6 +1559,134 @@ ${recipe}`;
         console.error('Error:', error);
         return null;
     }
+}
+async function fillstata(message) {
+	const statRegex = /([A-Z]+%?)\s+(-?\d+)/ig;
+	const statTranslate = {
+		"A%": "ATK+%25",
+		"A": "ATK",
+		"M%": "MATK+%25",
+		"M": "MATK",
+		"S%": "STR+%25",
+		"S": "STR",
+		"D%": "DEX+%25",
+		"D": "DEX",
+		"I%": "INT+%25",
+		"I": "INT",
+		"V%": "VIT+%25",
+		"V": "VIT",
+		"AG%": "AGI+%25",
+		"AG": "AGI",
+		"CD%": "Critical+Damage+%25",
+		"CD": "Critical+Damage",
+		"CR%": "Critical+Rate+%25",
+		"CR": "Critical+Rate",
+		"DTF%": "%25+luka+ke+Api",
+		"DTE%": "%25+luka+ke+Bumi",
+		"DTW%": "%25+luka+ke+Air",
+		"DTA%": "%25+luka+ke+Angin",
+		"DTL%": "%25+luka+ke+Cahaya",
+		"DTD%": "%25+luka+ke+Gelap",
+		"ASPD": "Kecepatan+Serangan",
+		"ASPD%": "Kecepatan+Serangan+%25",
+		"CSPD": "Kecepatan+Merapal",
+		"CSPD%": "Kecepatan+Merapal+%25",
+		"FIRE": "Unsur+Api+%28no+matching%29",
+		"WATER": "Unsur+Air+%28no+matching%29",
+		"EARTH": "Unsur+Bumi+%28no+matching%29",
+		"WIND": "Unsur+Angin+%28no+matching%29",
+		"LIGHT": "Unsur+Cahaya+%28no+matching%29",
+		"DARK": "Unsur+Gelap+%28no+matching%29",
+		"ACC": "Accuracy",
+		"DODGE": "Dodge",
+		"ACC%": "Accuracy+%25",
+		"DODGE%": "Dodge+%25",
+		"STAB%": "Stability+%25",
+		"MPIERCE%": "Magic+Pierce+%25",
+		"PPIERCE%": "Penetrasi+Fisik+%25",
+		"HPREGEN": "Natural+HP+Regen",
+		"MPREGEN": "Natural+MP+Regen",
+		"HPREGEN%": "Natural+HP+Regen+%25",
+		"MPREGEN%": "Natural+MP+Regen+%25",
+		"DEF": "DEF",
+		"MDEF": "MDEF",
+		"DEF%": "DEF+%25",
+		"MDEF%": "MDEF+%25",
+	};
+	
+	let match;
+	let extractedStats = [];
+	let negativeStats = [];
+	const potRegex = /Armor pot: (\d+)/i;
+	const potMatch = message.match(potRegex);
+	const potValue = potMatch ? parseInt(potMatch[1]) : null;
+	
+	while ((match = statRegex.exec(message)) !== null) {
+		let statName, statValue;
+	
+		const shortName = match[1];
+		const value = parseInt(match[2]);
+	
+		statName = statTranslate[shortName] || shortName;
+	
+		if (shortName.toLowerCase() === 'pot') {
+			potValue = value;
+		} else {
+			if (value < 0) {
+				negativeStats.push({ stat: statName, value: "MAX" });
+			} else {
+				extractedStats.push({ stat: statName, value: value });
+			}
+		}
+	}
+	
+	while (extractedStats.length < 7) {
+		extractedStats.push({ stat: "", value: "MAX" });
+	}
+	
+	while (negativeStats.length < 7) {
+		negativeStats.push({ stat: "", value: "MAX" });
+	}
+   let data = `properBui=Armor&paramLevel=280&plusProperList%5B0%5D.properName=${extractedStats[0].stat}&plusProperList%5B0%5D.properLvHyoji=${extractedStats[0].value}&plusProperList%5B1%5D.properName=${extractedStats[1].stat}&plusProperList%5B1%5D.properLvHyoji=${extractedStats[1].value}&plusProperList%5B2%5D.properName=${extractedStats[2].stat}&plusProperList%5B2%5D.properLvHyoji=${extractedStats[2].value}&plusProperList%5B3%5D.properName=${extractedStats[3].stat}&plusProperList%5B3%5D.properLvHyoji=${extractedStats[3].value}&plusProperList%5B4%5D.properName=${extractedStats[4].stat}&plusProperList%5B4%5D.properLvHyoji=${extractedStats[4].value}&plusProperList%5B5%5D.properName=${extractedStats[5].stat}&plusProperList%5B5%5D.properLvHyoji=${extractedStats[5].value}&plusProperList%5B6%5D.properName=${extractedStats[6].stat}&plusProperList%5B6%5D.properLvHyoji=${extractedStats[6].value}&minusProperList%5B0%5D.properName=${negativeStats[0].stat}&minusProperList%5B0%5D.properLvHyoji=MAX&minusProperList%5B1%5D.properName=${negativeStats[1].stat}&minusProperList%5B1%5D.properLvHyoji=MAX&minusProperList%5B2%5D.properName=${negativeStats[2].stat}&minusProperList%5B2%5D.properLvHyoji=MAX&minusProperList%5B3%5D.properName=${negativeStats[3].stat}&minusProperList%5B3%5D.properLvHyoji=MAX&minusProperList%5B4%5D.properName=${negativeStats[4].stat}&minusProperList%5B4%5D.properLvHyoji=MAX&minusProperList%5B5%5D.properName=${negativeStats[5].stat}&minusProperList%5B5%5D.properLvHyoji=MAX&minusProperList%5B6%5D.properName=${negativeStats[6].stat}&minusProperList%5B6%5D.properLvHyoji=MAX&shokiSenzai=${potValue}&kisoSenzai=15&jukurendo=0&rikaiKinzoku=10&rikaiNunoti=10&rikaiKemono=10&rikaiMokuzai=10&rikaiYakuhin=10&rikaiMaso=10&sendData=Submit`;
+ 
+   let config = {
+	   method: 'post',
+	   maxBodyLength: Infinity,
+	   url: 'https://tanaka0.work/id/BouguProper',
+	   headers: { 
+		   'Content-Type': 'application/x-www-form-urlencoded', 
+		   'Cookie': 'JSESSIONID=08D6228281542B6C3B8431F4F8361804'
+	   },
+	   data : data
+   };
+ 
+   try {
+	   const response = await axios.request(config);
+	   const $ = cheerio.load(response.data);
+
+	   const stat = $('#main > div:nth-of-type(2)').clone();
+stat.find('h3, a, font, b').remove(); 
+const formattedStat = stat.text().trim().replace(/(\w+\s*%?)\s*(Lv\.(-?\d+))/g, (match, p1, p2, p3) => {
+   const sign = parseInt(p3) >= 0 ? '+' : '';
+   return `${p1} ${sign}${p3}`;
+}).replace(/\s+/g, ' ').replace(/\s*,\s*/g, ', ');
+// Hapus spasi ganda
+
+	   const steps = $('#main div:nth-of-type(4)').text().trim().replace(/Steps\b/, '').trim();
+	   const recipe = steps.replace(/\s+/g, ' ').replace(/(\d+\.\s+)/g, '\n$1');
+	   const hasil = `*Chizuru-chan🌸*
+Jenis: Armor
+Level Karakter: 280
+
+Stat akhir: 
+${formattedStat}
+
+${recipe}`;
+	   return hasil;
+   } catch (error) {
+	   console.error('Error:', error);
+	   return null;
+   }
 }
 
 async function facebook(url) {
@@ -1684,24 +1879,94 @@ const infoailment = `*Chizuru-chan🌸*
 
 const panduanfill = `*Chizuru-chan🌸*
 
-Untuk menggunakan fitur ini, silahkan ketikkan stat yang ingin diisi. Contoh:
-ATK 100
-MATK 100
-STR 100
-DEX 100
-INT 100
-VIT 100
-`;
+Untuk menggunakan fitur ini, silahkan ketikkan stat yang ingin diisi, maksimal 8 list stat. PENTING: Stat minus wajib bernilai -1. Contoh:
+Weapon pot: 116
+LIGHT 1
+DTD% 22
+CD 20
+CD% 3
+CR 28
+HPREGEN -1
+MPREGEN -1
+DODGE -1
+
+Atau
+
+Armor pot: 98
+DTD% 22
+CD 22
+CD% 11
+CR 28
+M% -1
+MPIERCE% -1
+ACC -1
+ACC% -1
+
+List singkatan stat:
+A% (ATK%)
+A (ATK)
+M% (MATK%)
+M (MATK)
+S% (STR%)
+S (STR)
+D% (DEX%)
+D (DEX)
+I% (INT%)
+I (INT)
+V% (VIT%)
+V (VIT)
+AG% (AGI%)
+AG (AGI)
+CD% (Critical Damage%)
+CD (Critical Damage)
+CR% (Critical Rate%)
+CR (Critical Rate)
+DTF% (% luka ke Api)
+DTE% (% luka ke Bumi)
+DTW% (% luka ke Air)
+DTA% (% luka ke Angin)
+DTL% (% luka ke Cahaya)
+DTD% (% luka ke Gelap)
+ASPD (Kecepatan Serangan)
+ASPD% (Kecepatan Serangan%)
+CSPD (Kecepatan Merapal)
+CSPD% (Kecepatan Merapal%)
+FIRE (Unsur Api (no matching))
+WATER (Unsur Air (no matching))
+EARTH (Unsur Bumi (no matching))
+WIND (Unsur Angin (no matching))
+LIGHT (Unsur Cahaya (no matching))
+DARK (Unsur Gelap (no matching))
+ACC (Accuracy)
+DODGE (Dodge)
+ACC% (Accuracy%)
+DODGE% (Dodge%)
+STAB% (Stability%)
+MPIERCE% (Magic Pierce%)
+PPIERCE% (Penetrasi Fisik%)
+HPREGEN (Natural HP Regen)
+MPREGEN (Natural MP Regen)
+HPREGEN% (Natural HP Regen%)
+MPREGEN% (Natural MP Regen%)
+DEF (DEF)
+MDEF (MDEF)
+DEF% (DEF%)
+MDEF% (MDEF%)`;
 
 const help = `*Chizuru-chan🌸*
 
 Panduan dasar penggunaan Chizuru Bot by Revanda
-1. Untuk melihat menu, ketik *menu*
-2. Untuk melihat harga slot, ketik *harga slot <jenis>*
-3. Untuk melihat bahan tas, ketik *bahan tas*
-4. Untuk melihat bahan mq, ketik *bahan mq*
-5. Untuk melihat bahan dye, ketik *bahan dye*
-`;
+1. Untuk melihat menu, ketik *menu*.
+2. Selalu gunakan huruf kecil untuk setiap command.
+Contoh: *mt terbaru*, *info dye*
+3. Bila ada tanda [] artinya command dinamis. Masukan perintah tanpa menulis [].
+Contoh: *harga slot ohs*, *cari item proto*
+4. Bila ada tanda / (slash) artinya pilih salah satu.
+Contoh: *lvling char miniboss 200*
+5. Untuk *stikerin*, kirim gambar dahulu, lalu balas gambar tersebut dengan *stikerin*.
+6. Menu admin hanya boleh diakses admin grup.
+7. Admin dapat mengcustom pesan welcome, hubungi Revanda.
+8. Bila ada pertanyaan, kontak nomor di info bot.`;
 
 
 async function registlet(query) {
@@ -1711,12 +1976,12 @@ async function registlet(query) {
         if (data.length === 0) {
             return "Tidak ada hasil yang ditemukan untuk pencarian ini.";
         }
-        let resultMessage = "*Chizuru-chan🌸*\nIni adalah hasil pencarian:\n\n";
+        let resultMessage = "*Chizuru-chan🌸*\nIni adalah hasil pencarian:\n";
         data.forEach((item, index) => {
-            resultMessage += `Nama: ${item.name_en}\n`;
+            resultMessage += `Nama: ${item.name_en}\n\n`;
             resultMessage += `Max Lv: ${item.max}\n`;
             resultMessage += `Effect: ${item.effect_en}\n`;
-            resultMessage += `Dari: ${item.from}\n\n`;
+            resultMessage += `Dari: ${item.from}\n`;
         });
         return resultMessage;
     } catch (error) {
@@ -1895,9 +2160,13 @@ Pesan out berhasil dimatikan`, m.msg);}
 		}else if(m.body == "random anime quotes"){
 			const randomquotes = await randomquotesnime();
 			return bot.reply(randomquotes, m.msg);
-		}else if(matchPot){
+		}else if(matchPot1){
 			const loadingmsg = await bot.reply(loading, m.msg);
-			const fill = await fillstat(m.body);
+			const fill = await fillstatw(m.body);
+await bot.replyedit(fill, m.msg, loadingmsg.key);
+		}else if(matchPot1){
+			const loadingmsg = await bot.reply(loading, m.msg);
+			const fill = await fillstata(m.body);
 await bot.replyedit(fill, m.msg, loadingmsg.key);
 		}else if(tiktokdl){
 			const url = tiktokdl[1];
