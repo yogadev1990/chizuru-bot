@@ -1470,6 +1470,12 @@ async function fillstatw(message) {
 		 "WIND": "Unsur+Angin+%28no+matching%29",
 		 "LIGHT": "Unsur+Cahaya+%28no+matching%29",
 		 "DARK": "Unsur+Gelap+%28no+matching%29",
+		 "FIREM": "Unsur+Api+%28matching%29",
+		 "WATERM": "Unsur+Air+%28matching%29",
+		 "EARTHM": "Unsur+Bumi+%28matching%29",
+		 "WINDM": "Unsur+Angin+%28matching%29",
+		 "LIGHTM": "Unsur+Cahaya+%28matching%29",
+		 "DARKM": "Unsur+Gelap+%28matching%29",
 		 "ACC": "Accuracy",
 		 "DODGE": "Dodge",
 		 "ACC%": "Accuracy+%25",
@@ -1592,12 +1598,6 @@ async function fillstata(message) {
 		"ASPD%": "Kecepatan+Serangan+%25",
 		"CSPD": "Kecepatan+Merapal",
 		"CSPD%": "Kecepatan+Merapal+%25",
-		"FIRE": "Unsur+Api+%28no+matching%29",
-		"WATER": "Unsur+Air+%28no+matching%29",
-		"EARTH": "Unsur+Bumi+%28no+matching%29",
-		"WIND": "Unsur+Angin+%28no+matching%29",
-		"LIGHT": "Unsur+Cahaya+%28no+matching%29",
-		"DARK": "Unsur+Gelap+%28no+matching%29",
 		"ACC": "Accuracy",
 		"DODGE": "Dodge",
 		"ACC%": "Accuracy+%25",
@@ -1940,6 +1940,12 @@ EARTH (Unsur Bumi (no matching))
 WIND (Unsur Angin (no matching))
 LIGHT (Unsur Cahaya (no matching))
 DARK (Unsur Gelap (no matching))
+FIREM (Unsur Api (matching))
+WATERM (Unsur Air (matching))
+EARTHM (Unsur Bumi (matching))
+WINDM (Unsur Angin (matching))
+LIGHTM (Unsur Cahaya (matching))
+DARKM (Unsur Gelap (matching))
 ACC (Accuracy)
 DODGE (Dodge)
 ACC% (Accuracy%)
