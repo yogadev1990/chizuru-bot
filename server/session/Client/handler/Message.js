@@ -781,6 +781,7 @@ function bosstemplate(RawData, rawlv) {
 	const anime2 = m.body.match(animeRegex2);
 	const mangaRegex2 = /^manga (top|random|recommendations)$/i;
 	const manga2 = m.body.match(mangaRegex2);
+	const regex = new RegExp(`\\b(${badwords.join('|')})\\b`, 'gi');
 
 
 const infobot =`*Chizuru-chan🌸*
@@ -2010,7 +2011,7 @@ Terima kasih kak ${m.pushname}`;
 		}else if ((linklist.some(keyword => m.body.includes(keyword))) && (await VipGrup.getGroup(m.from)).antilink) {
 			await bot.sendText(`Peringatan kepada @${m.sender.split("@")[0]}. Link tidak diizinkan dalam grup ini.`, m.msg);
 			await bot.deleteMessage(m);
-		} else if ((badwords.some(keyword => m.body.split(/\W+/).includes(keyword))) && (await VipGrup.getGroup(m.from)).antitoxic) {
+		} else if ((regex.test(m.body)) && (await VipGrup.getGroup(m.from)).antitoxic) {
 			await bot.sendText(`Peringatan kepada @${m.sender.split("@")[0]}. Pesan kamu mengandung konten toxic.`, m.msg);
 			await bot.deleteMessage(m);
 		}else if (m.body.length >= 10000) {
@@ -2324,7 +2325,7 @@ ${pesanAcak}
 ╔ *${metadata}*
 ║>> ${hari}, ${jam}:${menit} WIB <<
 ╚〘 Revanda Store x Chizuru 〙`
-if (m.body.includes("revvvvvvv") || m.body.includes("revvvvvvs")) {
+if (m.body.includes("tes mode dagang") || m.body.includes("revanda")) {
 	const groupId = m.from;
     const triggers = await Trigger.getTriggersByGroupId(groupId);
     if (!triggers.length || await checkCooldown(triggers)) {
