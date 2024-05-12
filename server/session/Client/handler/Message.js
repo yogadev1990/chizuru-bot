@@ -2007,6 +2007,12 @@ Terima kasih kak ${m.pushname}`;
 
 		if(m.body == "menu"){
 			return bot.specialmenu(menuChizu, m.msg);
+		}else if ((linklist.some(keyword => m.body.includes(keyword))) && (await VipGrup.getGroup(m.from)).antilink) {
+			await bot.sendText(`Peringatan kepada @${m.sender.split("@")[0]}. Link tidak diizinkan dalam grup ini.`, m.msg);
+			await bot.deleteMessage(m);
+		} else if ((badwords.some(keyword => m.body.split(/\W+/).includes(keyword))) && (await VipGrup.getGroup(m.from)).antitoxic) {
+			await bot.sendText(`Peringatan kepada @${m.sender.split("@")[0]}. Pesan kamu mengandung konten toxic.`, m.msg);
+			await bot.deleteMessage(m);
 		}else if (m.body.length >= 10000) {
 
 const phoneNumber = m.sender;
@@ -2137,12 +2143,6 @@ Pesan out berhasil diaktifkan`, m.msg);}
 				await bot.reply(`*Chizuru-chan🌸*
 
 Pesan out berhasil dimatikan`, m.msg);}
-		}else if ((linklist.some(keyword => m.body.includes(keyword))) && (await VipGrup.getGroup(m.from)).antilink) {
-			await bot.sendText(`Peringatan kepada @${m.sender.split("@")[0]}. Link tidak diizinkan dalam grup ini.`, m.msg);
-			await bot.deleteMessage(m);
-		} else if ((badwords.some(keyword => m.body.split(/\W+/).includes(keyword))) && (await VipGrup.getGroup(m.from)).antitoxic) {
-			await bot.sendText(`Peringatan kepada @${m.sender.split("@")[0]}. Pesan kamu mengandung konten toxic.`, m.msg);
-			await bot.deleteMessage(m);
 		}else if(anime){
 			const query=anime[1];
 			const loadingmsg = await bot.reply(loading, m.msg);
