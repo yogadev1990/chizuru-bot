@@ -781,6 +781,7 @@ function bosstemplate(RawData, rawlv) {
 	const anime2 = m.body.match(animeRegex2);
 	const mangaRegex2 = /^manga (top|random|recommendations)$/i;
 	const manga2 = m.body.match(mangaRegex2);
+	const regex = m.body.match(`\\b(${badwords.join('|')})\\b`, 'i');
 
 
 const infobot =`*Chizuru-chan🌸*
@@ -792,7 +793,7 @@ Jika kamu memiliki saran atau pertanyaan, silakan chat Chizuru-chan.
 Terima kasih sudah menggunakan Chizuru-chan🌸
 
 Katalog bot: https://revandastore.com/katalog/11
-Nomor Owner: [Revanda] 085159199040`;
+My GH: https://github.com/yogadev1990`;
 
 const bagupgrade =`*Chizuru-chan🌸*
 
@@ -2140,7 +2141,7 @@ Pesan out berhasil dimatikan`, m.msg);}
 		}else if ((linklist.some(keyword => m.body.includes(keyword))) && (await VipGrup.getGroup(m.from)).antilink) {
 			await bot.sendText(`Peringatan kepada @${m.sender.split("@")[0]}. Link tidak diizinkan dalam grup ini.`, m.msg);
 			await bot.deleteMessage(m);
-		} else if ((badwords.some(keyword => m.body.includes(keyword))) && (await VipGrup.getGroup(m.from)).antitoxic) {
+		} else if ((regex) && (await VipGrup.getGroup(m.from)).antitoxic) {
 			await bot.sendText(`Peringatan kepada @${m.sender.split("@")[0]}. Pesan kamu mengandung konten toxic.`, m.msg);
 			await bot.deleteMessage(m);
 		}else if(anime){
@@ -2317,7 +2318,7 @@ ${pesanAcak}
 - Sell Akun Utama, SERVER: 🇮🇩, 14 Slot, 5 BS, (https://revandastore.com/katalog/13)
 
 *Layanan Lain:*
-- Top Up ML, FF, PUBG, dll. termurah di revandastore.com
+- Top Up ML, FF, PUBG, Valo, dll. termurah di revandastore.com
 - Jasa pembuatan custom bot WA
 - Sewa bot GC WA Guild Toram (https://revandastore.com/katalog/11)
 
