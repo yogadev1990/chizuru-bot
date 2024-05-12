@@ -28,6 +28,8 @@
     ".localhost",
     ".test",
     ".bitnet",
+    ".io",
+    ".ai",
     ".csnet",
     ".ip",
     ".local",
@@ -64,5 +66,6 @@
     ".network",
     ".services",
     ".solutions",
+    ".id",
     "http"
 ]   
