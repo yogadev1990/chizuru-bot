@@ -53,16 +53,14 @@ class ConnectionSession extends SessionDatabase {
 
 		const options = {
 			printQRInTerminal: false,
-			auth: {
-				creds: state,
-			},
-			logger: pino({ level: "silent" }),
+			auth: state,
+			logger: pino({ level: "error" }),
 			browser: Browsers.macOS('Desktop'),
         	version: [2,2335,9],
 			syncFullHistory: true,
 			generateHighQualityLinkPreview: true,
 			msgRetryCounterCache,
-			shouldIgnoreJid: jid => isJidBroadcast(jid)
+			shouldIgnoreJid: jid => isJidBroadcast(jid),
 		};
 
 		const store = makeInMemoryStore({});
