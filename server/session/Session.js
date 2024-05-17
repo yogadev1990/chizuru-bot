@@ -53,24 +53,17 @@ class ConnectionSession extends SessionDatabase {
 
 		const options = {
 			printQRInTerminal: false,
-			auth: state,
-			logger: pino({ level: "error" }),
-			browser: ['Ubuntu', 'Chrome', '20.0.04'],
+			auth: {
+				creds: state.creds,
+				keys: makeCacheableSignalKeyStore(state.keys, logger),
+			},
+			logger: pino({ level: "silent" }),
+			browser: Browsers.macOS('Desktop'),
         	version: [2,2335,9],
 			syncFullHistory: true,
-			markOnlineOnConnect: true,
-			connectTimeoutMs: 60000, 
-			defaultQueryTimeoutMs: 0,
-			keepAliveIntervalMs: 10000,
 			generateHighQualityLinkPreview: true,
-			getMessage: async (key) => {
-				let jid = jidNormalizedUser(key.remoteJid)
-				let msg = await store.loadMessage(jid, key.id)
-	   
-				return msg?.message || ""
-			 },
-			 msgRetryCounterCache,
-			 defaultQueryTimeoutMs: undefined,
+			msgRetryCounterCache,
+			shouldIgnoreJid: jid => isJidBroadcast(jid)
 		};
 
 		const store = makeInMemoryStore({});
