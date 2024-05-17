@@ -1,4 +1,4 @@
-import WASocket, { Browsers, DisconnectReason,makeCacheableSignalKeyStore, fetchLatestBaileysVersion, makeInMemoryStore, useMultiFileAuthState } from "@whiskeysockets/baileys";
+import WASocket, { Browsers, DisconnectReason, fetchLatestBaileysVersion, makeInMemoryStore, useMultiFileAuthState } from "@whiskeysockets/baileys";
 import { Boom } from "@hapi/boom";
 import pino from "pino";
 import qrcode from "qrcode";
@@ -54,8 +54,7 @@ class ConnectionSession extends SessionDatabase {
 		const options = {
 			printQRInTerminal: false,
 			auth: {
-				creds: state.creds,
-				keys: makeCacheableSignalKeyStore(state.keys, logger),
+				creds: state,
 			},
 			logger: pino({ level: "silent" }),
 			browser: Browsers.macOS('Desktop'),
