@@ -1,4 +1,4 @@
-import WASocket, { Browsers, isJidBroadcast, DisconnectReason, fetchLatestBaileysVersion, makeInMemoryStore, useMultiFileAuthState } from "@whiskeysockets/baileys";
+import WASocket, { Browsers, DisconnectReason, fetchLatestBaileysVersion, makeInMemoryStore, useMultiFileAuthState } from "@whiskeysockets/baileys";
 import { Boom } from "@hapi/boom";
 import pino from "pino";
 import qrcode from "qrcode";
@@ -59,8 +59,7 @@ class ConnectionSession extends SessionDatabase {
         	version: [2,2335,9],
 			syncFullHistory: true,
 			generateHighQualityLinkPreview: true,
-			msgRetryCounterCache,
-			shouldIgnoreJid: jid => isJidBroadcast(jid),
+			 msgRetryCounterCache,
 		};
 
 		const store = makeInMemoryStore({});
