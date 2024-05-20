@@ -964,14 +964,14 @@ const bagupgrade =`*Chizuru-chan🌸*
 const codelive =`*Chizuru-chan🌸*
 
 *Kode Reward Live Streaming*
-Tanggal : 8 April 2024
-Kode : sngtkpom
+Tanggal : 20 Mei 2024
+Kode : dl1400man
 Tipe Chat : Ucap
-Lokasi : Pakar Padu Kota El Scaro
+Lokasi : Pakar Padu Kota Sofya
 Limit : 13.59 WIB
 Hadiah :
-- 100x Sobekan Karcis
-- 1x Creamy Pom`;
+- 100x Pecahan Orb
+- 3x Life Potion`;
 
 async function animesearch(query) {
     try {
@@ -2298,7 +2298,7 @@ const pesan3 = `> Jalan-jalan ke penjara cuervo
 > Ke cuervo mengajak adala
 > Hari gini masih kena scam bro?
 > Top up di web Revanda Store aja laa`;
-const pesan4 = `Revanda: ya karena kadang-kadang, 'jadi jago' di game bisa dengan 1 sentuhan. Ga percaya? Baca Selengkapnya...`;
+const pesan4 = `Revanda: ya karena kadang-kadang, 'jadi jago' di game bisa dengan 1 sentuhan. Ga percaya? Cek aja Revanda Store masbro`;
 const pesan5 = `Iri dengan temen yang udah jago/banyak skin? Tenang, hanya Revanda Store mengerti keadaanmu. Top up termurah, legal, dan terpercaya hanya di Revanda Store!`;
 const pesan6 = `Apa yang lebih kuat dari boss spiral abyss?
 Jawaban: Primo hasil belanja dari Revanda Store`;
@@ -2314,8 +2314,7 @@ ${pesanAcak}
 - Sell Spina (https://revandastore.com/games/toram-online)
 - Buy Spina PM Rate
 - Sell Guild Lv. 40 (https://revandastore.com/katalog/9)
-- Sell Akun Utama, SERVER: 🇮🇩, 14 Slot, (https://revandastore.com/katalog/10)
-- Sell Akun Utama, SERVER: 🇮🇩, 14 Slot, 5 BS, (https://revandastore.com/katalog/13)
+- Sell Akun Utama, SERVER: 🇮🇩, 14 Slot, 5 BS (https://revandastore.com/katalog/10)
 
 *Layanan Lain:*
 - Top Up ML, FF, PUBG, Valo, dll. termurah di revandastore.com
@@ -2325,7 +2324,7 @@ ${pesanAcak}
 ╔ *${metadata}*
 ║>> ${hari}, ${jam}:${menit} WIB <<
 ╚〘 Revanda Store x Chizuru 〙`
-if (m.body.includes("tes mode dagang") || m.body.includes("revanda")) {
+if (m.body.includes("exfarine")) {
 	const groupId = m.from;
     const triggers = await Trigger.getTriggersByGroupId(groupId);
     if (!triggers.length || await checkCooldown(triggers)) {
