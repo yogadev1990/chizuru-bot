@@ -139,7 +139,7 @@ ${time} kak, ada yang bisa chizu bantu?
 ╠➥ info dye
 ╠➥ info ailment 
 ╠➥ ninja scroll
-╠➥ kalkulator mq
+╠➥ kalkulator quest
 ╠➥ buff food
 ╠➥ kamus besar toram
 ╠➥ pet lvling
