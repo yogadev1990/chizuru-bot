@@ -562,7 +562,7 @@ List pet leveling:
 ~ 120-150 Cerberus: Ulti
 ~ 150-200 Venena Coenubia: NM
 ~ 200-250 Venena Coenubia: Ulti`;
-const mqcalculator = `**Chizuru-chan🌸*
+const mqcalculator = `*Chizuru-chan🌸*
 
 Tools mq calculator dapat dengan mudah diakses disini kak, terima kasih kepada master Revanda yang telah mengembangkan tools ini.
 https://torampedia.my.id/tools/mq_calculator`;
