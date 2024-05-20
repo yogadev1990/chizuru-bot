@@ -161,33 +161,49 @@ class ConnectionSession extends SessionDatabase {
 				const addedParticipants = participants.filter((participant) => participant !== client.user.jid);
 				const taggedParticipants = addedParticipants.map((participant) => `@${participant.split("@")[0]}`).join(" ");
 				let wmessage;
-const welcomeMessage = await VipGrup.getGroup(id).welcomemsg;
-if (welcomeMessage) {
-    wmessage = welcomeMessage;
-} else {
-    wmessage = "Admin grup belum menambahkan pesan selamat datang, hubungi [Revanda] 085159199040 untuk menambahkan pesan selamat datang.";
-}
-
-const message = `*Chizuru-chan🌸*
-                
+			
+				try {
+					const group = await VipGrup.getGroup(id);
+					const welcomeMessage = group ? group.welcomemsg : null;
+					if (welcomeMessage) {
+						wmessage = welcomeMessage;
+					} else {
+						wmessage = "Admin grup belum menambahkan pesan selamat datang, hubungi [Revanda] 085159199040 untuk menambahkan pesan selamat datang.";
+					}
+				} catch (error) {
+					console.error('Error fetching group data:', error);
+					wmessage = "Terjadi kesalahan saat mengambil pesan selamat datang, hubungi admin untuk bantuan lebih lanjut.";
+				}
+			
+				const message = `*Chizuru-chan🌸*
+							
 Selamat datang di *${metadata.subject}* kak ${taggedParticipants}. Semoga betah disini ya🌸
-
+		
 ${wmessage}
-
+			
 Grup: ${metadata.subject}
 Jumlah member: ${metadata.participants.length} member`;
-				await client.sendMessage(id, {text: `${message}`, contextInfo: {
-					mentionedJid: participants,
-					externalAdReply: {
-					 title: "Chizuru-Chan",
-					 body: "Chizuru Bot by Revanda",
-					 mediaType: 1,
-					 previewType: 0,
-					 renderLargerThumbnail: true,
-					 thumbnail: fs.readFileSync("./public/image/chizu.png"),
-					 sourceUrl: "https://revandastore.com"
-					}}});
-			} else if (await VipGrup.ceksubs(id) && await VipGrup.cekout(id) && action === "remove") {
+			
+				try {
+					await client.sendMessage(id, {
+						text: `${message}`, 
+						contextInfo: {
+							mentionedJid: participants,
+							externalAdReply: {
+								title: "Chizuru-Chan",
+								body: "Chizuru Bot by Revanda",
+								mediaType: 1,
+								previewType: 0,
+								renderLargerThumbnail: true,
+								thumbnail: fs.readFileSync("./public/image/chizu.png"),
+								sourceUrl: "https://revandastore.com"
+							}
+						}
+					});
+				} catch (error) {
+					console.error('Error sending message:', error);
+				}
+			}else if (await VipGrup.ceksubs(id) && await VipGrup.cekout(id) && action === "remove") {
 				const removedParticipants = participants.filter((participant) => participant !== client.user.jid);
 				const taggedParticipants = removedParticipants.map((participant) => `@${participant.split("@")[0]}`).join(" ");
 				const message = `*Chizuru-chan🌸*

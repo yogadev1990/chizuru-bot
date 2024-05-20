@@ -1969,7 +1969,7 @@ Panduan dasar penggunaan Chizuru Bot by Revanda:
 1. Untuk melihat menu, ketik *menu*.
 2. Selalu gunakan huruf kecil untuk setiap command.
 Contoh: *mt terbaru*, *info dye*
-3. Bila ada tanda [ ] artinya command dinamis. Masukan perintah tanpa menulis [ ].
+3. Bila ada tanda [ ] artinya command dinamis. Masukan perintah *tanpa menulis* [ ].
 Contoh: *harga slot ohs*, *cari item proto*
 4. Bila ada tanda / (slash) artinya pilih salah satu.
 Contoh: *lvling char miniboss 200*
@@ -2298,10 +2298,10 @@ const pesan3 = `> Jalan-jalan ke penjara cuervo
 > Ke cuervo mengajak adala
 > Hari gini masih kena scam bro?
 > Top up di web Revanda Store aja laa`;
-const pesan4 = `Revanda: ya karena kadang-kadang, 'jadi jago' di game bisa dengan 1 sentuhan. Ga percaya? Cek aja Revanda Store masbro`;
-const pesan5 = `Iri dengan temen yang udah jago/banyak skin? Tenang, hanya Revanda Store mengerti keadaanmu. Top up termurah, legal, dan terpercaya hanya di Revanda Store!`;
-const pesan6 = `Apa yang lebih kuat dari boss spiral abyss?
-Jawaban: Primo hasil belanja dari Revanda Store`;
+const pesan4 = `> Pepatah arab mengatakan: Kadang-kadang, *"jadi jago"* di game cukup dengan 1 sentuhan. Ga percaya? Cek aja Revanda Store`;
+const pesan5 = `> Iri dengan temen yang udah jago/banyak skin? Tenang, hanya Revanda Store mengerti keadaanmu. Top up termurah, legal, dan terpercaya hanya di Revanda Store🔥`;
+const pesan6 = `👥 : *Apa yang lebih kuat dari boss spiral abyss?*
+👤 : Pake nanya, ya jelas Primogems hasil belanja di Revanda Store🔥`;
 const pesanArray = [pesan1, pesan2, pesan3, pesan4, pesan5, pesan6];
 const panjangPesan = pesanArray.length;
 const pesanAcak = pesanArray[Math.floor(Math.random() * panjangPesan)];
