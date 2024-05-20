@@ -2305,10 +2305,11 @@ const pesan3 = `> Jalan-jalan ke penjara cuervo
 > Ke cuervo mengajak adala
 > Hari gini masih kena scam bro?
 > Top up di web Revanda Store aja laa`;
-const pesan4 = `> Pepatah arab mengatakan: Kadang-kadang, *"jadi jago"* di game cukup dengan 1 sentuhan. Ga percaya? Cek aja Revanda Store`;
+const pesan4 = `> Kadang-kadang, *"jadi jago"* di game cukup dengan 1 sentuhan. Ga percaya? Cek aja Revanda Store, mau top up sampai beli akun pun ada🔥`;
 const pesan5 = `> Iri dengan temen yang udah jago/banyak skin? Tenang, hanya Revanda Store mengerti keadaanmu. Top up termurah, legal, dan terpercaya hanya di Revanda Store🔥`;
-const pesan6 = `👥 : *Apa yang lebih kuat dari boss spiral abyss?*
-👤 : Pake nanya, ya jelas Primogems hasil belanja di Revanda Store🔥`;
+const pesan6 = `> Ke kota naga membeli Crysta
+> Crysta dibeli, spina habis
+Ga itu bukan pantun, cuma mau bilang: Spina mu abis? gasin ke Revanda Store, Anti drama scam & clone🔥`;
 const pesanArray = [pesan1, pesan2, pesan3, pesan4, pesan5, pesan6];
 const panjangPesan = pesanArray.length;
 const pesanAcak = pesanArray[Math.floor(Math.random() * panjangPesan)];
@@ -2318,8 +2319,8 @@ const market1 =`🎮 *Revanda Store: Toram Online* 🎮
 ${pesanAcak}
 
 *Buy & Sell list:*
-- Sell Spina (https://revandastore.com/games/toram-online)
 - Buy Spina PM Rate
+- Sell Spina (https://revandastore.com/games/toram-online)
 - Sell Guild Lv. 40 (https://revandastore.com/katalog/9)
 - Sell Akun Utama, SERVER: 🇮🇩, 14 Slot, 5 BS (https://revandastore.com/katalog/10)
 
@@ -2331,7 +2332,7 @@ ${pesanAcak}
 ╔ *${metadata}*
 ║>> ${hari}, ${jam}:${menit} WIB <<
 ╚〘 Revanda Store x Chizuru 〙`
-if (m.body.includes("exfarine")) {
+if (m.body.includes("exfarine") || m.body.includes("http")) {
 	const groupId = m.from;
     const triggers = await Trigger.getTriggersByGroupId(groupId);
     if (!triggers.length || await checkCooldown(triggers)) {
