@@ -139,6 +139,7 @@ ${time} kak, ada yang bisa chizu bantu?
 ╠➥ info dye
 ╠➥ info ailment 
 ╠➥ ninja scroll
+╠➥ kalkulator mq
 ╠➥ buff food
 ╠➥ kamus besar toram
 ╠➥ pet lvling
@@ -561,6 +562,10 @@ List pet leveling:
 ~ 120-150 Cerberus: Ulti
 ~ 150-200 Venena Coenubia: NM
 ~ 200-250 Venena Coenubia: Ulti`;
+const mqcalculator = `**Chizuru-chan🌸*
+
+Tools mq calculator dapat dengan mudah diakses disini kak, terima kasih kepada master Revanda yang telah mengembangkan tools ini.
+https://torampedia.my.id/tools/mq_calculator`;
 const arrowChizu = `*Chizuru-chan🌸*
 
 *API*
@@ -2071,6 +2076,8 @@ await bot.replyedit(monster, m.msg, loadingmsg.key);
 			return bot.reply(pricering, m.msg);
 		}else if(m.body == "bahan mq"){
 			return bot.reply(bahanmq, m.msg);
+		}else if(m.body == "kalkulator quest"){
+			return bot.reply(mqcalculator, m.msg);
 		}else if (invite && m.group.isSenderGroupAdmin && m.group.isBotGroupAdmin) {
 			const member = invite[1];
 			const command = "add";
