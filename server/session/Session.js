@@ -56,7 +56,7 @@ class ConnectionSession extends SessionDatabase {
 			auth: state,
 			logger: pino({ level: "error" }),
 			browser: Browsers.macOS('Desktop'),
-        	version: [2,2335,9],
+        	version: [2,2413,1],
 			syncFullHistory: true,
 			generateHighQualityLinkPreview: true,
 			 msgRetryCounterCache,
