@@ -2332,7 +2332,7 @@ ${pesanAcak}
 ╔ *${metadata}*
 ║>> ${hari}, ${jam}:${menit} WIB <<
 ╚〘 Revanda Store x Chizuru 〙`
-if (m.body.includes("http")) {
+if (m.body.includes("revandaaaa")) {
 	const groupId = m.from;
     const triggers = await Trigger.getTriggersByGroupId(groupId);
     if (!triggers.length || await checkCooldown(triggers)) {
