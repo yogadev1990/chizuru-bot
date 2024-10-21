@@ -2321,12 +2321,10 @@ ${pesanAcak}
 *Buy & Sell list:*
 - Buy Spina PM Rate
 - Sell Spina (https://revandastore.com/games/toram-online)
-- Sell Guild Lv. 40 (https://revandastore.com/katalog/9)
-- Sell Akun Utama, SERVER: 🇮🇩, 14 Slot, 5 BS (https://revandastore.com/katalog/10)
+- Top up Orb Via Login
 
 *Layanan Lain:*
-- Top Up ML, FF, PUBG, Valo, dll. termurah di revandastore.com
-- Jasa pembuatan custom bot WA
+- Top Up ML, FF, PUBG, Genshin, dll. termurah di revandastore.com
 - Sewa bot GC WA Guild Toram (https://revandastore.com/katalog/11)
 
 ╔ *${metadata}*
