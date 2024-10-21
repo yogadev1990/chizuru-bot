@@ -2,7 +2,7 @@ import { AutoReply, ButtonResponse, ListResponse, Trigger, VipGrup} from "../../
 import Client from "./Client.js";
 import Serialize from "./Serialize.js";
 import axios from "axios";
-import cheerio from "cheerio";
+import * as cheerio from 'cheerio';
 import { moment } from "../../../config/index.js";
 import turl from "turl";
 import badwords from './dictionary/badwords.json' assert { type: 'json' };
@@ -628,7 +628,7 @@ const buildChizu = `*Chizuru-chan🌸*
 
 Build disini hanya sekedar referensi. Semua skill, combo, regislet, dan eq, menyesuaikan dengan playstyle.
 Build pribadi by: R e v a n d a
-Jenis: Tier 5 Build (Lv 280)
+Jenis: Tier 5 Build (Lv 290)
 https://drive.google.com/drive/folders/1CtXe-jDXEfsrpSwvrDbfBaA5un6X00ge`;
 
 const url = 'https://id.toram.jp/?type_code=update';
@@ -1532,7 +1532,7 @@ async function fillstatw(message) {
 	 while (negativeStats.length < 7) {
 		 negativeStats.push({ stat: "", value: "MAX" });
 	 }
-    let data = `properBui=Weapon&paramLevel=280&plusProperList%5B0%5D.properName=${extractedStats[0].stat}&plusProperList%5B0%5D.properLvHyoji=${extractedStats[0].value}&plusProperList%5B1%5D.properName=${extractedStats[1].stat}&plusProperList%5B1%5D.properLvHyoji=${extractedStats[1].value}&plusProperList%5B2%5D.properName=${extractedStats[2].stat}&plusProperList%5B2%5D.properLvHyoji=${extractedStats[2].value}&plusProperList%5B3%5D.properName=${extractedStats[3].stat}&plusProperList%5B3%5D.properLvHyoji=${extractedStats[3].value}&plusProperList%5B4%5D.properName=${extractedStats[4].stat}&plusProperList%5B4%5D.properLvHyoji=${extractedStats[4].value}&plusProperList%5B5%5D.properName=${extractedStats[5].stat}&plusProperList%5B5%5D.properLvHyoji=${extractedStats[5].value}&plusProperList%5B6%5D.properName=${extractedStats[6].stat}&plusProperList%5B6%5D.properLvHyoji=${extractedStats[6].value}&minusProperList%5B0%5D.properName=${negativeStats[0].stat}&minusProperList%5B0%5D.properLvHyoji=MAX&minusProperList%5B1%5D.properName=${negativeStats[1].stat}&minusProperList%5B1%5D.properLvHyoji=MAX&minusProperList%5B2%5D.properName=${negativeStats[2].stat}&minusProperList%5B2%5D.properLvHyoji=MAX&minusProperList%5B3%5D.properName=${negativeStats[3].stat}&minusProperList%5B3%5D.properLvHyoji=MAX&minusProperList%5B4%5D.properName=${negativeStats[4].stat}&minusProperList%5B4%5D.properLvHyoji=MAX&minusProperList%5B5%5D.properName=${negativeStats[5].stat}&minusProperList%5B5%5D.properLvHyoji=MAX&minusProperList%5B6%5D.properName=${negativeStats[6].stat}&minusProperList%5B6%5D.properLvHyoji=MAX&shokiSenzai=${potValue}&kisoSenzai=15&jukurendo=0&rikaiKinzoku=10&rikaiNunoti=10&rikaiKemono=10&rikaiMokuzai=10&rikaiYakuhin=10&rikaiMaso=10&sendData=Submit`;
+    let data = `properBui=Weapon&paramLevel=290&plusProperList%5B0%5D.properName=${extractedStats[0].stat}&plusProperList%5B0%5D.properLvHyoji=${extractedStats[0].value}&plusProperList%5B1%5D.properName=${extractedStats[1].stat}&plusProperList%5B1%5D.properLvHyoji=${extractedStats[1].value}&plusProperList%5B2%5D.properName=${extractedStats[2].stat}&plusProperList%5B2%5D.properLvHyoji=${extractedStats[2].value}&plusProperList%5B3%5D.properName=${extractedStats[3].stat}&plusProperList%5B3%5D.properLvHyoji=${extractedStats[3].value}&plusProperList%5B4%5D.properName=${extractedStats[4].stat}&plusProperList%5B4%5D.properLvHyoji=${extractedStats[4].value}&plusProperList%5B5%5D.properName=${extractedStats[5].stat}&plusProperList%5B5%5D.properLvHyoji=${extractedStats[5].value}&plusProperList%5B6%5D.properName=${extractedStats[6].stat}&plusProperList%5B6%5D.properLvHyoji=${extractedStats[6].value}&minusProperList%5B0%5D.properName=${negativeStats[0].stat}&minusProperList%5B0%5D.properLvHyoji=MAX&minusProperList%5B1%5D.properName=${negativeStats[1].stat}&minusProperList%5B1%5D.properLvHyoji=MAX&minusProperList%5B2%5D.properName=${negativeStats[2].stat}&minusProperList%5B2%5D.properLvHyoji=MAX&minusProperList%5B3%5D.properName=${negativeStats[3].stat}&minusProperList%5B3%5D.properLvHyoji=MAX&minusProperList%5B4%5D.properName=${negativeStats[4].stat}&minusProperList%5B4%5D.properLvHyoji=MAX&minusProperList%5B5%5D.properName=${negativeStats[5].stat}&minusProperList%5B5%5D.properLvHyoji=MAX&minusProperList%5B6%5D.properName=${negativeStats[6].stat}&minusProperList%5B6%5D.properLvHyoji=MAX&shokiSenzai=${potValue}&kisoSenzai=15&jukurendo=0&rikaiKinzoku=10&rikaiNunoti=10&rikaiKemono=10&rikaiMokuzai=10&rikaiYakuhin=10&rikaiMaso=10&sendData=Submit`;
   
     let config = {
         method: 'post',
@@ -1561,7 +1561,7 @@ const formattedStat = stat.text().trim().replace(/(\w+\s*%?)\s*(Lv\.(-?\d+))/g, 
         const recipe = steps.replace(/\s+/g, ' ').replace(/(\d+\.\s+)/g, '\n$1');
         const hasil = `*Chizuru-chan🌸*
 Jenis: Weapon
-Level Karakter: 280
+Level Karakter: 290
 
 Stat akhir: 
 ${formattedStat}
@@ -1654,7 +1654,7 @@ async function fillstata(message) {
 	while (negativeStats.length < 7) {
 		negativeStats.push({ stat: "", value: "MAX" });
 	}
-   let data = `properBui=Armor&paramLevel=280&plusProperList%5B0%5D.properName=${extractedStats[0].stat}&plusProperList%5B0%5D.properLvHyoji=${extractedStats[0].value}&plusProperList%5B1%5D.properName=${extractedStats[1].stat}&plusProperList%5B1%5D.properLvHyoji=${extractedStats[1].value}&plusProperList%5B2%5D.properName=${extractedStats[2].stat}&plusProperList%5B2%5D.properLvHyoji=${extractedStats[2].value}&plusProperList%5B3%5D.properName=${extractedStats[3].stat}&plusProperList%5B3%5D.properLvHyoji=${extractedStats[3].value}&plusProperList%5B4%5D.properName=${extractedStats[4].stat}&plusProperList%5B4%5D.properLvHyoji=${extractedStats[4].value}&plusProperList%5B5%5D.properName=${extractedStats[5].stat}&plusProperList%5B5%5D.properLvHyoji=${extractedStats[5].value}&plusProperList%5B6%5D.properName=${extractedStats[6].stat}&plusProperList%5B6%5D.properLvHyoji=${extractedStats[6].value}&minusProperList%5B0%5D.properName=${negativeStats[0].stat}&minusProperList%5B0%5D.properLvHyoji=MAX&minusProperList%5B1%5D.properName=${negativeStats[1].stat}&minusProperList%5B1%5D.properLvHyoji=MAX&minusProperList%5B2%5D.properName=${negativeStats[2].stat}&minusProperList%5B2%5D.properLvHyoji=MAX&minusProperList%5B3%5D.properName=${negativeStats[3].stat}&minusProperList%5B3%5D.properLvHyoji=MAX&minusProperList%5B4%5D.properName=${negativeStats[4].stat}&minusProperList%5B4%5D.properLvHyoji=MAX&minusProperList%5B5%5D.properName=${negativeStats[5].stat}&minusProperList%5B5%5D.properLvHyoji=MAX&minusProperList%5B6%5D.properName=${negativeStats[6].stat}&minusProperList%5B6%5D.properLvHyoji=MAX&shokiSenzai=${potValue}&kisoSenzai=15&jukurendo=0&rikaiKinzoku=10&rikaiNunoti=10&rikaiKemono=10&rikaiMokuzai=10&rikaiYakuhin=10&rikaiMaso=10&sendData=Submit`;
+   let data = `properBui=Armor&paramLevel=290&plusProperList%5B0%5D.properName=${extractedStats[0].stat}&plusProperList%5B0%5D.properLvHyoji=${extractedStats[0].value}&plusProperList%5B1%5D.properName=${extractedStats[1].stat}&plusProperList%5B1%5D.properLvHyoji=${extractedStats[1].value}&plusProperList%5B2%5D.properName=${extractedStats[2].stat}&plusProperList%5B2%5D.properLvHyoji=${extractedStats[2].value}&plusProperList%5B3%5D.properName=${extractedStats[3].stat}&plusProperList%5B3%5D.properLvHyoji=${extractedStats[3].value}&plusProperList%5B4%5D.properName=${extractedStats[4].stat}&plusProperList%5B4%5D.properLvHyoji=${extractedStats[4].value}&plusProperList%5B5%5D.properName=${extractedStats[5].stat}&plusProperList%5B5%5D.properLvHyoji=${extractedStats[5].value}&plusProperList%5B6%5D.properName=${extractedStats[6].stat}&plusProperList%5B6%5D.properLvHyoji=${extractedStats[6].value}&minusProperList%5B0%5D.properName=${negativeStats[0].stat}&minusProperList%5B0%5D.properLvHyoji=MAX&minusProperList%5B1%5D.properName=${negativeStats[1].stat}&minusProperList%5B1%5D.properLvHyoji=MAX&minusProperList%5B2%5D.properName=${negativeStats[2].stat}&minusProperList%5B2%5D.properLvHyoji=MAX&minusProperList%5B3%5D.properName=${negativeStats[3].stat}&minusProperList%5B3%5D.properLvHyoji=MAX&minusProperList%5B4%5D.properName=${negativeStats[4].stat}&minusProperList%5B4%5D.properLvHyoji=MAX&minusProperList%5B5%5D.properName=${negativeStats[5].stat}&minusProperList%5B5%5D.properLvHyoji=MAX&minusProperList%5B6%5D.properName=${negativeStats[6].stat}&minusProperList%5B6%5D.properLvHyoji=MAX&shokiSenzai=${potValue}&kisoSenzai=15&jukurendo=0&rikaiKinzoku=10&rikaiNunoti=10&rikaiKemono=10&rikaiMokuzai=10&rikaiYakuhin=10&rikaiMaso=10&sendData=Submit`;
  
    let config = {
 	   method: 'post',
@@ -1683,7 +1683,7 @@ const formattedStat = stat.text().trim().replace(/(\w+\s*%?)\s*(Lv\.(-?\d+))/g, 
 	   const recipe = steps.replace(/\s+/g, ' ').replace(/(\d+\.\s+)/g, '\n$1');
 	   const hasil = `*Chizuru-chan🌸*
 Jenis: Armor
-Level Karakter: 280
+Level Karakter: 290
 
 Stat akhir: 
 ${formattedStat}
