@@ -40,19 +40,18 @@ export default class Message extends Serialize {
 		const keywordReply = await replyResponse.checkMessageUser(m.botNumber, m.body);
 		const keywordButton = await buttonResponse.checkKeyword(m.body, m.from);
 		const keywordList = await listResponse.checkKeyword(m.body, m.from);
-		const waktuSaatIni = new Date().toLocaleString("id-ID", { timeZone: "Asia/Jakarta" });
 		const namaBulan = [
   			"Januari", "Februari", "Maret", "April", "Mei", "Juni",
   			"Juli", "Agustus", "September", "Oktober", "November", "Desember"
 		];
 		// Konversi string waktu kembali ke objek Date
-		const waktu = new Date(waktuSaatIni);
+		const waktu = new Date().toLocaleString("id-ID", { timeZone: "Asia/Jakarta" });
 		const bulan = namaBulan[waktu.getMonth()];
 		const tahun = waktu.getFullYear();
 		const hari = waktu.toLocaleDateString('id-ID', { weekday: 'long', timeZone: 'Asia/Jakarta' });
 		const jam = waktu.getHours().toString().padStart(2, '0');
 		const menit = waktu.getMinutes().toString().padStart(2, '0');
-		let time = '';
+		let time = '';z
 
 		if (jam >= 3 && jam < 11) {
 		  time = `Selamat pagi`;
