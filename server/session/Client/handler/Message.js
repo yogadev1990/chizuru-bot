@@ -40,17 +40,18 @@ export default class Message extends Serialize {
 		const keywordReply = await replyResponse.checkMessageUser(m.botNumber, m.body);
 		const keywordButton = await buttonResponse.checkKeyword(m.body, m.from);
 		const keywordList = await listResponse.checkKeyword(m.body, m.from);
-		const waktuSaatIni = new Date();
+		const waktuSaatIni = new Date().toLocaleString("id-ID", { timeZone: "Asia/Jakarta" });
 		const namaBulan = [
-			"Januari", "Februari", "Maret", "April", "Mei", "Juni",
-			"Juli", "Agustus", "September", "Oktober", "November", "Desember"
-		  ];
-		  
-		  const bulan = namaBulan[waktuSaatIni.getMonth()];
-		  const tahun = waktuSaatIni.getFullYear();
-		const hari = waktuSaatIni.toLocaleDateString('id-ID', { weekday: 'long' });
-		const jam = waktuSaatIni.getHours().toString().padStart(2, '0');
-		const menit = waktuSaatIni.getMinutes().toString().padStart(2, '0');
+  			"Januari", "Februari", "Maret", "April", "Mei", "Juni",
+  			"Juli", "Agustus", "September", "Oktober", "November", "Desember"
+		];
+		// Konversi string waktu kembali ke objek Date
+		const waktu = new Date(waktuSaatIni);
+		const bulan = namaBulan[waktu.getMonth()];
+		const tahun = waktu.getFullYear();
+		const hari = waktu.toLocaleDateString('id-ID', { weekday: 'long', timeZone: 'Asia/Jakarta' });
+		const jam = waktu.getHours().toString().padStart(2, '0');
+		const menit = waktu.getMinutes().toString().padStart(2, '0');
 		let time = '';
 
 		if (jam >= 3 && jam < 11) {
