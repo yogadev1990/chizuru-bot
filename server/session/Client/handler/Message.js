@@ -2324,6 +2324,7 @@ ${pesanAcak}
 - Buy Spina PM Rate
 - Sell Spina (https://revandastore.com/games/toram-online)
 - Top up Orb Via Login (https://revandastore.com/games/toram-online)
+- Guild Lv. 40, 1 Skin (https://revandastore.com/katalog/9)
 - Sell Akun Utama, Server: 🇮🇩, 15 Slot, 5 BS, (https://revandastore.com/katalog/10)
 
 *Layanan Lain:*
