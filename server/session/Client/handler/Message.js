@@ -2325,8 +2325,7 @@ ${pesanAcak}
 - Sell Spina (https://revandastore.com/games/toram-online)
 - Top up Orb Via Login (https://revandastore.com/games/toram-online)
 - Joki Main Quest NO MOD ft. Harriet (PM for more)
-- Guild Lv. 40, 1 Skin (https://revandastore.com/katalog/9)
-- Sell Akun Utama, Server: 🇮🇩, 15 Slot, 5 BS, (https://revandastore.com/katalog/10)
+- Akun 1k Stack SS II 
 
 *Layanan Lain:*
 - Top Up ML, FF, PUBG, Genshin, dll. termurah di revandastore.com
