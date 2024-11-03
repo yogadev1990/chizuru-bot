@@ -2321,14 +2321,13 @@ const market1 =`🎮 *Revanda Store: Toram Online* 🎮
 ${pesanAcak}
 
 *Buy & Sell list:*
-- Buy Spina PM Rate
+- Buy Spina PM Rate, terima ecer
 - Sell Spina (https://revandastore.com/games/toram-online)
 - Top up Orb Via Login (https://revandastore.com/games/toram-online)
 - Joki Main Quest NO MOD ft. Harriet (PM for more)
-- Akun 1k Stack SS II 
 
 *Layanan Lain:*
-- Top Up ML, FF, PUBG, Genshin, dll. termurah di revandastore.com
+- Top Up ML (WDP 26k), FF, PUBG, Genshin, dll. termurah di revandastore.com
 - Sewa bot GC WA Guild Toram (https://revandastore.com/katalog/11)
 
 ╔ *${metadata}*
