@@ -2322,20 +2322,19 @@ ${pesanAcak}
 
 *Buy & Sell list:*
 - Buy Spina PM Rate, terima ecer
-- Sell Spina (https://revandastore.com/games/toram-online)
-- Top up Orb Via Login (https://revandastore.com/games/toram-online)
-- Joki Main Quest NO MOD ft. Harriet (PM for more)
-- Guild Lv. 40 (https://revandastore.com/katalog/9)
+- Sell Spina & Top up Orb Via Login (https://revandastore.com/games/toram-online)
+- Joki Main Quest NO MOD ft. Harriet
 - Akun 1k Stack SS II / SS I
 
 *Layanan Lain:*
 - Top Up ML (WDP 26k), FF, PUBG, Genshin, dll. termurah di revandastore.com
 - Sewa bot GC WA Guild Toram (https://revandastore.com/katalog/11)
 
+>> https://revandastore.com/scamerlist
 ╔ *${metadata}*
 ║>> ${hari}, ${jam}:${menit} WIB <<
 ╚〘 Revanda Store x Chizuru 〙`
-if (m.body.includes("http")) {
+if (m.body.includes("revandaaaa")) {
 	const groupId = m.from;
     const triggers = await Trigger.getTriggersByGroupId(groupId);
     if (!triggers.length || await checkCooldown(triggers)) {
