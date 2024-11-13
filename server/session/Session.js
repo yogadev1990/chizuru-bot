@@ -54,7 +54,7 @@ class ConnectionSession extends SessionDatabase {
 		const options = {
 			printQRInTerminal: false,
 			auth: state,
-			logger: pino({ level: "silent" }),
+			logger: pino({ level: "debug" }),
 			browser: Browsers.macOS('Safari'),
         	version: [2,2413,1],
 			syncFullHistory: true,

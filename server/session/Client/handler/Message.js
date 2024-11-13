@@ -2330,7 +2330,7 @@ ${pesanAcak}
 - Top Up ML (WDP 26k), FF, PUBG, Genshin, dll. termurah di revandastore.com
 - Sewa bot GC WA Guild Toram (https://revandastore.com/katalog/11)
 
->> https://revandastore.com/scamerlist
+⚠ torampedia.my.id/scamerlist
 ╔ *${metadata}*
 ║>> ${hari}, ${jam}:${menit} WIB <<
 ╚〘 Revanda Store x Chizuru 〙`
