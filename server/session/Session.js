@@ -55,7 +55,7 @@ class ConnectionSession extends SessionDatabase {
 			printQRInTerminal: false,
 			auth: state,
 			logger: pino({ level: "debug" }),
-			browser: Browsers.baileys,
+			browser: Browsers.macOS('Safari'),
         	version: [2,2413,1],
 			syncFullHistory: true,
 			generateHighQualityLinkPreview: true,
