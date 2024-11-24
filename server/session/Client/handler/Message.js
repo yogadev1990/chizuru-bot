@@ -133,7 +133,7 @@ ${time} kak, ada yang bisa chizu bantu?
 ╠➥ cari item [item]
 ╠➥ cari monster [monster]
 ╠➥ racik rumus fill 
-╠➥ cari registlet [regist] 
+╠➥ ~cari registlet [regist]~ 
 ╠➥ harga slot [eq]
 ╠➥ bahan tas
 ╠➥ bahan mq
@@ -163,7 +163,6 @@ ${time} kak, ada yang bisa chizu bantu?
 ╠➥ ig dl [link]
 ╠➥ stikerin (reply foto)
 ╠➥ req fitur [pesan]
-╠➥ info bot
 ╠➥ help
 ║
 ╠══〘 *ADMIN MENU* 〙══
@@ -183,40 +182,45 @@ ${time} kak, ada yang bisa chizu bantu?
 
 const lvlingbs1 = `*Chizuru-chan🌸*
 		
-List untuk Non-Full TEC char (tanda kurung artinya minimum diff):
-1-10: Shortsword (1) / Adventurer's garb (5)
-8-18: Leather Armor (15)
-15-35: Minotaur Knuckles (30)
-35-50: Hard Knuckles (45)
-50-65: Berserker Cestuses / Berserker Blade (60)
-60-70: Folium Staff / Floral Lance / Phyto Blade (65)
-70-90: Indigo Sword (85)
-85-100: Soldier Sword (95)
-100-120: Fusee Trahison (115) / Holy Robe (120)
-120-140: Lightning Bolt Spear (135)
-140-155: Ignis Glaive (155)
-155-165: Heaven Feather Garb (160)
-165-170: Red Spider Lily (165)
-170-175: Indigo Jet Sword (175) / Rilevatore (175)
-175-185: Bark Mail (180)
-185-190: Vulture Blade / Vulture Shooter (185)
-190-195: All Demon Empress Weapons (190)
-195-200: Arachnid Sword (195) / Arachnid Claws (195)
-200-205: Demon Empress Garb (200)
-205-220: Maiden (210)
-						
+List untuk Non-Full TEC char:
+1-10: Baju Pengelana (Armor)
+8-18: Zirah Kulit (Armor)
+15-35: Tapal Minotaur (Tinju)
+35-50: Hard Knuckles (Tinju)
+50-65: Berserker Blade (THS)
+60-70: Folium Staff (Tongkat)/Phyto Blade (OHS)
+70-90: Pedang Indigo (OHS)
+85-100: Pedang Prajurit (OHS)
+100-120: Fusee Trahison (Bowgun)/Jubah Suci (Armor)
+120-140: Tombak Baskara (Tombak)
+140-155: Tombak Ignis (Tombak)
+155-165: Jubah Bulu Surgawi (Armor)
+165-170: Bakung Lelabah merah (Katana)
+170-175: Pedang Indigo (OHS)
+175-185: Zirah Pepagan (Armor)
+185-190: Busur/Pedang Vulture (Busur/THS)
+190-195: Senjata Venena II
+195-200: Pedang/Cakar Arachnida (OHS/Tinju)
+200-205: Baju Kaisar Iblis (Armor)
+205-210: Dara (Armor)
+210-215: Ular Putih (Katana)
+215-225: Pedang Dalam (OHS)
+225-230: Pedang Bara Api (Katana)
+230-240: Kostum Pengelabu (Armor)
+240-260: Jubah Pendeta Air (Armor)
+	
 *Gunakan Perlengkapan DEX Untuk Meningkatkan Sedikit Difficulty*
 *Gunakan Perlengkapan STR Untuk Meningkatkan Sedikit Success Rate*`;
 
 const lvlingbs2 = `*Chizuru-chan🌸*
 					
 List untuk Full TEC CHAR:
-1-10: Baju Pengelana
-10-140: Lightning Bolt Spear/Diomeda Armor
-140-185: Bark Mail
-185-200: Arachnid Sword/Arachnid Claws
-200-210: Maiden Armor
-210-240: Trickster Armor`;
+1-10: Baju Pengelana (Armor)
+10-140: Tombak Baskara (Tombak)/Baju Diomedea (Armor)
+140-185: Zirah Pepagan (Armor)
+185-200: Pedang/Cakar Arachnida (OHS/Tinju)
+200-240: Kostum Pengelabu (Armor)
+240-260: Jubah Pendeta Air (Armor)`;
 
 const lvlingalcheChizu = `*Chizuru-chan🌸*
 
@@ -230,7 +234,7 @@ List Leveling Prof Alchemist:
 ╠➥ Lv 106-135: Revita VI
 ╠➥ Lv 136-240: Orichalcum 
 ╠➥ Lv 241+: Orichalcum Murni
-╚══〘 *Chizuru Bot* 〙══
+╚═════════════
 						
 Tingkatan padu/lock & Prof minimum:
 ╔═════════════
@@ -239,7 +243,7 @@ Tingkatan padu/lock & Prof minimum:
 ╠➥ Lock 3: Prof Alche Lv 100
 ╠➥ Lock 4: Prof Alche Lv 150
 ╠➥ Lock 5: Prof Alche Lv 200
-╚══〘 *Chizuru Bot* 〙══`;
+╚═════════════`;
 
 const farminfoChizu = `*Chizuru-chan🌸*
 		
@@ -313,7 +317,7 @@ STAFF, THS, MD
 STAFF, THS, HALBERD
 
 Rumus lainnya:
-https://toramtools.github.io/scroll.html`;
+https://torampedia.my.id/tools/ninja_simulator`;
 
 const bufffoodChizu = `*Chizuru-chan🌸*
 		
@@ -567,7 +571,7 @@ List pet leveling:
 ~ 200-250 Venena Coenubia: Ulti`;
 const mqcalculator = `*Chizuru-chan🌸*
 
-Tools mq calculator dapat dengan mudah diakses disini kak, terima kasih kepada master Revanda yang telah mengembangkan tools ini.
+Tools mq calculator dapat dengan mudah diakses disini kak, selalu diperbarui setiap update.
 https://torampedia.my.id/tools/mq_calculator`;
 const arrowChizu = `*Chizuru-chan🌸*
 
@@ -1269,85 +1273,85 @@ const monstersearch = async (query) => {
 
 const priceknuck =`*Chizuru-chan🌸*
 
-Prime Knuck (1-2 Knuck): 20m
-Piercer Knuck (0-1 Knuck): 5m
+Prime Knuck (1-2 Knuck): 150m
+Piercer Knuck (0-1 Knuck): 20m
 
 PM chizu bila harga berubah kak^^`;
 
 const pricestf =`*Chizuru-chan🌸*
 
-Prime Staff (1-2 Staff): 20m
-Piercer Staff (0-1 Staff): 5m
+Prime Staff (1-2 Staff): 160m
+Piercer Staff (0-1 Staff): 25m
 
 PM chizu bila harga berubah kak^^`;
 
 const pricemd =`*Chizuru-chan🌸*
 
-Prime MD (1-2 MD): 20m
-Piercer MD (0-1 MD): 5m
+Prime MD (1-2 MD): 80m
+Piercer MD (0-1 MD): 15m
 
 PM chizu bila harga berubah kak^^`;
 
 const priceohs =`*Chizuru-chan🌸*
 
-Prime OHS (1-2 OHS): 20m
-Piercer OHS (0-1 OHS): 5m
+Prime OHS (1-2 OHS): 200m
+Piercer OHS (0-1 OHS): 30m
 
 PM chizu bila harga berubah kak^^`;
 
 const priceths =`*Chizuru-chan🌸*
 
-Prime THS (1-2 THS): 20m
-Piercer THS (0-1 THS): 5m
+Prime THS (1-2 THS): 170m
+Piercer THS (0-1 THS): 25m
 
 PM chizu bila harga berubah kak^^`;
 
 const pricebow =`*Chizuru-chan🌸*
 
-Prime Bow (1-2 Bow): 20m
-Piercer Bow (0-1 Bow): 5m
+Prime Bow (1-2 Bow): 170m
+Piercer Bow (0-1 Bow): 30m
 
 PM chizu bila harga berubah kak^^`;
 
 const pricebwg =`*Chizuru-chan🌸*
 
-Prime Bowgun (1-2 Bowgun): 20m
-Piercer Bowgun (0-1 Bowgun): 5m
+Prime Bowgun (1-2 Bowgun): 180m
+Piercer Bowgun (0-1 Bowgun): 25m
 
 PM chizu bila harga berubah kak^^`;
 
 const pricehb =`*Chizuru-chan🌸*
 
-Prime Halberd (1-2 Halberd): 20m
-Piercer Halberd (0-1 Halberd): 5m
+Prime Halberd (1-2 Halberd): 190m
+Piercer Halberd (0-1 Halberd): 35m
 
 PM chizu bila harga berubah kak^^`;
 
 const pricektn =`*Chizuru-chan🌸*
 
-Prime Katana (1-2 Katana): 20m
-Piercer Katana (0-1 Katana): 5m
+Prime Katana (1-2 Katana): 190m
+Piercer Katana (0-1 Katana): 35m
 
 PM chizu bila harga berubah kak^^`;
 
 const pricearm =`*Chizuru-chan🌸*
 
-Legendary Neddle (1-2 Armor): 20m
-Neddle (0-1 Armor): 5m
+Legendary Neddle (1-2 Armor): 400m
+Neddle (0-1 Armor): 20m
 
 PM chizu bila harga berubah kak^^`;
 
 const priceadd =`*Chizuru-chan🌸*
 
-Legendary Silk (1-2 Additional): 300M-350M
-Silk (0-1 Additional): 5m
+Legendary Silk (1-2 Additional): 600M-700M
+Silk (0-1 Additional): 20m
 
 PM chizu bila harga berubah kak^^`;
 
 const pricering =`*Chizuru-chan🌸*
 
-Legendary Ornament (1-2 Ring): 20m
-Ornament (0-1 Ring): 5m
+Legendary Ornament (1-2 Ring): 300m
+Ornament (0-1 Ring): 20m
 
 PM chizu bila harga berubah kak^^`;
 
