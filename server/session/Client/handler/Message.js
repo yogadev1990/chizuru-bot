@@ -560,15 +560,50 @@ Xtall: Crysta
 Chat Chizuru kalau ada yang mau ditambahkan (ﾉ◕ヮ◕)ﾉ*.✧`;
 const petlvlingChizu = `*Chizuru-chan🌸*
 
-List pet leveling:
-~ 1-10 Larvaca
-~ 10-20 Pendekar Bertopeng: Hard
-~ 20-50 Pendekar Bertopeng: NM
-~ 50-100 Pendekar Bertopeng: Ulti
-~ 100-120 Cerberus: Nm
-~ 120-150 Cerberus: Ulti
-~ 150-200 Venena Coenubia: NM
-~ 200-250 Venena Coenubia: Ulti`;
+Tips Leveling Pet:
+1. Pastikan cinta nya 100%
+2. Ajak ke boss dengan syarat agar exp masuk
+a. Pet harus dalam keadaan hidup saat pertempuran berakhir. 
+b. Pet udah nyentuh bossnya dengan hit/nge skill tanpa miss, atau pet mp regen.
+
+Lvling Pet:
+- 01-40 Masked Normal 
+- 40-46 Masked Hard 
+- 46-72 Masked NM
+- 72-95 Masked Ulti 
+- 95-102 Cerberus NM
+- 102-160 Cerberus Ulti
+- 150-160 Venena1 NM
+- 160-220 Venena1 Ulti
+- 160-175 Pilz Erosi NM
+- 180-220 Pilz Erosi Ulti
+- 188-220 Titan Kristal 
+- 190-220 Finstern Ulti
+- 210-260 Venena meta Ulti
+- 210-230 Kuzto Ulti
+- 210-240 Gravicep Ulti
+- 220-270 Ferzen Naga Batu Ulti
+- 250- 270 Walican NM
+- 260-290 Naga Penyamar Mimyugon Ulti
+
+Versi Singkat: 
+- 1-70 Masked NM
+- 70-100 Masked Ulti 
+- 100-160 Cerberus Ulti 
+- 160-220 Venena1 Ulti
+- 200-cap Venena meta Ulti 
+
+Jalur Miniboss:
+- 1-50 Big Mask (Map:  Ngarai Haotas)
+- 51-81 Metal Stinger (Map: Gurun Akaku: Area 2)
+- 81-110 Don Yeti (Map: Lembah Es Polde)
+- 111-160 Jamur Super Mampus (Map: Hutan Monster: Jalan Hewan)
+- 161-210 Violangkara (Map: Bongkahan Morthell: Area 3)
+- 211-248 Ketua Bandit Gurun (Map: Gurun Pasir Geist: Area 3)
+- 245-300 Trus (Map: Zona Mekanisme Penggerak: Tangki Daya )
+- 250-300 Lilicarolla (Map: Air Terjun Beku: Area 1)
+
+Credits to: PET TORAM ONLINE INDO`;
 const mqcalculator = `*Chizuru-chan🌸*
 
 Tools mq calculator dapat dengan mudah diakses disini kak, selalu diperbarui setiap update.
